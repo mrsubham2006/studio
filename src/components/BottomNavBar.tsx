@@ -7,10 +7,11 @@ import { Home, LayoutGrid, Bot, BarChart2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '/', label: 'Home', icon: Home },
   { href: '/courses', label: 'Courses', icon: LayoutGrid },
   { href: '/ai-assistant', label: 'AI', icon: Bot },
+  { href: '/', label: 'Home', icon: Home },
   { href: '/dashboard', label: 'Dashboard', icon: BarChart2 },
+  { href: '/profile', label: 'Profile', icon: 'User' },
 ];
 
 export default function BottomNavBar() {
