@@ -31,8 +31,8 @@ const aiTools = [
     name: 'YouTube Video Summarizer',
     description: 'Get a summary of any YouTube educational video.',
     icon: Youtube,
-    href: '#',
-    disabled: true,
+    href: '/ai-assistant/youtube-summarizer',
+    disabled: false,
   },
 ];
 
