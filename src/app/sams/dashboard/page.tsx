@@ -19,6 +19,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { cn } from '@/lib/utils';
 
 
 // Mock data
@@ -91,7 +92,7 @@ export default function SAMSDashboardPage() {
         // Simulate loading for demo purposes
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 1000);
+        }, 500); // Reduced loading time for better animation visibility
         return () => clearTimeout(timer);
     }, []);
 
@@ -115,9 +116,9 @@ export default function SAMSDashboardPage() {
             setTimeout(() => {
                 toast({
                     title: "Submission Successful!",
-                    description: `Your assignment '${''}${selectedAssignmentTitle}' has been submitted.`,
+                    description: `Your assignment '${selectedAssignmentTitle}' has been submitted.`,
                 });
-                setSubmittedAssignments(prev => [...prev, selectedAssignmentTitle]);
+                setSubmittedAssignments(prev => [...prev, selectedAssignmentTitle!]);
                 setSelectedAssignmentTitle(null);
             }, 1000);
 
@@ -132,6 +133,115 @@ export default function SAMSDashboardPage() {
     }
     
     const studentData = mockStudentData;
+
+    const features = [
+        {
+            title: 'Assignments',
+            icon: BookOpen,
+            href: undefined,
+            className: 'md:col-span-2',
+            content: (
+                 <div className="space-y-4">
+                    {mockAssignments.map(assignment => {
+                        const isSubmitted = submittedAssignments.includes(assignment.title);
+                        return (
+                            <div key={assignment.title} className="p-3 bg-muted/50 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                <div>
+                                    <p className="font-semibold">{assignment.title}</p>
+                                    <Badge variant="outline" className="mt-1">Due: {assignment.dueDate}</Badge>
+                                </div>
+                                <Button size="sm" variant={isSubmitted ? "default" : "secondary"} onClick={() => !isSubmitted && handleUploadClick(assignment.title)} disabled={isSubmitted}>
+                                    {isSubmitted ? <FileCheck className="mr-2 h-4 w-4"/> : <Upload className="mr-2 h-4 w-4" />}
+                                    {isSubmitted ? 'Submitted!' : 'Upload Submission'}
+                                </Button>
+                            </div>
+                        );
+                    })}
+                 </div>
+            )
+        },
+        {
+            title: 'Exam Papers',
+            icon: FileText,
+            href: '/sams/exam-papers',
+            content: <p className="text-sm text-muted-foreground">Past year and upcoming exam papers.</p>
+        },
+        {
+            title: 'Notes & Syllabus',
+            icon: CheckSquare,
+            href: '#',
+            content: <p className="text-sm text-muted-foreground">Downloadable materials for your courses.</p>
+        },
+        {
+            title: 'Marks & Attendance',
+            icon: BarChart2,
+            href: '#',
+            content: (
+                 <div className="flex justify-around text-center">
+                     <div>
+                         <p className="text-2xl font-bold">{mockAttendance.percentage}%</p>
+                         <p className="text-xs text-muted-foreground">Attendance</p>
+                     </div>
+                     <div>
+                         <p className="text-2xl font-bold">{mockMarks.grade}</p>
+                         <p className="text-xs text-muted-foreground">{mockMarks.latestExam}</p>
+                     </div>
+                 </div>
+            )
+        },
+        {
+            title: 'Notifications',
+            icon: Bell,
+            href: undefined,
+            className: 'lg:col-span-2',
+            content: <ul className="space-y-2 text-sm">{mockNotifications.map(n => <li key={n.title} className="flex justify-between"><span>{n.title}</span> <span className="text-muted-foreground">{n.date}</span></li>)}</ul>
+        },
+        {
+            title: 'Time Table',
+            icon: Calendar,
+            href: '/sams/timetable',
+            content: <p className="text-sm text-muted-foreground">View your weekly class schedule.</p>
+        },
+        {
+            title: 'Extra Curricular Activities',
+            icon: Trophy,
+            href: undefined,
+            className: 'md:col-span-2 lg:col-span-3 xl:col-span-4',
+            content: (
+                 <Carousel opts={{ align: "start", loop: true }} className="w-full">
+                    <CarouselContent className="-ml-4">
+                        {mockActivities.map((activity) => {
+                            const activityImage = PlaceHolderImages.find(img => img.id === activity.imageId);
+                            return (
+                            <CarouselItem key={activity.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                                <Link href={`/sams/activity/${activity.id}`}>
+                                    <div className="group relative overflow-hidden rounded-lg">
+                                        {activityImage && (
+                                            <Image
+                                                src={activityImage.imageUrl}
+                                                alt={activity.title}
+                                                data-ai-hint={activityImage.imageHint}
+                                                width={400}
+                                                height={250}
+                                                className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                            />
+                                        )}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                                        <div className="absolute bottom-0 left-0 p-4">
+                                            <h4 className="font-bold text-lg text-white font-headline">{activity.title}</h4>
+                                            <Badge variant="secondary" className="mt-1">{activity.date}</Badge>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </CarouselItem>
+                        )})}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-2" />
+                    <CarouselNext className="right-2" />
+                </Carousel>
+            )
+        }
+    ];
 
     return (
         <div className="min-h-screen bg-background text-foreground">
@@ -164,87 +274,18 @@ export default function SAMSDashboardPage() {
             <main className="container max-w-7xl mx-auto p-4 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {/* Feature Cards */}
-                    <DashboardCard title="Assignments" icon={BookOpen} className="md:col-span-2">
-                         <div className="space-y-4">
-                            {mockAssignments.map(assignment => {
-                                const isSubmitted = submittedAssignments.includes(assignment.title);
-                                return (
-                                    <div key={assignment.title} className="p-3 bg-muted/50 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                                        <div>
-                                            <p className="font-semibold">{assignment.title}</p>
-                                            <Badge variant="outline" className="mt-1">Due: {assignment.dueDate}</Badge>
-                                        </div>
-                                        <Button size="sm" variant={isSubmitted ? "default" : "secondary"} onClick={() => !isSubmitted && handleUploadClick(assignment.title)} disabled={isSubmitted}>
-                                            {isSubmitted ? <FileCheck className="mr-2 h-4 w-4"/> : <Upload className="mr-2 h-4 w-4" />}
-                                            {isSubmitted ? 'Submitted!' : 'Upload Submission'}
-                                        </Button>
-                                    </div>
-                                );
-                            })}
-                         </div>
-                    </DashboardCard>
-                     <DashboardCard title="Exam Papers" icon={FileText} href="/sams/exam-papers">
-                        <p className="text-sm text-muted-foreground">Past year and upcoming exam papers.</p>
-                    </DashboardCard>
-                     <DashboardCard title="Notes & Syllabus" icon={CheckSquare} href="#">
-                        <p className="text-sm text-muted-foreground">Downloadable materials for your courses.</p>
-                    </DashboardCard>
-                     <DashboardCard title="Marks & Attendance" icon={BarChart2} href="#">
-                         <div className="flex justify-around text-center">
-                             <div>
-                                 <p className="text-2xl font-bold">{mockAttendance.percentage}%</p>
-                                 <p className="text-xs text-muted-foreground">Attendance</p>
-                             </div>
-                             <div>
-                                 <p className="text-2xl font-bold">{mockMarks.grade}</p>
-                                 <p className="text-xs text-muted-foreground">{mockMarks.latestExam}</p>
-                             </div>
-                         </div>
-                    </DashboardCard>
-                     <DashboardCard title="Notifications" icon={Bell} className="lg:col-span-2">
-                        <ul className="space-y-2 text-sm">
-                            {mockNotifications.map(n => <li key={n.title} className="flex justify-between"><span>{n.title}</span> <span className="text-muted-foreground">{n.date}</span></li>)}
-                         </ul>
-                    </DashboardCard>
-                     <DashboardCard title="Time Table" icon={Calendar} href="/sams/timetable">
-                        <p className="text-sm text-muted-foreground">View your weekly class schedule.</p>
-                    </DashboardCard>
-
-                     <div className="md:col-span-2 lg:col-span-3 xl:col-span-4">
-                        <DashboardCard title="Extra Curricular Activities" icon={Trophy}>
-                            <Carousel opts={{ align: "start", loop: true }} className="w-full">
-                                <CarouselContent className="-ml-4">
-                                    {mockActivities.map((activity) => {
-                                        const activityImage = PlaceHolderImages.find(img => img.id === activity.imageId);
-                                        return (
-                                        <CarouselItem key={activity.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                                            <Link href={`/sams/activity/${activity.id}`}>
-                                                <div className="group relative overflow-hidden rounded-lg">
-                                                    {activityImage && (
-                                                        <Image
-                                                            src={activityImage.imageUrl}
-                                                            alt={activity.title}
-                                                            data-ai-hint={activityImage.imageHint}
-                                                            width={400}
-                                                            height={250}
-                                                            className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                                        />
-                                                    )}
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                                                    <div className="absolute bottom-0 left-0 p-4">
-                                                        <h4 className="font-bold text-lg text-white font-headline">{activity.title}</h4>
-                                                        <Badge variant="secondary" className="mt-1">{activity.date}</Badge>
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        </CarouselItem>
-                                    )})}
-                                </CarouselContent>
-                                <CarouselPrevious className="left-2" />
-                                <CarouselNext className="right-2" />
-                            </Carousel>
+                    {features.map((feature, index) => (
+                        <DashboardCard 
+                            key={feature.title}
+                            title={feature.title}
+                            icon={feature.icon}
+                            href={feature.href}
+                            className={cn(feature.className, "fade-in-up")}
+                            style={{ animationDelay: `${index * 100}ms` }}
+                        >
+                            {feature.content}
                         </DashboardCard>
-                    </div>
+                    ))}
                 </div>
             </main>
         </div>
@@ -258,11 +299,12 @@ type DashboardCardProps = {
     children: React.ReactNode;
     href?: string;
     className?: string;
+    style?: React.CSSProperties;
 }
 
-const DashboardCard = ({ title, icon: Icon, children, href, className }: DashboardCardProps) => {
+const DashboardCard = ({ title, icon: Icon, children, href, className, style }: DashboardCardProps) => {
     const content = (
-        <Card className={`bg-card glow-on-hover transition-all duration-300 flex flex-col h-full ${''}${href ? 'hover:-translate-y-1' : ''}${''} ${''}${className}${''}`}>
+        <Card style={style} className={cn("bg-card glow-on-hover transition-all duration-300 flex flex-col h-full", href ? 'hover:-translate-y-1' : '', className)}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
                 <CardTitle className="text-lg font-medium font-headline">{title}</CardTitle>
                 <Icon className="h-5 w-5 text-muted-foreground" />
