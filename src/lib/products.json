@@ -248,6 +248,48 @@
       "price": 250,
       "category": "Class 10th",
       "imageId": "course-sanskrit"
+    },
+    {
+      "id": "book-math-12",
+      "name": "Comprehensive Mathematics Class 12",
+      "description": "Covers all topics for Class 12 Mathematics including calculus, algebra, and vectors.",
+      "price": 500,
+      "category": "Class 12th",
+      "imageId": "course-maths"
+    },
+    {
+      "id": "book-phys-12",
+      "name": "Concepts of Physics Class 12",
+      "description": "A deep dive into electromagnetism, optics, and modern physics for Class 12.",
+      "price": 480,
+      "category": "Class 12th",
+      "imageId": "course-physics"
+    },
+    {
+      "id": "book-chem-12",
+      "name": "Inorganic & Physical Chemistry Class 12",
+      "description": "A detailed textbook on inorganic and physical chemistry for senior secondary students.",
+      "price": 480,
+      "category": "Class 12th",
+      "imageId": "course-chemistry"
+    },
+    {
+      "id": "book-bio-12",
+      "name": "Modern Biology for Class 12",
+      "description": "Explore topics like genetics, biotechnology, and ecology for Class 12 Biology.",
+      "price": 490,
+      "category": "Class 12th",
+      "imageId": "course-biology"
+    },
+    {
+      "id": "book-it-12",
+      "name": "Computer Science with Python Class 12",
+      "description": "Learn advanced Python programming, data structures, and networking concepts.",
+      "price": 450,
+      "category": "Class 12th",
+      "imageId": "course-it"
     }
   ]
 }
+
+    
