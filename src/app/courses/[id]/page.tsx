@@ -130,9 +130,6 @@ export default function CourseDetailsPage({ params }: { params: { id: string } }
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                          <Film className="h-12 w-12 text-white" />
-                      </div>
                     </div>
                   </Link>
                 </div>
