@@ -200,6 +200,54 @@
       "price": 230,
       "category": "Class 9th",
       "imageId": "course-sanskrit"
+    },
+    {
+      "id": "book-science-10",
+      "name": "Science for Class 10",
+      "description": "An integrated science course for Class 10 students covering Physics, Chemistry, and Biology.",
+      "price": 420,
+      "category": "Class 10th",
+      "imageId": "course-science"
+    },
+    {
+      "id": "book-geo-10",
+      "name": "Geography of India Class 10",
+      "description": "Explore the geography of India in detail, from its physical features to its climate and resources.",
+      "price": 300,
+      "category": "Class 10th",
+      "imageId": "course-geography"
+    },
+    {
+      "id": "book-history-10",
+      "name": "Modern World History Class 10",
+      "description": "A comprehensive look at major world events and revolutions from the 18th century onwards.",
+      "price": 300,
+      "category": "Class 10th",
+      "imageId": "course-history"
+    },
+    {
+      "id": "book-it-10",
+      "name": "Information Technology Class 10",
+      "description": "An introduction to programming concepts, cybersecurity, and office tools for Class 10.",
+      "price": 340,
+      "category": "Class 10th",
+      "imageId": "course-it"
+    },
+    {
+      "id": "book-odia-10",
+      "name": "Odia Literature Class 10",
+      "description": "A collection of stories, poems, and essays from renowned Odia writers.",
+      "price": 230,
+      "category": "Class 10th",
+      "imageId": "course-odia"
+    },
+    {
+      "id": "book-sanskrit-10",
+      "name": "Sanskrit Grammar & Composition Class 10",
+      "description": "Master Sanskrit grammar rules and learn to compose sentences and paragraphs.",
+      "price": 250,
+      "category": "Class 10th",
+      "imageId": "course-sanskrit"
     }
   ]
 }
