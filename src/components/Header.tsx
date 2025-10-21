@@ -18,7 +18,6 @@ import { useAuth, useUser } from '@/firebase';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { Input } from './ui/input';
-import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -31,7 +30,6 @@ const navLinks = [
 
 export default function Header() {
   const [isSheetOpen, setSheetOpen] = useState(false);
-  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const { user } = useUser();
   const auth = useAuth();
   const router = useRouter();
@@ -88,28 +86,11 @@ export default function Header() {
         {/* Center Section (Search) */}
         <div className="flex-1 flex justify-center px-4">
           <div className="relative w-full max-w-md">
-            <div className={cn(
-                "absolute inset-0 flex items-center justify-center transition-opacity",
-                isSearchExpanded ? "opacity-0 pointer-events-none" : "opacity-100"
-              )}>
-                 <Button variant="ghost" className="rounded-full h-10 w-10 p-0" onClick={() => setIsSearchExpanded(true)}>
-                    <Search className="h-5 w-5" />
-                 </Button>
-            </div>
-            <div className={cn(
-                "flex items-center w-full transition-all duration-300",
-                 isSearchExpanded ? 'w-full opacity-100' : 'w-10 opacity-0'
-              )}>
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input 
+             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+             <Input 
                 placeholder="Search..." 
-                className={cn(
-                    "pl-10 h-10 w-full rounded-full transition-all duration-300",
-                    isSearchExpanded ? 'w-full' : 'w-10'
-                )}
-                onBlur={() => setIsSearchExpanded(false)}
+                className="pl-10 h-10 w-full rounded-full bg-muted/50 border-transparent focus:bg-background focus:border-border"
               />
-            </div>
           </div>
         </div>
 
