@@ -73,7 +73,7 @@ export default function LoginPage() {
 
       toast({
         title: "Login Successful",
-        description: `Welcome back, ${'\'\''}${user.displayName || 'user'}!`,
+        description: `Welcome back, ${user.displayName || 'user'}!`,
       });
       router.push('/');
     } catch (error: any) {
