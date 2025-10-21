@@ -1,9 +1,10 @@
 
 
+
 'use client';
 
 import Link from 'next/link';
-import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell, LifeBuoy, Mail, Phone, Package } from 'lucide-react';
+import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell, LifeBuoy, Mail, Phone, Package, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
@@ -61,50 +62,53 @@ export default function Header() {
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="p-0">
-                <SheetHeader className='p-6'>
-                  <SheetTitle className="sr-only">Menu</SheetTitle>
+              <SheetContent side="left" className="w-full max-w-xs p-0">
+                <SheetHeader className='p-6 pb-2'>
+                  <SheetTitle>
+                    <Link href="/" className="flex items-center gap-2" onClick={() => setSheetOpen(false)}>
+                      <Book className="h-6 w-6 text-primary" />
+                      <span className="font-bold font-headline text-xl">EduNex</span>
+                    </Link>
+                  </SheetTitle>
                 </SheetHeader>
-                <div className="flex flex-col gap-2 px-4">
-                  <Link href="/" className="flex items-center gap-2 px-2 pb-4" onClick={() => setSheetOpen(false)}>
-                    <Book className="h-6 w-6 text-primary" />
-                    <span className="font-bold font-headline text-xl">EduNex</span>
-                  </Link>
-                  <nav className="flex flex-col gap-1">
-                    {mobileNavLinks.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary"
-                        onClick={() => setSheetOpen(false)}
-                      >
-                        <link.icon className="h-5 w-5" />
-                        {link.label}
-                      </Link>
-                    ))}
-                  </nav>
+                <div className="flex h-full flex-col">
+                  <div className="flex-1 overflow-y-auto px-4 py-2">
+                    <nav className="flex flex-col gap-1">
+                      {mobileNavLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary"
+                          onClick={() => setSheetOpen(false)}
+                        >
+                          <link.icon className="h-5 w-5" />
+                          {link.label}
+                        </Link>
+                      ))}
+                    </nav>
 
-                  <Accordion type="single" collapsible className="w-full">
-                    <AccordionItem value="help" className="border-b-0">
-                      <AccordionTrigger className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary hover:no-underline">
-                        <LifeBuoy className="h-5 w-5" />
-                        Help & Support
-                      </AccordionTrigger>
-                      <AccordionContent className="pb-0 pl-8">
-                        <div className="flex flex-col gap-2 text-foreground/70">
-                            <h4 className="font-semibold text-foreground/90 mt-2">Customer Support</h4>
-                            <a href="tel:7848049774" className="flex items-center gap-3 rounded-lg px-3 py-2 text-base font-medium transition-colors hover:text-primary">
-                                <Phone className="h-5 w-5" />
-                                <span>7848049774</span>
-                            </a>
-                            <a href="mailto:support@edunex.demo" className="flex items-center gap-3 rounded-lg px-3 py-2 text-base font-medium transition-colors hover:text-primary">
-                                <Mail className="h-5 w-5" />
-                                <span>support@edunex.demo</span>
-                            </a>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
+                    <Accordion type="single" collapsible className="w-full mt-2">
+                      <AccordionItem value="help" className="border-b-0">
+                        <AccordionTrigger className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary hover:no-underline">
+                          <LifeBuoy className="h-5 w-5" />
+                          Help & Support
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-0 pl-8">
+                          <div className="flex flex-col gap-2 text-foreground/70">
+                              <h4 className="font-semibold text-foreground/90 mt-2">Customer Support</h4>
+                              <a href="tel:7848049774" className="flex items-center gap-3 rounded-lg px-3 py-2 text-base font-medium transition-colors hover:text-primary">
+                                  <Phone className="h-5 w-5" />
+                                  <span>7848049774</span>
+                              </a>
+                              <a href="mailto:support@edunex.demo" className="flex items-center gap-3 rounded-lg px-3 py-2 text-base font-medium transition-colors hover:text-primary">
+                                  <Mail className="h-5 w-5" />
+                                  <span>support@edunex.demo</span>
+                              </a>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
@@ -179,5 +183,3 @@ export default function Header() {
     </header>
   );
 }
-
-    

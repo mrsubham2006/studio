@@ -1,4 +1,7 @@
 
+'use client';
+
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -7,8 +10,9 @@ import { Button } from '@/components/ui/button';
 import { Package, Truck, CheckCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
+import Link from 'next/link';
 
-const mockOrders = [
+const initialMockOrders = [
   {
     id: 'EDUNEX-8924',
     date: '2024-07-20T10:30:00Z',
@@ -43,6 +47,8 @@ const mockOrders = [
   },
 ];
 
+type Order = typeof initialMockOrders[0];
+
 const statusStyles: { [key: string]: string } = {
   'Delivered': 'bg-green-500/10 text-green-500 border-green-500/20',
   'Shipped': 'bg-blue-500/10 text-blue-500 border-blue-500/20',
@@ -60,6 +66,32 @@ const statusIcons: { [key: string]: React.ElementType } = {
 }
 
 export default function MyOrdersPage() {
+    const [orders, setOrders] = useState<Order[]>([]);
+
+    useEffect(() => {
+        // This effect runs on the client side
+        try {
+            const storedOrders = JSON.parse(localStorage.getItem('mockOrders') || '[]');
+            // Combine initial mock orders with locally stored ones, ensuring no duplicates
+            const combinedOrders = [...initialMockOrders];
+            const storedOrderIds = new Set(combinedOrders.map(o => o.id));
+            
+            for (const storedOrder of storedOrders) {
+                if (!storedOrderIds.has(storedOrder.id)) {
+                    combinedOrders.push(storedOrder);
+                }
+            }
+            
+            // Sort orders by date
+            combinedOrders.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+            setOrders(combinedOrders);
+        } catch (error) {
+            console.error("Failed to load orders from localStorage", error);
+            setOrders(initialMockOrders);
+        }
+    }, []);
+
   return (
     <>
       <Header />
@@ -71,7 +103,7 @@ export default function MyOrdersPage() {
           </div>
           
           <div className="space-y-8">
-            {mockOrders.map(order => (
+            {orders.map(order => (
               <Card key={order.id} className="shadow-md">
                 <CardHeader>
                   <div className="flex justify-between items-start">
@@ -101,9 +133,18 @@ export default function MyOrdersPage() {
                                 const Icon = statusIcons[event.status] || Package;
                                 return (
                                     <li key={index} className="relative flex items-start gap-4">
-                                        <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
-                                            <div className="h-4 w-4 rounded-full bg-primary ring-4 ring-primary/20" />
-                                            <Icon className="absolute h-4 w-4 text-primary-foreground"/>
+                                        <div className={cn(
+                                            "relative flex h-8 w-8 items-center justify-center rounded-full bg-primary/10",
+                                            order.status === 'Delivered' && index === 0 && "bg-green-500/20"
+                                        )}>
+                                            <div className={cn(
+                                                "h-4 w-4 rounded-full bg-primary ring-4 ring-primary/20",
+                                                 order.status === 'Delivered' && index === 0 && "bg-green-500 ring-green-500/20"
+                                            )} />
+                                            <Icon className={cn(
+                                                "absolute h-4 w-4 text-primary-foreground",
+                                                order.status === 'Delivered' && index === 0 && "text-green-500"
+                                            )}/>
                                         </div>
                                         <div>
                                             <p className="font-semibold">{event.status}</p>
@@ -129,13 +170,13 @@ export default function MyOrdersPage() {
             ))}
           </div>
 
-          {mockOrders.length === 0 && (
-            <div className="text-center py-16 text-muted-foreground">
+          {orders.length === 0 && (
+            <div className="text-center py-16 text-muted-foreground rounded-lg border-2 border-dashed">
               <Package className="mx-auto h-12 w-12 mb-4" />
               <h3 className="text-lg font-semibold">No Orders Yet</h3>
               <p>You haven't placed any orders. Start shopping in the EduStore!</p>
               <Button variant="outline" className="mt-4" asChild>
-                <a href="/edustore">Go to EduStore</a>
+                <Link href="/edustore">Go to EduStore</Link>
               </Button>
             </div>
           )}

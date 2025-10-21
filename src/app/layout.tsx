@@ -5,6 +5,7 @@ import { FirebaseClientProvider } from '@/firebase/client-provider';
 import { ThemeProvider } from '@/components/theme-provider';
 import Footer from '@/components/Footer';
 import BottomNavBar from '@/components/BottomNavBar';
+import { CartProvider } from '@/context/CartProvider';
 
 
 export const metadata: Metadata = {
@@ -32,11 +33,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FirebaseClientProvider>
-            <div className="flex min-h-screen flex-col">
-              {children}
-              <Footer />
-            </div>
-            <BottomNavBar />
+            <CartProvider>
+              <div className="flex min-h-screen flex-col">
+                {children}
+                <Footer />
+              </div>
+              <BottomNavBar />
+            </CartProvider>
           </FirebaseClientProvider>
           <Toaster />
         </ThemeProvider>
