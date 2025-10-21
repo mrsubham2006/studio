@@ -3,6 +3,8 @@ import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 import { ThemeProvider } from '@/components/theme-provider';
+import Footer from '@/components/Footer';
+import BottomNavBar from '@/components/BottomNavBar';
 
 
 export const metadata: Metadata = {
@@ -30,7 +32,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FirebaseClientProvider>
-            {children}
+            <div className="flex min-h-screen flex-col">
+              {children}
+              <Footer />
+            </div>
+            <BottomNavBar />
           </FirebaseClientProvider>
           <Toaster />
         </ThemeProvider>

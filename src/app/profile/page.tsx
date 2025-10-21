@@ -4,7 +4,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { useUser, useFirestore, useMemoFirebase } from '@/firebase';
 import { doc } from 'firebase/firestore';
 import { useDoc } from '@/firebase/firestore/use-doc';
@@ -77,7 +76,7 @@ export default function ProfilePage() {
 
   if (isUserLoading || !user || isUserDataLoading) {
     return (
-      <div className="flex min-h-screen flex-col">
+      <>
         <Header />
         <main className="flex-1 py-12">
             <div className="container max-w-4xl">
@@ -107,13 +106,12 @@ export default function ProfilePage() {
                 </Card>
             </div>
         </main>
-        <Footer />
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-muted/40">
+    <div className="bg-muted/40">
       <Header />
       <main className="flex-1 py-12">
         <div className="container max-w-4xl">
@@ -226,7 +224,6 @@ export default function ProfilePage() {
           </Card>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

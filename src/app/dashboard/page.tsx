@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { recommendContent } from '@/ai/flows/ai-powered-content-recommendation';
@@ -62,7 +61,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-muted/40">
+    <div className="bg-muted/40">
       <Header />
       <main className="flex-1 py-8">
         <div className="container max-w-7xl">
@@ -177,7 +176,6 @@ export default function DashboardPage() {
             </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

@@ -1,11 +1,10 @@
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Video } from 'lucide-react';
 
 export default function LiveClassesPage() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <>
       <Header />
       <main className="flex-1">
         <div className="container max-w-7xl py-12 text-center">
@@ -19,7 +18,6 @@ export default function LiveClassesPage() {
             <Button size="lg" className="mt-8">Notify Me</Button>
         </div>
       </main>
-      <Footer />
-    </div>
+    </>
   );
 }

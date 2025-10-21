@@ -1,11 +1,10 @@
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function Loading() {
   return (
-    <div className="flex min-h-screen flex-col bg-muted/40">
+    <div className="flex-1 bg-muted/40">
       <Header />
       <main className="flex-1 py-8">
         <div className="container max-w-7xl animate-pulse">
@@ -52,7 +51,6 @@ export default function Loading() {
             </div>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

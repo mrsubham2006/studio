@@ -5,7 +5,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Bot, Send, Sparkles, User } from 'lucide-react';
 import { getChatbotResponse } from './actions';
 import { Card, CardContent } from '@/components/ui/card';
@@ -58,7 +57,7 @@ export default function AiAssistantPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
       <Header />
       <main className="flex-1 py-8">
         <div className="container max-w-3xl h-full flex flex-col">
@@ -127,7 +126,6 @@ export default function AiAssistantPage() {
             </Card>
         </div>
       </main>
-      <Footer />
-    </div>
+    </>
   );
 }
