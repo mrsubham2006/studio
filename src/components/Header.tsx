@@ -32,7 +32,6 @@ const mainNavLinks = [
 
 const mobileNavLinks = [
   { href: '/', label: 'Home', icon: Book },
-  { href: '/courses', label: 'Courses', icon: Book },
   { href: '/about', label: 'About', icon: Book },
   { href: '/internship', label: 'Internship', icon: Briefcase },
   { href: '/scholarship', label: 'Scholarship', icon: GraduationCap },
