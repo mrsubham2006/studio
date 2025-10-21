@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useFirebase } from '@/firebase';
@@ -78,7 +79,7 @@ export default function SAMSDashboardPage() {
             setTimeout(() => {
                 toast({
                     title: "Submission Successful!",
-                    description: `Your assignment '${'\'\''}${selectedAssignmentTitle}' has been submitted.`,
+                    description: `Your assignment '${''}${selectedAssignmentTitle}' has been submitted.`,
                 });
                 setSubmittedAssignments(prev => [...prev, selectedAssignmentTitle]);
                 setSelectedAssignmentTitle(null);
@@ -172,18 +173,8 @@ export default function SAMSDashboardPage() {
                      <DashboardCard title="Extra Curricular" icon={Trophy} href="#">
                         <p className="text-sm text-muted-foreground">Event notices and registrations.</p>
                     </DashboardCard>
-                     <DashboardCard title="Time Table" icon={Calendar} href="#">
-                        <div className="space-y-2 text-sm">
-                            {mockTimetable.map(item => (
-                                <div key={`${'\'\''}${item.day}-${item.time}${'\'\''}`} className="flex justify-between items-center p-2 bg-muted/50 rounded-md">
-                                    <div className='flex items-center gap-2'>
-                                        <Badge variant="outline" className='w-14 justify-center'>{item.day}</Badge>
-                                        <span className="font-semibold">{item.subject}</span>
-                                    </div>
-                                    <span className="text-muted-foreground">{item.time}</span>
-                                </div>
-                            ))}
-                        </div>
+                     <DashboardCard title="Time Table" icon={Calendar} href="/sams/timetable">
+                        <p className="text-sm text-muted-foreground">View your weekly class schedule.</p>
                     </DashboardCard>
                 </div>
             </main>
@@ -202,7 +193,7 @@ type DashboardCardProps = {
 
 const DashboardCard = ({ title, icon: Icon, children, href, className }: DashboardCardProps) => {
     const content = (
-        <Card className={`bg-card glow-on-hover transition-all duration-300 ${'\'\''}${href ? 'hover:-translate-y-1' : ''}${'\'\''} ${'\'\''}${className}${'\'\''}`}>
+        <Card className={`bg-card glow-on-hover transition-all duration-300 ${''}${href ? 'hover:-translate-y-1' : ''}${''} ${''}${className}${''}`}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-lg font-medium font-headline">{title}</CardTitle>
                 <Icon className="h-5 w-5 text-muted-foreground" />
