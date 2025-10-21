@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Book } from "lucide-react";
+import { Book, Camera } from "lucide-react";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -21,12 +21,14 @@ import { useAuth, useFirestore } from '@/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc } from 'firebase/firestore';
 import { setDocumentNonBlocking } from '@/firebase/non-blocking-updates';
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const signupSchema = z.object({
   fullName: z.string().min(2, { message: 'Full name must be at least 2 characters' }),
   email: z.string().email({ message: 'Invalid email address' }),
   password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
+  photo: z.any().optional(),
 });
 
 type SignupFormInputs = z.infer<typeof signupSchema>;
@@ -37,28 +39,48 @@ export default function SignupPage() {
   const auth = useAuth();
   const firestore = useFirestore();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<SignupFormInputs>({
     resolver: zodResolver(signupSchema),
   });
+
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setValue('photo', file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
     setIsSubmitting(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       const user = userCredential.user;
+      
+      // NOTE: In a real app, you would upload the photo to a service like Firebase Storage
+      // and get a URL. For this prototype, we'll use a placeholder.
+      const photoURL = photoPreview || `https://picsum.photos/seed/${user.uid}/100/100`;
+
 
       const userDocRef = doc(firestore, "users", user.uid);
       const userData = {
         id: user.uid,
         name: data.fullName,
         email: data.email,
-        mobileNumber: "", // Left blank as per decision
-        photoURL: "", // Left blank as per decision
+        mobileNumber: "",
+        photoURL: photoURL,
         registrationDate: new Date().toISOString(),
       };
       
@@ -94,6 +116,34 @@ export default function SignupPage() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="flex justify-center mb-4">
+              <div className="relative">
+                <Avatar className="h-24 w-24 border-4 border-muted">
+                  <AvatarImage src={photoPreview || undefined} alt="User photo" />
+                  <AvatarFallback className="bg-muted text-muted-foreground">
+                    <Camera className="h-8 w-8" />
+                  </AvatarFallback>
+                </Avatar>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute bottom-0 right-0 bg-background rounded-full h-8 w-8 border"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Camera className="h-4 w-4 text-muted-foreground" />
+                </Button>
+                <Input
+                  type="file"
+                  id="photo"
+                  className="hidden"
+                  ref={fileInputRef}
+                  accept="image/png, image/jpeg, image/gif"
+                  onChange={handlePhotoChange}
+                />
+              </div>
+            </div>
+
             <div className="grid gap-2">
                 <Label htmlFor="full-name">Full Name</Label>
                 <Input id="full-name" placeholder="Riya Sharma" {...register('fullName')} />
