@@ -1,0 +1,194 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user profile in the Pragyan Path application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "User's full name."
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address.",
+          "format": "email"
+        },
+        "mobileNumber": {
+          "type": "string",
+          "description": "User's mobile phone number."
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "URL of the user's profile photo.",
+          "format": "uri"
+        },
+        "registrationDate": {
+          "type": "string",
+          "description": "Date and time when the user registered.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "mobileNumber",
+        "registrationDate"
+      ]
+    },
+    "Course": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Course",
+      "type": "object",
+      "description": "Represents a course offered on the Pragyan Path platform.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the course entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the course."
+        },
+        "classLevel": {
+          "type": "string",
+          "description": "The class or level the course is designed for (e.g., 10th, B.Tech)."
+        },
+        "subject": {
+          "type": "string",
+          "description": "Subject of the course (e.g., Physics, Mathematics)."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the course."
+        },
+        "videoLinks": {
+          "type": "array",
+          "description": "Links to the video lectures of the course.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "classLevel",
+        "subject",
+        "description"
+      ]
+    },
+    "Progress": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Progress",
+      "type": "object",
+      "description": "Represents the learning progress of a user in a specific course.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the progress record."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N Progress)"
+        },
+        "courseId": {
+          "type": "string",
+          "description": "Reference to Course. (Relationship: Course 1:N Progress)"
+        },
+        "lastAccessed": {
+          "type": "string",
+          "description": "Date and time when the user last accessed the course.",
+          "format": "date-time"
+        },
+        "completionPercentage": {
+          "type": "number",
+          "description": "Percentage of the course completed by the user."
+        },
+        "recommendedTopics": {
+          "type": "array",
+          "description": "AI-powered recommendations for topics the user should focus on.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "courseId",
+        "lastAccessed",
+        "completionPercentage"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profile information. Path-based ownership ensures only the user can access their data.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/courses/{courseId}",
+        "definition": {
+          "entityName": "Course",
+          "schema": {
+            "$ref": "#/backend/entities/Course"
+          },
+          "description": "Stores course details. No specific authorization is required.",
+          "params": [
+            {
+              "name": "courseId",
+              "description": "The unique identifier of the course."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/progress/{progressId}",
+        "definition": {
+          "entityName": "Progress",
+          "schema": {
+            "$ref": "#/backend/entities/Progress"
+          },
+          "description": "Stores user-specific course progress. Path-based ownership ensures only the user can access their progress data.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "progressId",
+              "description": "The unique identifier of the progress record."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to support a personalized learning experience, prioritizing authorization independence, clarity, and scalability. User data is stored in `/users/{userId}`, ensuring path-based ownership. Courses are stored in a top-level `/courses` collection. User progress is tracked in `/users/{userId}/progress/{progressId}`, maintaining a clear hierarchy for user-specific data. This structure allows for efficient data retrieval and straightforward security rule implementation without relying on complex `get()` calls. Denormalization isn't required as path-based ownership effectively secures user data. Segregation is achieved by separating user-specific data (progress) from global course data, simplifying security postures. QAPs are supported as listing courses doesn't require filtering based on user roles or permissions, as the course data is publicly accessible."
+  }
+}

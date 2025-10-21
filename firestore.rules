@@ -1,0 +1,102 @@
+/**
+ * @fileoverview Firestore Security Rules for Pragyan Path application.
+ *
+ * Core Philosophy:
+ * This ruleset enforces a strict user-ownership model for user profiles and progress data,
+ * while allowing public read access to course information.
+ *
+ * Data Structure:
+ * - /users/{userId}: Stores individual user profiles. Only the user can read/write their own profile.
+ * - /courses/{courseId}: Stores course information. Publicly readable.
+ * - /users/{userId}/progress/{progressId}: Stores user-specific course progress. Only the user can read/write their own progress data.
+ *
+ * Key Security Decisions:
+ * - User profiles and progress data are secured using path-based ownership.
+ * - Course data is publicly readable.
+ * - Listing of user documents is disallowed to protect user privacy.
+ *
+ * Denormalization for Authorization:
+ *  - Path-based ownership eliminates the need for denormalization. The `userId` in the path
+ *  directly corresponds to the authenticated user's UID.
+ *
+ * Structural Segregation:
+ *  - User-specific data (progress) is stored under the `/users/{userId}` collection, separate
+ *  from the global course data in the `/courses` collection.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Allows only the authenticated user to read and write their own user profile.
+     * @path /users/{userId}
+     * @allow (create) - User with ID 'user123' can create a profile with id: 'user123'.
+     * @allow (get, update, delete) - User with ID 'user123' can read, update, or delete their profile at /users/user123.
+     * @deny (create) - User with ID 'user456' cannot create a profile with id: 'user123'.
+     * @deny (get, update, delete) - User with ID 'user456' cannot read, update, or delete the profile at /users/user123.
+     * @principle Enforces document ownership for user profiles.
+     */
+    match /users/{userId} {
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isOwner(userId) {
+        return request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Allows anyone to read course details, but restricts creation, updates, and deletion.
+     * @path /courses/{courseId}
+     * @allow (get, list) - Any user can read course details.
+     * @deny (create, update, delete) - No one can create, update, or delete courses.
+     * @principle Public read access with restricted writes.
+     */
+    match /courses/{courseId} {
+      allow get, list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Allows only the authenticated user to read and write their own course progress data.
+     * @path /users/{userId}/progress/{progressId}
+     * @allow (create) - User with ID 'user123' can create a progress record under their profile.
+     * @allow (get, update, delete) - User with ID 'user123' can read, update, or delete their progress record.
+     * @deny (create) - User with ID 'user456' cannot create a progress record under user 'user123'.
+     * @deny (get, update, delete) - User with ID 'user456' cannot read, update, or delete the progress record under user 'user123'.
+     * @principle Enforces document ownership for user-specific course progress.
+     */
+    match /users/{userId}/progress/{progressId} {
+        function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isOwner(userId) {
+        return request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+}
