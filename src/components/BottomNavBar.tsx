@@ -25,7 +25,8 @@ export default function BottomNavBar() {
 
 
   // Hide nav bar on auth pages
-  if (pathname === '/login' || pathname === '/signup') {
+  const authPages = ['/login', '/signup', '/sams/login', '/sams/register'];
+  if (authPages.includes(pathname)) {
     return null;
   }
   
@@ -41,11 +42,16 @@ export default function BottomNavBar() {
           key={link.href}
           href={link.href}
           className={cn(
-            'flex flex-col items-center justify-center gap-1 text-muted-foreground transition-colors hover:text-primary',
-            isActive && 'text-primary'
+            'flex flex-col items-center justify-center gap-1 text-muted-foreground transition-all duration-300',
+            isActive ? 'text-primary' : 'hover:text-primary'
           )}
         >
-          <IconComponent className="h-6 w-6" />
+            <div className={cn(
+                "flex items-center justify-center h-8 w-12 rounded-full transition-all duration-300",
+                isActive && "bg-primary/10"
+            )}>
+                <IconComponent className={cn("h-6 w-6 transition-transform duration-300", isActive && "scale-110")} />
+            </div>
           <span className="text-xs font-medium">{link.label}</span>
         </Link>
       );
