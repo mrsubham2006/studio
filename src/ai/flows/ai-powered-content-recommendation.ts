@@ -61,7 +61,7 @@ const recommendContentPrompt = ai.definePrompt({
   Based on this information, recommend courses and topics that will help the student improve their understanding of the subject matter. Provide a reason for each recommendation.
 
   Output the recommendations in the following JSON format:
-  {{json examples=[{"recommendedCourses": [{"courseId": "course1", "reason": "The student scored low on quizzes related to this course\'s topic."}], "recommendedTopics": [{"topic": "topic1", "reason": "The student has not yet studied this topic."}]}]}}
+  {{json examples=[{"recommendedCourses": [{"courseId": "course1", "reason": "The student scored low on quizzes related to this topic."}], "recommendedTopics": [{"topic": "topic1", "reason": "The student has not yet studied this topic."}]}]}}
   `,
 });
 
