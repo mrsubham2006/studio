@@ -4,18 +4,28 @@
 import Header from '@/components/Header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { BookCopy, CheckCircle } from 'lucide-react';
+import { BookCopy, CheckCircle, ShoppingCart } from 'lucide-react';
+import { useCart } from '@/context/CartProvider';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
-const mockMyLearning = [
-    { title: 'Mastering Physics for Class 12', progress: 75, imageId: 'course-physics' },
-    { title: 'JEE Advanced Calculus', progress: 40, imageId: 'course-maths' },
-    { title: 'Data Structures & Algorithms', progress: 90, imageId: 'cse-dsa' },
-    { title: 'NEET Biology Crash Course', progress: 100, imageId: 'course-biology' },
-];
+// Mock progress for demo purposes
+const mockProgress: { [key: string]: number } = {
+    'course-phy-12': 75,
+    'course-jee-math': 40,
+    'cse-dsa': 90,
+    'course-neet-bio': 100,
+    'course-chem-12': 25,
+    'mech-thermo': 55,
+};
 
 export default function MyLearningPage() {
+    const { items: purchasedCourses } = useCart();
+
     return (
-        <div className="flex-1 bg-muted/40">
+        <div className="flex-1 bg-muted/40 min-h-screen">
             <Header />
             <main className="flex-1 py-8">
                 <div className="container max-w-5xl">
@@ -29,29 +39,55 @@ export default function MyLearningPage() {
                         </p>
                     </div>
 
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {mockMyLearning.map((course, index) => (
-                            <Card key={index} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                                <CardHeader>
-                                    <CardTitle className="font-headline text-lg">{course.title}</CardTitle>
-                                    <CardDescription>
-                                        {course.progress === 100 ? (
-                                            <span className="flex items-center text-green-600 font-semibold">
-                                                <CheckCircle className="h-4 w-4 mr-1.5" />
-                                                Completed
-                                            </span>
-                                        ) : (
-                                            `You've completed ${course.progress}% of this course.`
+                    {purchasedCourses.length > 0 ? (
+                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            {purchasedCourses.map((course) => {
+                                const courseImage = PlaceHolderImages.find(img => img.id === course.imageId);
+                                const progress = mockProgress[course.id] || Math.floor(Math.random() * 81); // Random progress if not in mock
+                                return (
+                                <Link href={`/courses/${course.id}`} key={course.id} className="block hover:no-underline">
+                                    <Card className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full">
+                                        {courseImage && (
+                                            <Image
+                                                src={courseImage.imageUrl}
+                                                alt={course.name}
+                                                data-ai-hint={courseImage.imageHint}
+                                                width={400}
+                                                height={200}
+                                                className="object-cover w-full h-40"
+                                            />
                                         )}
-                                    </CardDescription>
-                                </CardHeader>
-                                <CardContent className="flex-1 flex flex-col justify-end">
-                                    <Progress value={course.progress} className="h-2" />
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-
+                                        <CardHeader>
+                                            <CardTitle className="font-headline text-lg">{course.name}</CardTitle>
+                                            <CardDescription>
+                                                {progress === 100 ? (
+                                                    <span className="flex items-center text-green-600 font-semibold">
+                                                        <CheckCircle className="h-4 w-4 mr-1.5" />
+                                                        Completed
+                                                    </span>
+                                                ) : (
+                                                    `You've completed ${progress}% of this course.`
+                                                )}
+                                            </CardDescription>
+                                        </CardHeader>
+                                        <CardContent className="flex-1 flex flex-col justify-end">
+                                            <Progress value={progress} className="h-2" />
+                                        </CardContent>
+                                    </Card>
+                                </Link>
+                                )
+                            })}
+                        </div>
+                    ) : (
+                         <div className="text-center py-16 text-muted-foreground rounded-lg border-2 border-dashed">
+                            <ShoppingCart className="mx-auto h-12 w-12 mb-4" />
+                            <h3 className="text-lg font-semibold">Your learning list is empty!</h3>
+                            <p>Courses you purchase will appear here so you can track your progress.</p>
+                            <Button variant="outline" className="mt-4" asChild>
+                                <Link href="/edustore">Explore Courses</Link>
+                            </Button>
+                        </div>
+                    )}
                 </div>
             </main>
         </div>
