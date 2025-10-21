@@ -7,8 +7,7 @@ import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth, useFirestore, useUser } from '@/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc } from 'firebase/firestore';
-import { setDocumentNonBlocking } from '@/firebase/non-blocking-updates';
+import { doc, setDoc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -43,6 +42,14 @@ const courseBranchMap: Record<string, string[] | null> = {
     'Class 11th': ['Science', 'Arts', 'Commerce'],
     'Class 10th': null,
     'Class 9th': null,
+    'Class 8th': null,
+    'Class 7th': null,
+    'Class 6th': null,
+    'Class 5th': null,
+    'Class 4th': null,
+    'Class 3rd': null,
+    'Class 2nd': null,
+    'Class 1st': null,
 };
 
 
@@ -92,7 +99,7 @@ export default function SAMSRegisterPage() {
     }
   };
 
-  const createStudentProfile = (userId: string, data: RegisterFormInputs) => {
+  const createStudentProfile = async (userId: string, data: RegisterFormInputs) => {
     const studentDocRef = doc(firestore, 'students', userId);
     const studentData = {
         uid: userId,
@@ -103,7 +110,8 @@ export default function SAMSRegisterPage() {
         email: data.email,
         photoURL: photoPreview || `https://avatar.vercel.sh/${userId}.png`, // Placeholder
     };
-    setDocumentNonBlocking(studentDocRef, studentData, { merge: true });
+    
+    await setDoc(studentDocRef, studentData, { merge: true });
 
     toast({
         title: "Registration Successful!",
@@ -119,7 +127,7 @@ export default function SAMSRegisterPage() {
     // Check if user is already logged in and email matches
     if (user && user.email === data.email) {
       try {
-        createStudentProfile(user.uid, data);
+        await createStudentProfile(user.uid, data);
       } catch (error: any) {
         console.error("SAMS Profile Creation failed:", error);
         toast({
@@ -135,7 +143,7 @@ export default function SAMSRegisterPage() {
     
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
-        createStudentProfile(userCredential.user.uid, data);
+        await createStudentProfile(userCredential.user.uid, data);
 
     } catch (error: any) {
         console.error("SAMS Registration failed:", error);
@@ -201,11 +209,9 @@ export default function SAMSRegisterPage() {
                     <Select onValueChange={handleCourseChange}>
                         <SelectTrigger><SelectValue placeholder="Select Course" /></SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="B.Tech">B.Tech</SelectItem>
-                            <SelectItem value="Class 12th">Class 12th</SelectItem>
-                            <SelectItem value="Class 11th">Class 11th</SelectItem>
-                            <SelectItem value="Class 10th">Class 10th</SelectItem>
-                            <SelectItem value="Class 9th">Class 9th</SelectItem>
+                            {Object.keys(courseBranchMap).map(course => (
+                                <SelectItem key={course} value={course}>{course}</SelectItem>
+                            ))}
                         </SelectContent>
                     </Select>
                      {errors.course && <p className="text-sm text-destructive">{errors.course.message}</p>}
