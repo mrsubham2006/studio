@@ -220,25 +220,24 @@ export default function CheckoutPage() {
                                                     )}
                                                      <p className='text-sm text-muted-foreground'>UPI ID: pradhansubham024-1@oksbi</p>
                                                       <div className="w-full max-w-sm space-y-2">
-                                                        <Label htmlFor="screenshot-upload" className="sr-only">Upload Screenshot</Label>
-                                                        <div className="flex items-center justify-center w-full">
-                                                            <label htmlFor="screenshot-upload" className="flex flex-col items-center justify-center w-full h-24 border-2 border-dashed rounded-lg cursor-pointer bg-muted/50 hover:bg-muted">
-                                                                {screenshotFile ? (
-                                                                    <div className="flex flex-col items-center justify-center pt-5 pb-6 text-primary">
-                                                                        <FileCheck className="w-8 h-8 mb-2" />
-                                                                        <p className="font-semibold text-sm truncate">{screenshotFile.name}</p>
-                                                                        <p className="text-xs text-muted-foreground">Click to change</p>
-                                                                    </div>
-                                                                ) : (
-                                                                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                                                        <Upload className="w-8 h-8 mb-2 text-muted-foreground" />
-                                                                        <p className="mb-1 text-sm text-muted-foreground"><span className="font-semibold">Upload Screenshot</span></p>
-                                                                        <p className="text-xs text-muted-foreground">PNG, JPG or GIF</p>
-                                                                    </div>
-                                                                )}
-                                                                <Input id="screenshot-upload" type="file" className="hidden" ref={screenshotInputRef} onChange={handleScreenshotChange} accept="image/png, image/jpeg, image/gif" />
-                                                            </label>
-                                                        </div> 
+                                                        <Label htmlFor="screenshot-upload">Upload Screenshot</Label>
+                                                         <div className="flex items-center gap-2">
+                                                            <Button type='button' variant="outline" onClick={() => screenshotInputRef.current?.click()}>
+                                                                <Upload className="mr-2 h-4 w-4" />
+                                                                {screenshotFile ? 'Change File' : 'Choose File'}
+                                                            </Button>
+                                                             <span className="text-sm text-muted-foreground truncate">
+                                                                {screenshotFile ? screenshotFile.name : 'No file chosen'}
+                                                            </span>
+                                                            <Input 
+                                                                id="screenshot-upload" 
+                                                                type="file" 
+                                                                className="hidden" 
+                                                                ref={screenshotInputRef} 
+                                                                onChange={handleScreenshotChange} 
+                                                                accept="image/png, image/jpeg, image/gif" 
+                                                            />
+                                                        </div>
                                                     </div>
                                                      <Button onClick={handlePayment} size="lg">Confirm Payment</Button>
                                                 </div>
