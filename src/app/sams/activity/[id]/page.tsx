@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -55,8 +55,7 @@ const mockActivities = [
     },
 ];
 
-export default function ActivityDetailsPage() {
-    const params = useParams();
+export default function ActivityDetailsPage({ params }: { params: { id: string } }) {
     const router = useRouter();
     const { toast } = useToast();
     const activityId = params.id;
