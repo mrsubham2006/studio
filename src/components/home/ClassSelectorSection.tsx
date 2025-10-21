@@ -1,3 +1,6 @@
+
+'use client';
+
 import {
   Select,
   SelectContent,
@@ -10,10 +13,14 @@ import { GraduationCap } from "lucide-react";
 const classes = [
   "Class 1st", "Class 2nd", "Class 3rd", "Class 4th", "Class 5th",
   "Class 6th", "Class 7th", "Class 8th", "Class 9th", "Class 10th",
-  "Class 11th", "Class 12th", "Diploma", "B.Tech",
+  "Class 11th", "Class 12th", "JEE", "NEET", "B.Tech",
 ];
 
-export default function ClassSelectorSection() {
+type ClassSelectorSectionProps = {
+  onClassChange: (selectedClass: string) => void;
+};
+
+export default function ClassSelectorSection({ onClassChange }: ClassSelectorSectionProps) {
   return (
     <section className="py-16 md:py-24 bg-card shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.2)] relative -mt-12 rounded-t-lg z-0">
       <div className="container max-w-3xl mx-auto text-center">
@@ -25,7 +32,7 @@ export default function ClassSelectorSection() {
           Select your class to discover AI-powered courses tailored just for you.
         </p>
         <div className="mt-8 max-w-md mx-auto">
-          <Select>
+          <Select onValueChange={onClassChange}>
             <SelectTrigger className="h-12 text-lg shadow-md">
               <SelectValue placeholder="Select your class" />
             </SelectTrigger>

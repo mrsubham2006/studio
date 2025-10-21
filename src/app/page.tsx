@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import HeroSection from '@/components/home/HeroSection';
 import ClassSelectorSection from '@/components/home/ClassSelectorSection';
@@ -26,6 +26,8 @@ export default function Home() {
   const { user, isUserLoading } = useUser();
   const router = useRouter();
   const { toast } = useToast();
+  const [selectedClass, setSelectedClass] = useState<string | null>(null);
+
 
   useEffect(() => {
     if (!isUserLoading && !user) {
@@ -60,8 +62,8 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <HeroSection />
-        <ClassSelectorSection />
-        <FeaturedCoursesSection />
+        <ClassSelectorSection onClassChange={setSelectedClass} />
+        <FeaturedCoursesSection selectedClass={selectedClass} />
         <AiAssistantPreview />
         <TestimonialsSection />
       </main>

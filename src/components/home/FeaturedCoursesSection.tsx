@@ -1,18 +1,40 @@
+
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { BookOpen } from 'lucide-react';
+import productData from '@/lib/products.json';
+import { useMemo } from 'react';
 
-const featuredCourses = [
-  { id: 1, title: 'Mastering Physics for Class 12', subject: 'Physics', imageId: 'course-physics' },
-  { id: 2, title: 'Organic Chemistry Made Easy', subject: 'Chemistry', imageId: 'course-chemistry' },
-  { id: 3, title: 'Calculus for Beginners', subject: 'Mathematics', imageId: 'course-maths' },
-  { id: 4, title: 'Introduction to B.Tech CS', subject: 'B.Tech', imageId: 'course-btech' },
-];
+type Product = {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    category: string;
+    imageId: string;
+};
 
-export default function FeaturedCoursesSection() {
+const defaultFeaturedCourseIds = ['course-phy-12', 'course-chem-12', 'cse-dsa', 'course-neet-bio'];
+
+export default function FeaturedCoursesSection({ selectedClass }: { selectedClass: string | null }) {
+    
+    const featuredCourses = useMemo(() => {
+        const allProducts: Product[] = productData.products;
+
+        if (selectedClass) {
+            const filtered = allProducts.filter(p => p.category === selectedClass);
+            return filtered.length > 0 ? filtered.slice(0, 4) : allProducts.filter(p => defaultFeaturedCourseIds.includes(p.id));
+        }
+        
+        return allProducts.filter(p => defaultFeaturedCourseIds.includes(p.id));
+
+    }, [selectedClass]);
+
   return (
     <section className="py-16 md:py-24">
       <div className="container max-w-7xl">
@@ -33,7 +55,7 @@ export default function FeaturedCoursesSection() {
                   {courseImage && (
                     <Image
                       src={courseImage.imageUrl}
-                      alt={courseImage.description}
+                      alt={course.name}
                       data-ai-hint={courseImage.imageHint}
                       width={400}
                       height={250}
@@ -42,10 +64,10 @@ export default function FeaturedCoursesSection() {
                   )}
                 </CardHeader>
                 <CardContent className="flex-1 p-6">
-                  <CardTitle className="font-headline text-lg leading-tight mb-2">{course.title}</CardTitle>
+                  <CardTitle className="font-headline text-lg leading-tight mb-2">{course.title || course.name}</CardTitle>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <BookOpen className="w-4 h-4 mr-2" />
-                    <span>{course.subject}</span>
+                    <span>{course.category}</span>
                   </div>
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
