@@ -1,8 +1,9 @@
 
+
 'use client';
 
 import Link from 'next/link';
-import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell, LifeBuoy, Mail, Phone } from 'lucide-react';
+import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell, LifeBuoy, Mail, Phone, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
@@ -30,6 +31,7 @@ const mobileNavLinks = [
   { href: '/scholarship', label: 'Scholarship', icon: GraduationCap },
   { href: '/certificate', label: 'Certificate', icon: Award },
   { href: '/time-table', label: 'Time Table', icon: Calendar },
+  { href: '/orders', label: 'My Orders', icon: Package },
   { href: '/notification', label: 'Notification', icon: Bell },
 ];
 
