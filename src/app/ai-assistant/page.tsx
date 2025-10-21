@@ -29,7 +29,12 @@ export default function AiAssistantPage() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  useEffect(scrollToBottom, [messages]);
+  useEffect(() => {
+    // Only scroll to bottom if there are more than the initial message
+    if (messages.length > 1) {
+      scrollToBottom();
+    }
+  }, [messages]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
