@@ -63,7 +63,7 @@
       "description": "An integrated science course for Class 9 students covering Physics, Chemistry, and Biology.",
       "price": 400,
       "category": "Class 9th",
-      "imageId": "edustore-book-generic"
+      "imageId": "course-science"
     },
     {
       "id": "course-eng-8",
@@ -79,7 +79,7 @@
       "description": "A detailed course on Indian History, from ancient to modern, for UPSC and other competitive exams.",
       "price": 950,
       "category": "Competitive Exams",
-      "imageId": "edustore-book-generic"
+      "imageId": "course-history"
     },
     {
       "id": "book-math-8",
@@ -151,6 +151,54 @@
       "description": "An easy-to-follow introduction to the Sanskrit language for young learners.",
       "price": 200,
       "category": "Class 6th",
+      "imageId": "course-sanskrit"
+    },
+    {
+      "id": "book-math-9",
+      "name": "Mathematics for Class 9",
+      "description": "Comprehensive textbook for Class 9 Mathematics, covering algebra, geometry and statistics.",
+      "price": 340,
+      "category": "Class 9th",
+      "imageId": "course-maths"
+    },
+    {
+      "id": "book-geo-9",
+      "name": "Geography of India Class 9",
+      "description": "Explore the geography of India in detail, from its physical features to its climate and resources.",
+      "price": 280,
+      "category": "Class 9th",
+      "imageId": "course-geography"
+    },
+    {
+      "id": "book-history-9",
+      "name": "Modern World History Class 9",
+      "description": "A comprehensive look at major world events and revolutions from the 18th century onwards.",
+      "price": 280,
+      "category": "Class 9th",
+      "imageId": "course-history"
+    },
+    {
+      "id": "book-it-9",
+      "name": "Information Technology Class 9",
+      "description": "An introduction to programming concepts, cybersecurity, and office tools for Class 9.",
+      "price": 320,
+      "category": "Class 9th",
+      "imageId": "course-it"
+    },
+    {
+      "id": "book-odia-9",
+      "name": "Odia Literature Class 9",
+      "description": "A collection of stories, poems, and essays from renowned Odia writers.",
+      "price": 210,
+      "category": "Class 9th",
+      "imageId": "course-odia"
+    },
+    {
+      "id": "book-sanskrit-9",
+      "name": "Sanskrit Grammar & Composition Class 9",
+      "description": "Master Sanskrit grammar rules and learn to compose sentences and paragraphs.",
+      "price": 230,
+      "category": "Class 9th",
       "imageId": "course-sanskrit"
     }
   ]
