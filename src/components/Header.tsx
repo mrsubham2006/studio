@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Book, Menu, Search, User, LogOut } from 'lucide-react';
+import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
@@ -21,7 +21,7 @@ import { Input } from './ui/input';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './theme-toggle';
 
-const navLinks = [
+const mainNavLinks = [
   { href: '/', label: 'Home' },
   { href: '/courses', label: 'Courses' },
   { href: '/live-classes', label: 'Live Classes' },
@@ -29,6 +29,18 @@ const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/dashboard', label: 'Dashboard' },
 ];
+
+const mobileNavLinks = [
+  { href: '/', label: 'Home', icon: Book },
+  { href: '/courses', label: 'Courses', icon: Book },
+  { href: '/about', label: 'About', icon: Book },
+  { href: '/internship', label: 'Internship', icon: Briefcase },
+  { href: '/scholarship', label: 'Scholarship', icon: GraduationCap },
+  { href: '/certificate', label: 'Certificate', icon: Award },
+  { href: '/time-table', label: 'Time Table', icon: Calendar },
+  { href: '/notification', label: 'Notification', icon: Bell },
+];
+
 
 export default function Header() {
   const [isSheetOpen, setSheetOpen] = useState(false);
@@ -64,14 +76,15 @@ export default function Header() {
                     <Book className="h-6 w-6 text-primary" />
                     <span className="font-bold font-headline text-xl">EduNex</span>
                   </Link>
-                  <nav className="flex flex-col gap-4">
-                    {navLinks.map((link) => (
+                  <nav className="flex flex-col gap-2">
+                    {mobileNavLinks.map((link) => (
                       <Link
                         key={link.href}
                         href={link.href}
-                        className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-lg font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary"
                         onClick={() => setSheetOpen(false)}
                       >
+                        <link.icon className="h-5 w-5" />
                         {link.label}
                       </Link>
                     ))}
