@@ -19,7 +19,7 @@ export default function HeroSection() {
           alt={heroImage.description}
           data-ai-hint={heroImage.imageHint}
           fill
-          className="object-cover opacity-40 rounded-b-[3rem] z-10"
+          className="object-cover opacity-40 z-0"
         />
       )}
       <div className="container relative z-10 px-4 md:px-6">
@@ -28,9 +28,7 @@ export default function HeroSection() {
             
           </h1>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button size="lg" asChild className="shadow-lg shadow-primary/30">
-              <Link href="/courses">Start Learning</Link>
-            </Button>
+            <p className="text-lg text-foreground/90 md:text-xl">EduNex — Where knowledge meets opportunity, and dreams find direction.</p>
             {!user && (
               <Button size="lg" variant="outline" asChild>
                 <Link href="/login">Login Now</Link>
