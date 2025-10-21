@@ -320,6 +320,30 @@
       "price": 780,
       "category": "CSE",
       "imageId": "cse-cn"
+    },
+    {
+        "id": "mech-thermo",
+        "name": "Basics of Thermodynamics",
+        "description": "An introductory course on the principles of thermodynamics and energy conversion.",
+        "price": 680,
+        "category": "Mechanical",
+        "imageId": "mech-thermo"
+    },
+    {
+        "id": "mech-fluids",
+        "name": "Fluid Mechanics Fundamentals",
+        "description": "Learn about fluid statics, dynamics, and the behavior of liquids and gases.",
+        "price": 720,
+        "category": "Mechanical",
+        "imageId": "mech-fluids"
+    },
+    {
+        "id": "mech-design",
+        "name": "Machine Design Fundamentals",
+        "description": "Understand the principles of designing and analyzing machine components.",
+        "price": 800,
+        "category": "Mechanical",
+        "imageId": "mech-design"
     }
   ]
 }

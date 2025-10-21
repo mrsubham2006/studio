@@ -123,7 +123,7 @@
     {
       "id": "course-sanskrit",
       "description": "Thumbnail for a Sanskrit language course.",
-      "imageUrl": "https://images.unsplash.com/photo-1620968277880-a795336583ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzYW5za3JpdCUyMHRleHR8ZW58MHx8fHwxNzYxMDYyNjgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1620968277880-a795336583ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzYW5za3JpdCUyMHRleHR8ZW58MHx8fHwxNzYxMDYyNjgwfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "sanskrit text"
     },
     {
@@ -141,7 +141,7 @@
     {
       "id": "cse-os",
       "description": "Thumbnail for an Operating Systems course.",
-      "imageUrl": "https://images.unsplash.com/photo-1614741118884-62ac161b2349?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvcGVyYXRpbmclMjBzeXN0ZW0lMjBjb25jZXB0fGVufDB8fHx8MTc2MTA3NDU0NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1614741118884-62ac161b2349?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvcGVyYXRpbmclMjBzeXN0ZW0lMjBjb25jZXB0fGVufDB8fHx8MTc2MTA3NDU0NXww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "operating system"
     },
     {
@@ -149,6 +149,24 @@
       "description": "Thumbnail for a Computer Networks course.",
       "imageUrl": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21wdXRlciUyMG5ldHdvcmt8ZW58MHx8fHwxNzYxMDc0NTQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "computer network"
+    },
+    {
+      "id": "mech-thermo",
+      "description": "Thumbnail for a Thermodynamics course.",
+      "imageUrl": "https://images.unsplash.com/photo-1632788343519-5d53c8f395f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0aGVybW9keW5hbWljcyUyMGVuZ2luZXxlbnwwfHx8fDE3NjE3NDU5MzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "thermodynamics engine"
+    },
+    {
+      "id": "mech-fluids",
+      "description": "Thumbnail for a Fluid Mechanics course.",
+      "imageUrl": "https://images.unsplash.com/photo-1631557983403-1e5b15a62075?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmbHVpZCUyMGR5bmFtaWNzfGVufDB8fHx8MTc2MTc0NTkzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fluid dynamics"
+    },
+    {
+      "id": "mech-design",
+      "description": "Thumbnail for a Machine Design course.",
+      "imageUrl": "https://images.unsplash.com/photo-1560969184-10fe8719e047?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYWNoaW5lJTIwZ2VhcnN8ZW58MHx8fHwxNzYxNzQ1OTM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "machine gears"
     }
   ]
 }
