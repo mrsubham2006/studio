@@ -10,7 +10,7 @@ const navLinks = [
   { href: '/ai-assistant', label: 'AI', icon: Bot },
   { href: '/', label: 'Home', icon: Home },
   { href: '/courses', label: 'Courses', icon: LayoutGrid },
-  { href: '/dashboard', label: 'SAMS', icon: BarChart2 },
+  { href: '/dashboard', label: 'Dashboard', icon: BarChart2 },
   { href: '/edustore', label: 'EduStore', icon: ShoppingCart },
 ];
 
