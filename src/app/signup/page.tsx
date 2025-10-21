@@ -126,7 +126,7 @@ export default function SignupPage() {
         title: "Account Created",
         description: "You have been successfully registered.",
       });
-      router.push('/login');
+      router.push('/');
     } catch (error: any)
 {
       console.error("Signup failed:", error);

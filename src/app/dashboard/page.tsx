@@ -1,29 +1,18 @@
 'use client';
 
-import { useUser, useFirestore, useMemoFirebase } from '@/firebase';
+import { useUser } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { doc } from 'firebase/firestore';
-import { useDoc } from '@/firebase/firestore/use-doc';
-import SAMSLoading from './loading';
 
 // This is a temporary redirect.
 // We will build the full SAMS experience in the next steps.
 export default function DashboardRedirectPage() {
     const { user, isUserLoading } = useUser();
     const router = useRouter();
-    const firestore = useFirestore();
-
-    const studentDocRef = useMemoFirebase(() => {
-        if (!user || !firestore) return null;
-        return doc(firestore, 'students', user.uid);
-    }, [user, firestore]);
-
-    const { data: studentData, isLoading: isStudentDataLoading } = useDoc(studentDocRef);
 
     useEffect(() => {
-        // Wait for both user and student data to finish loading.
-        if (isUserLoading || isStudentDataLoading) {
+        // Wait for user to finish loading.
+        if (isUserLoading) {
             return;
         }
 
@@ -33,15 +22,10 @@ export default function DashboardRedirectPage() {
              return;
         }
         
-        // If the student document exists, they are registered in SAMS.
-        if (studentData) {
-            router.replace('/sams/dashboard');
-        } else {
-            // If the student document does not exist, they need to register.
-            router.replace('/sams/register');
-        }
+        // If a user is logged in, always redirect to the SAMS dashboard for this demo.
+        router.replace('/sams/dashboard');
 
-    }, [user, isUserLoading, studentData, isStudentDataLoading, router]);
+    }, [user, isUserLoading, router]);
 
     // Show a loading state until redirection happens to avoid a blank screen.
     return (
