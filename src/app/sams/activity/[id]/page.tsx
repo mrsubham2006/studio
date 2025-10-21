@@ -11,6 +11,18 @@ import { ArrowLeft, Calendar, Clock, MapPin, Trophy, CheckCircle } from 'lucide-
 import { Badge } from '@/components/ui/badge';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
 
 // Mock data - in a real app, this would be fetched from a database
 const mockActivities = [
@@ -53,9 +65,11 @@ export default function ActivityDetailsPage() {
     const activityImage = activity ? PlaceHolderImages.find(img => img.id === activity.imageId) : null;
     
     const [isRegistered, setIsRegistered] = useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const handleRegister = () => {
         setIsRegistered(true);
+        setIsDialogOpen(false);
         toast({
             title: "Registration Successful!",
             description: `You have been registered for ${activity?.title}.`,
@@ -141,16 +155,51 @@ export default function ActivityDetailsPage() {
                             </div>
                         </div>
                          <div className="text-center pt-4">
-                            <Button size="lg" onClick={handleRegister} disabled={isRegistered}>
-                                {isRegistered ? (
-                                    <>
-                                        <CheckCircle className="mr-2 h-4 w-4" />
-                                        Registered
-                                    </>
-                                ) : (
-                                    'Register Now'
-                                )}
-                            </Button>
+                            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                                <DialogTrigger asChild>
+                                     <Button size="lg" disabled={isRegistered}>
+                                        {isRegistered ? (
+                                            <>
+                                                <CheckCircle className="mr-2 h-4 w-4" />
+                                                Registered
+                                            </>
+                                        ) : (
+                                            'Register Now'
+                                        )}
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent className="sm:max-w-[425px]">
+                                    <DialogHeader>
+                                    <DialogTitle>Register for {activity.title}</DialogTitle>
+                                    <DialogDescription>
+                                        Please confirm your details to register for this event.
+                                    </DialogDescription>
+                                    </DialogHeader>
+                                    <div className="grid gap-4 py-4">
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="name" className="text-right">
+                                        Name
+                                        </Label>
+                                        <Input id="name" defaultValue="Subham Pradhan" className="col-span-3" />
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="class" className="text-right">
+                                        Class
+                                        </Label>
+                                        <Input id="class" defaultValue="B.Tech (CSE)" className="col-span-3" />
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="roll" className="text-right">
+                                        Roll No.
+                                        </Label>
+                                        <Input id="roll" defaultValue="2101340024" className="col-span-3" />
+                                    </div>
+                                    </div>
+                                    <DialogFooter>
+                                    <Button type="submit" onClick={handleRegister}>Confirm Registration</Button>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
                         </div>
                     </CardContent>
                 </Card>
