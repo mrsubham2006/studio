@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, LayoutGrid, Bot, BarChart2, ShoppingCart } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 
 const navLinks = [
   { href: '/ai-assistant', label: 'AI', icon: Bot },
@@ -16,9 +17,19 @@ const navLinks = [
 
 export default function BottomNavBar() {
   const pathname = usePathname();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
 
   // Hide nav bar on auth pages
   if (pathname === '/login' || pathname === '/signup') {
+    return null;
+  }
+  
+  if (!isClient) {
     return null;
   }
 
