@@ -37,6 +37,7 @@ const mockMarks = { latestExam: 'Mid-Term 1', grade: 'A' };
 const mockTimetable = [
     { day: 'Mon', time: '9:00 AM', subject: 'Physics' },
     { day: 'Tue', time: '10:00 AM', subject: 'Chemistry' },
+    { day: 'Wed', time: '11:00 AM', subject: 'Mathematics' },
 ];
 
 export default function SAMSDashboardPage() {
@@ -172,7 +173,17 @@ export default function SAMSDashboardPage() {
                         <p className="text-sm text-muted-foreground">Event notices and registrations.</p>
                     </DashboardCard>
                      <DashboardCard title="Time Table" icon={Calendar} href="#">
-                        <p className="text-sm text-muted-foreground">Your weekly class schedule.</p>
+                        <div className="space-y-2 text-sm">
+                            {mockTimetable.map(item => (
+                                <div key={`${'\'\''}${item.day}-${item.time}${'\'\''}`} className="flex justify-between items-center p-2 bg-muted/50 rounded-md">
+                                    <div className='flex items-center gap-2'>
+                                        <Badge variant="outline" className='w-14 justify-center'>{item.day}</Badge>
+                                        <span className="font-semibold">{item.subject}</span>
+                                    </div>
+                                    <span className="text-muted-foreground">{item.time}</span>
+                                </div>
+                            ))}
+                        </div>
                     </DashboardCard>
                 </div>
             </main>
