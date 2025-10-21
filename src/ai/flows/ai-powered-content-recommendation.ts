@@ -59,9 +59,6 @@ const recommendContentPrompt = ai.definePrompt({
   Learning History: {{learningHistory}}
 
   Based on this information, recommend courses and topics that will help the student improve their understanding of the subject matter. Provide a reason for each recommendation.
-
-  Output the recommendations in the following JSON format:
-  {{json}}
   `,
 });
 
