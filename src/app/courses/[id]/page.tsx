@@ -118,22 +118,6 @@ export default function CourseDetailsPage({ params }: { params: { id: string } }
                   ))}
                 </ul>
               </div>
-
-              {course.id === 'course-math-10' && (
-                <div className="border rounded-lg p-6 bg-background">
-                  <h3 className="text-xl font-bold font-headline mb-4">Sample Video Lecture</h3>
-                  <Link href="https://www.youtube.com/watch?v=hW7DW9NIO9M" target="_blank" rel="noopener noreferrer">
-                    <div className="relative aspect-video overflow-hidden rounded-lg cursor-pointer group">
-                      <Image
-                        src="https://i.ytimg.com/vi/hW7DW9NIO9M/hq720.jpg"
-                        alt="Sample video for E=mc^2"
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  </Link>
-                </div>
-              )}
             </div>
             
             <div className="md:col-span-1 space-y-4">
