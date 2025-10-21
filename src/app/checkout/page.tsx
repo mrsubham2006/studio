@@ -14,11 +14,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
-import { CreditCard, Home, ShoppingBag, Truck, User } from 'lucide-react';
+import { CreditCard, Home, ShoppingBag, Truck, User, Banknote, Landmark } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Link from 'next/link';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const addressSchema = z.object({
   name: z.string().min(2, 'Full name is required'),
@@ -44,6 +46,8 @@ export default function CheckoutPage() {
     const router = useRouter();
     const [currentStep, setCurrentStep] = useState('address');
     const [address, setAddress] = useState<AddressFormInputs | null>(null);
+    const upiQrImage = PlaceHolderImages.find(img => img.id === 'upi-qr-code');
+
 
     const {
         register,
@@ -184,16 +188,61 @@ export default function CheckoutPage() {
                                         <CardDescription>Choose your payment method.</CardDescription>
                                     </CardHeader>
                                     <CardContent className="space-y-4">
-                                        <p className="text-muted-foreground">This is a simulated payment page. No real transaction will be made.</p>
-                                        <div className="p-4 border rounded-md bg-muted/50">
-                                            <p className="font-semibold">Total Amount Payable: <span className="text-primary">₹{total.toFixed(2)}</span></p>
-                                        </div>
+                                        <Tabs defaultValue="upi" className="w-full">
+                                            <TabsList className='grid w-full grid-cols-4'>
+                                                <TabsTrigger value="upi">UPI / QR</TabsTrigger>
+                                                <TabsTrigger value="card">Card</TabsTrigger>
+                                                <TabsTrigger value="netbanking">Net Banking</TabsTrigger>
+                                                <TabsTrigger value="cod">COD</TabsTrigger>
+                                            </TabsList>
+                                            <TabsContent value="upi" className="mt-6">
+                                                <div className='flex flex-col items-center gap-6'>
+                                                    <p className='text-muted-foreground'>Scan the QR code with any UPI app to pay.</p>
+                                                    {upiQrImage && (
+                                                        <Image 
+                                                            src={upiQrImage.imageUrl}
+                                                            alt={upiQrImage.description}
+                                                            data-ai-hint={upiQrImage.imageHint}
+                                                            width={300}
+                                                            height={300}
+                                                            className='rounded-lg border-4 border-white shadow-lg'
+                                                        />
+                                                    )}
+                                                     <p className='text-sm text-muted-foreground'>UPI ID: pradhansubham024-1@oksbi</p>
+                                                     <Button onClick={handlePayment} size="lg">Confirm Payment</Button>
+                                                </div>
+                                            </TabsContent>
+                                            <TabsContent value="card">
+                                                 <Alert variant="destructive">
+                                                    <CreditCard className="h-4 w-4" />
+                                                    <AlertTitle>Under Development</AlertTitle>
+                                                    <AlertDescription>
+                                                        This payment method is not yet available. Please use UPI.
+                                                    </AlertDescription>
+                                                </Alert>
+                                            </TabsContent>
+                                             <TabsContent value="netbanking">
+                                                <Alert variant="destructive">
+                                                    <Landmark className="h-4 w-4" />
+                                                    <AlertTitle>Under Development</AlertTitle>
+                                                    <AlertDescription>
+                                                        This payment method is not yet available. Please use UPI.
+                                                    </AlertDescription>
+                                                </Alert>
+                                            </TabsContent>
+                                             <TabsContent value="cod">
+                                                <Alert variant="destructive">
+                                                    <Banknote className="h-4 w-4" />
+                                                    <AlertTitle>Under Development</AlertTitle>
+                                                    <AlertDescription>
+                                                        Cash on Delivery is not yet available. Please use UPI.
+                                                    </AlertDescription>
+                                                </Alert>
+                                            </TabsContent>
+                                        </Tabs>
                                     </CardContent>
-                                    <CardFooter className="flex-col items-start gap-4">
-                                        <div className="flex gap-4">
-                                            <Button onClick={handlePayment} size="lg">Pay ₹{total.toFixed(2)}</Button>
-                                            <Button variant="outline" onClick={() => setCurrentStep('address')}>Back to Address</Button>
-                                        </div>
+                                    <CardFooter>
+                                         <Button variant="outline" onClick={() => setCurrentStep('address')}>Back to Address</Button>
                                     </CardFooter>
                                 </Card>
                              )}
