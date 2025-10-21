@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth, useFirestore } from '@/firebase';
+import { useAuth, useFirestore, useUser } from '@/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc } from 'firebase/firestore';
 import { setDocumentNonBlocking } from '@/firebase/non-blocking-updates';
@@ -49,6 +49,7 @@ const courseBranchMap: Record<string, string[] | null> = {
 export default function SAMSRegisterPage() {
   const router = useRouter();
   const { toast } = useToast();
+  const { user } = useUser();
   const auth = useAuth();
   const firestore = useFirestore();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -91,44 +92,66 @@ export default function SAMSRegisterPage() {
     }
   };
 
+  const createStudentProfile = (userId: string, data: RegisterFormInputs) => {
+    const studentDocRef = doc(firestore, 'students', userId);
+    const studentData = {
+        uid: userId,
+        fullName: data.fullName,
+        course: data.course,
+        branch: data.branch,
+        rollNumber: data.rollNumber,
+        email: data.email,
+        photoURL: photoPreview || `https://avatar.vercel.sh/${userId}.png`, // Placeholder
+    };
+    setDocumentNonBlocking(studentDocRef, studentData, { merge: true });
+
+    toast({
+        title: "Registration Successful!",
+        description: "Your SAMS profile has been created.",
+    });
+
+    router.push('/sams/dashboard');
+  }
+
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     setIsSubmitting(true);
     
-    // In a real app, you would handle file uploads to Firebase Storage here.
-    // For now, we'll use a placeholder URL.
+    // Check if user is already logged in and email matches
+    if (user && user.email === data.email) {
+      try {
+        createStudentProfile(user.uid, data);
+      } catch (error: any) {
+        console.error("SAMS Profile Creation failed:", error);
+        toast({
+            variant: "destructive",
+            title: "Profile Creation Failed",
+            description: error.message || "Could not create your student profile.",
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
+      return;
+    }
     
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
-        const userId = userCredential.user.uid;
-        const userEmail = userCredential.user.email;
-
-        const studentDocRef = doc(firestore, 'students', userId);
-        const studentData = {
-            uid: userId,
-            fullName: data.fullName,
-            course: data.course,
-            branch: data.branch,
-            rollNumber: data.rollNumber,
-            email: userEmail,
-            photoURL: photoPreview || `https://avatar.vercel.sh/${userId}.png`, // Placeholder
-        };
-
-        setDocumentNonBlocking(studentDocRef, studentData, { merge: true });
-
-        toast({
-            title: "Registration Successful!",
-            description: "Your SAMS profile has been created.",
-        });
-
-        router.push('/sams/dashboard');
+        createStudentProfile(userCredential.user.uid, data);
 
     } catch (error: any) {
         console.error("SAMS Registration failed:", error);
-        toast({
-            variant: "destructive",
-            title: "Registration Failed",
-            description: error.message || "An unexpected error occurred. Please try again.",
-        });
+        if (error.code === 'auth/email-already-in-use') {
+            toast({
+                variant: "destructive",
+                title: "Email Already In Use",
+                description: "An account with this email already exists. Please log in to your SAMS account.",
+            });
+        } else {
+            toast({
+                variant: "destructive",
+                title: "Registration Failed",
+                description: error.message || "An unexpected error occurred. Please try again.",
+            });
+        }
     } finally {
         setIsSubmitting(false);
     }
