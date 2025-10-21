@@ -12,7 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar } from 'lucide-react';
+import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload } from 'lucide-react';
 import SAMSLoading from './loading';
 
 // Mock data
@@ -90,10 +90,21 @@ export default function SAMSDashboardPage() {
             <main className="container max-w-7xl mx-auto p-4 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {/* Feature Cards */}
-                    <DashboardCard title="Assignments" icon={BookOpen} href="#">
-                         <ul className="space-y-2 text-sm">
-                            {mockAssignments.map(a => <li key={a.title} className="flex justify-between"><span>{a.title}</span> <Badge variant="outline">Due: {a.dueDate}</Badge></li>)}
-                         </ul>
+                    <DashboardCard title="Assignments" icon={BookOpen} className="md:col-span-2">
+                         <div className="space-y-4">
+                            {mockAssignments.map(assignment => (
+                                <div key={assignment.title} className="p-3 bg-muted/50 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                    <div>
+                                        <p className="font-semibold">{assignment.title}</p>
+                                        <Badge variant="outline" className="mt-1">Due: {assignment.dueDate}</Badge>
+                                    </div>
+                                    <Button size="sm" variant="secondary">
+                                        <Upload className="mr-2 h-4 w-4" />
+                                        Upload Submission
+                                    </Button>
+                                </div>
+                            ))}
+                         </div>
                     </DashboardCard>
                      <DashboardCard title="Exam Papers" icon={FileText} href="#">
                         <p className="text-sm text-muted-foreground">Past year and upcoming exam papers.</p>
