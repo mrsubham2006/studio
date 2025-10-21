@@ -87,7 +87,7 @@ export default function SignupPage() {
 
       toast({
         title: "Sign-in Successful",
-        description: `Welcome, ${user.displayName || 'user'}!`,
+        description: `Welcome, ${'\'\''}${user.displayName || 'user'}!`,
       });
       router.push('/');
     } catch (error: any) {
@@ -108,7 +108,7 @@ export default function SignupPage() {
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       const user = userCredential.user;
       
-      const photoURL = photoPreview || `https://picsum.photos/seed/${user.uid}/100/100`;
+      const photoURL = photoPreview || `https://picsum.photos/seed/${'\'\''}${user.uid}/100/100`;
 
       const userDocRef = doc(firestore, "users", user.uid);
       const userData = {
