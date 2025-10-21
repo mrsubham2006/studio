@@ -256,7 +256,7 @@ export default function SAMSDashboardPage() {
             <header className="sticky top-0 z-40 w-full border-b bg-card/80 backdrop-blur">
                 <div className="container max-w-7xl mx-auto flex h-20 items-center justify-between p-4">
                     <div className="flex items-center gap-4">
-                        <Avatar className="h-12 w-12 border-2 border-primary glow-on-hover">
+                        <Avatar className="h-12 w-12 border-2 border-primary">
                             <AvatarImage src={studentData.photoURL} alt={studentData.fullName} />
                             <AvatarFallback>{studentData.fullName?.charAt(0)}</AvatarFallback>
                         </Avatar>
@@ -281,7 +281,7 @@ export default function SAMSDashboardPage() {
                             title={feature.title}
                             icon={feature.icon}
                             href={feature.href}
-                            className={cn("fade-in-up")}
+                            className={cn("fade-in-up", feature.href && "glow-on-hover")}
                             style={{ animationDelay: `${index * 100}ms` }}
                         >
                             {feature.content}
@@ -305,7 +305,7 @@ type DashboardCardProps = {
 
 const DashboardCard = ({ title, icon: Icon, children, href, className, style }: DashboardCardProps) => {
     const content = (
-        <Card style={style} className={cn("bg-card glow-on-hover transition-all duration-300 flex flex-col h-full", href ? 'hover:-translate-y-1' : '', className)}>
+        <Card style={style} className={cn("bg-card transition-all duration-300 flex flex-col h-full", href ? 'hover:-translate-y-1' : '', className)}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
                 <CardTitle className="text-lg font-medium font-headline">{title}</CardTitle>
                 <Icon className="h-5 w-5 text-muted-foreground" />
