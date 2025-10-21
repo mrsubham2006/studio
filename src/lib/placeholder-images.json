@@ -3,7 +3,7 @@
     {
       "id": "hero-banner",
       "description": "A student learning with technology in a rural setting.",
-      "imageUrl": "https://i.postimg.cc/pdvSLJt3/Whats-App-Image-2025-10-22-at-04-31-49-934f9611.jpg",
+      "imageUrl": "https://i.postimg.cc/y8CK09K4/Whats-App-Image-2025-10-22-at-04-31-49-934f9611.jpg",
       "imageHint": "student technology"
     },
     {
@@ -15,25 +15,25 @@
     {
       "id": "course-chemistry",
       "description": "Thumbnail for a Chemistry course.",
-      "imageUrl": "https://images.unsplash.com/photo-1602052577122-f73b9710adba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaGVtaXN0cnklMjBsYWJ8ZW58MHx8fHwxNzYwOTkxNjQ5fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1602052577122-f73b9710adba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaGVtaXN0cnklMjBsYWJ8ZW58MHx8fHwxNzYwOTkxNjQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "chemistry lab"
     },
     {
       "id": "course-maths",
       "description": "Thumbnail for a Mathematics course.",
-      "imageUrl": "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtYXRoZW1hdGljcyUyMGNoYWxrYm9hcmR8ZW58MHx8fHwxNzYxMDIxNDUxfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtYXRoZW1hdGljcyUyMGNoYWxrYm9hcmR8ZW58MHx8fHwxNzYxMDIxNDUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "mathematics chalkboard"
     },
     {
       "id": "course-biology",
       "description": "Thumbnail for a Biology course.",
-      "imageUrl": "https://images.unsplash.com/photo-1748711728491-d08d4a1b23ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YmlvbG9neSUyMG5hdHVyZXxlbnwwfHx8fDE3NjEwMjE0NTF8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1748711728491-d08d4a1b23ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YmlvbG9neSUyMG5hdHVyZXxlbnwwfHx8fDE3NjEwMjE0NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "biology nature"
     },
     {
       "id": "course-btech",
       "description": "Thumbnail for a B.Tech course.",
-      "imageUrl": "https://images.unsplash.com/photo-1697665896701-1b8bd594f860?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbmdpbmVlcmluZyUyMGNpcmN1aXR8ZW58MHx8fHwxNzYxMDIxNDUxfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1697665896701-1b8bd594f860?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbmdpbmVlcmluZyUyMGNpcmN1aXR8ZW58MHx8fHwxNzYxMDIxNDUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "engineering circuit"
     },
     {
@@ -45,7 +45,7 @@
     {
       "id": "testimonial-1",
       "description": "Avatar for the first testimonial.",
-      "imageUrl": "https://images.unsplash.com/photo-1561065533-316e3142d586?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdHVkZW50JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYwOTM0NjgzfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1561065533-316e3142d586?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdHVkZW50JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYwOTM0NjgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "student portrait"
     },
     {
@@ -171,7 +171,7 @@
     {
       "id": "civil-structures",
       "description": "Thumbnail for a Structural Analysis course.",
-      "imageUrl": "https://images.unsplash.com/photo-1581092916259-1f4a9b5f4c4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxicmlkZ2UlMjBjb25zdHJ1Y3Rpb258ZW58MHx8fHwxNzYxNzQ4NjU5fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1581092916259-1f4a9b5f4c4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxicmlkZ2UlMjBjb25zdHJ1Y3Rpb258ZW58MHx8fHwxNzYxNzQ4NjU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "bridge construction"
     },
     {
