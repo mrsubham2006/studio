@@ -137,7 +137,7 @@ export default function Header() {
         {/* Right Section */}
         <div className="flex items-center gap-2">
           {user && (
-            <Button variant="ghost" asChild>
+            <Button variant="ghost" asChild className="transition-transform active:scale-95">
                 <Link href="/mylearning">
                     <BookCopy className="h-5 w-5" />
                     <span>My Learning</span>
