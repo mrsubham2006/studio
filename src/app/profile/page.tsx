@@ -16,6 +16,7 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Upload, User as UserIcon } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function ProfilePage() {
   const { user, isUserLoading } = useUser();
@@ -154,7 +155,17 @@ export default function ProfilePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <Label htmlFor="govtIdType">ID Type</Label>
-                            <Input id="govtIdType" placeholder="e.g., Aadhar, PAN" defaultValue={userData?.govtIdType} />
+                            <Select defaultValue={userData?.govtIdType}>
+                              <SelectTrigger id="govtIdType">
+                                <SelectValue placeholder="Select ID type" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Aadhar">Aadhar</SelectItem>
+                                <SelectItem value="PAN">PAN</SelectItem>
+                                <SelectItem value="Voter ID">Voter ID</SelectItem>
+                                <SelectItem value="APPAR ID">APPAR ID</SelectItem>
+                              </SelectContent>
+                            </Select>
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="govtIdNumber">ID Number</Label>
