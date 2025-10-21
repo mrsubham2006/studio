@@ -13,7 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload, FileCheck, BookMarked } from 'lucide-react';
+import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload, FileCheck, BookCopy } from 'lucide-react';
 import SAMSLoading from './loading';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
@@ -168,22 +168,10 @@ export default function SAMSDashboardPage() {
             content: <p className="text-sm text-muted-foreground">Past year and upcoming exam papers.</p>
         },
         {
-            title: 'My Learning',
-            icon: BookMarked,
-            href: undefined,
-            content: (
-                <div className="space-y-3">
-                    {mockMyLearning.map(course => (
-                        <div key={course.title}>
-                            <div className="flex justify-between items-center mb-1">
-                                <p className="text-sm font-medium truncate">{course.title}</p>
-                                <span className="text-xs text-muted-foreground">{course.progress}%</span>
-                            </div>
-                            <Progress value={course.progress} className="h-2" />
-                        </div>
-                    ))}
-                </div>
-            )
+            title: 'Notes & Syllabus',
+            icon: BookCopy,
+            href: '#',
+            content: <p className="text-sm text-muted-foreground">Access your course notes and syllabus.</p>
         },
         {
             title: 'Marks & Attendance',
