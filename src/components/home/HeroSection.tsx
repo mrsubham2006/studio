@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -18,7 +19,7 @@ export default function HeroSection() {
           alt={heroImage.description}
           data-ai-hint={heroImage.imageHint}
           fill
-          className="object-cover opacity-40"
+          className="object-cover opacity-40 rounded-b-[3rem]"
         />
       )}
       <div className="container relative z-10 px-4 md:px-6">
