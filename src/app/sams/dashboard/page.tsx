@@ -170,7 +170,7 @@ export default function SAMSDashboardPage() {
         {
             title: 'Notes & Syllabus',
             icon: BookCopy,
-            href: '#',
+            href: '/sams/notes',
             content: <p className="text-sm text-muted-foreground">Access your course notes and syllabus.</p>
         },
         {
@@ -281,7 +281,7 @@ export default function SAMSDashboardPage() {
                             title={feature.title}
                             icon={feature.icon}
                             href={feature.href}
-                            className={cn(feature.className, "fade-in-up")}
+                            className={cn("fade-in-up")}
                             style={{ animationDelay: `${index * 100}ms` }}
                         >
                             {feature.content}
@@ -318,5 +318,3 @@ const DashboardCard = ({ title, icon: Icon, children, href, className, style }: 
 
     return href ? <Link href={href} className="flex">{content}</Link> : content;
 }
-
-    
