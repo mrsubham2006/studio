@@ -144,6 +144,7 @@
       "type": "object",
       "description": "SAMS student profile.",
       "properties": {
+        "uid": { "type": "string", "description": "Matches Firebase Auth UID."},
         "fullName": { "type": "string" },
         "course": { "type": "string" },
         "branch": { "type": "string" },
@@ -151,7 +152,7 @@
         "email": { "type": "string", "format": "email" },
         "photoURL": { "type": "string", "format": "uri" }
       },
-      "required": ["fullName", "course", "branch", "rollNumber", "email"]
+      "required": ["uid", "fullName", "course", "branch", "rollNumber", "email"]
     },
     "Assignment": {
       "title": "Assignment",
@@ -189,49 +190,43 @@
       {
         "path": "/users/{userId}",
         "definition": {
-          "entityName": "User",
-          "schema": { "$ref": "#/backend/entities/User" },
+          "schema": { "$ref": "#/entities/User" },
           "description": "Stores user profile information. Path-based ownership ensures only the user can access their data."
         }
       },
       {
         "path": "/courses/{courseId}",
         "definition": {
-          "entityName": "Course",
-          "schema": { "$ref": "#/backend/entities/Course" },
-          "description": "Stores course details. No specific authorization is required."
+          "schema": { "$ref": "#/entities/Course" },
+          "description": "Stores course details. Publicly readable."
         }
       },
       {
         "path": "/users/{userId}/progress/{progressId}",
         "definition": {
-          "entityName": "Progress",
-          "schema": { "$ref": "#/backend/entities/Progress" },
+          "schema": { "$ref": "#/entities/Progress" },
           "description": "Stores user-specific course progress. Path-based ownership ensures only the user can access their progress data."
         }
       },
       {
         "path": "/students/{studentId}",
         "definition": {
-          "entityName": "Student",
-          "schema": { "$ref": "#/backend/entities/Student" },
-          "description": "Stores SAMS student profiles. The studentId should match the Firebase Auth UID."
+          "schema": { "$ref": "#/entities/Student" },
+          "description": "Stores SAMS student profiles. The studentId must match the Firebase Auth UID, allowing users to read/write their own profile."
         }
       },
       {
         "path": "/assignments/{assignmentId}",
         "definition": {
-          "entityName": "Assignment",
-          "schema": { "$ref": "#/backend/entities/Assignment" },
-          "description": "Stores academic assignments."
+          "schema": { "$ref": "#/entities/Assignment" },
+          "description": "Stores academic assignments. Readable by all authenticated users, writable by admins (future). "
         }
       },
       {
         "path": "/notifications/{notificationId}",
         "definition": {
-          "entityName": "Notification",
-          "schema": { "$ref": "#/backend/entities/Notification" },
-          "description": "Stores academic notifications."
+          "schema": { "$ref": "#/entities/Notification" },
+          "description": "Stores academic notifications. Readable by all authenticated users."
         }
       }
     ],
