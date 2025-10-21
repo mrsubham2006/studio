@@ -61,10 +61,14 @@ export default function SAMSLoginPage() {
       router.push('/sams/dashboard');
     } catch (error: any) {
       console.error("SAMS Login failed:", error);
+      let description = "An unexpected error occurred. Please try again.";
+      if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+        description = "The email or password you entered is incorrect. Please check your credentials and try again.";
+      }
       toast({
         variant: "destructive",
         title: "Login Failed",
-        description: "Invalid credentials. Please try again.",
+        description: description,
       });
     } finally {
       setIsSubmitting(false);
