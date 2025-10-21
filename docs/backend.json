@@ -32,6 +32,19 @@
           "type": "string",
           "description": "Date and time when the user registered.",
           "format": "date-time"
+        },
+        "govtIdType": {
+            "type": "string",
+            "description": "Type of government ID (e.g., Aadhar, PAN)."
+        },
+        "govtIdNumber": {
+            "type": "string",
+            "description": "The number of the government ID."
+        },
+        "govtIdProofUrl": {
+            "type": "string",
+            "description": "URL of the uploaded government ID proof document.",
+            "format": "uri"
         }
       },
       "required": [
