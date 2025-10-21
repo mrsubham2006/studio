@@ -61,13 +61,13 @@ export default function AiAssistantPage() {
       <Header />
       <main className="flex-1 py-8">
         <div className="container max-w-3xl h-full flex flex-col">
-            <div className="text-center mb-8">
+            <div className="text-center mb-8 fade-in-up">
                 <Sparkles className="mx-auto h-12 w-12 text-primary mb-2" />
                 <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl">AI Assistant</h1>
                 <p className="mt-2 text-muted-foreground md:text-lg">Your personal tutor for any question, any time.</p>
             </div>
 
-            <Card className="flex-1 flex flex-col shadow-lg">
+            <Card className="flex-1 flex flex-col shadow-lg fade-in-up" style={{ animationDelay: '0.2s' }}>
                 <CardContent className="p-0 flex-1 flex flex-col">
                     <div className="flex-1 p-6 space-y-6 overflow-y-auto">
                         {messages.map((message, index) => (
