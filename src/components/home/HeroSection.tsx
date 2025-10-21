@@ -27,9 +27,6 @@ export default function HeroSection() {
           <h1 className="text-4xl font-headline font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             
           </h1>
-          <p className="text-lg text-foreground/90 md:text-xl">
-            Adaptive lessons, offline access, and real-time feedback — designed for every learner.
-          </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button size="lg" asChild className="shadow-lg shadow-primary/30">
               <Link href="/courses">Start Learning</Link>
@@ -40,6 +37,9 @@ export default function HeroSection() {
               </Button>
             )}
           </div>
+          <p className="text-lg text-foreground/90 md:text-xl pt-4">
+            Adaptive lessons, offline access, and real-time feedback — designed for every learner.
+          </p>
         </div>
       </div>
     </section>
