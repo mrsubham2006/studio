@@ -20,15 +20,14 @@ export default function Footer() {
             <ul className="mt-4 space-y-2">
               <li><Link href="/about" className="text-base text-muted-foreground hover:text-primary">About</Link></li>
               <li><Link href="/courses" className="text-base text-muted-foreground hover:text-primary">Courses</Link></li>
-              <li><Link href="/contact" className="text-base text-muted-foreground hover:text-primary">Contact</Link></li>
               <li><Link href="/help" className="text-base text-muted-foreground hover:text-primary">Help</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">Legal</h3>
+            <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">Contact Support</h3>
             <ul className="mt-4 space-y-2">
-              <li><Link href="/privacy" className="text-base text-muted-foreground hover:text-primary">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="text-base text-muted-foreground hover:text-primary">Terms of Service</Link></li>
+              <li><a href="tel:7848049774" className="text-base text-muted-foreground hover:text-primary">Call: 7848049774</a></li>
+              <li><a href="mailto:support@edunex.demo" className="text-base text-muted-foreground hover:text-primary">Email: support@edunex.demo</a></li>
             </ul>
           </div>
           <div>
