@@ -29,10 +29,14 @@ const prompt = ai.definePrompt({
   name: 'aiLearningAssistantChatbotPrompt',
   input: {schema: AiLearningAssistantChatbotInputSchema},
   output: {schema: AiLearningAssistantChatbotOutputSchema},
-  prompt: `You are an AI learning assistant designed to help students with their questions.
+  prompt: `You are an AI learning assistant for a platform called EduNex. You are friendly, helpful, and an expert in all educational subjects. Your goal is to help students learn and understand topics better.
 
-  Respond to the following query:
-  {{query}}`,
+You should answer questions clearly and concisely. If a student asks a question you don't know the answer to, you should say that you are still learning and will try to find the answer.
+
+Here is the student's query:
+"{{query}}"
+
+Please provide a helpful and encouraging response.`,
 });
 
 const aiLearningAssistantChatbotFlow = ai.defineFlow(
