@@ -1,134 +1,82 @@
+
 'use client';
 
-import { useState, useRef, useEffect, useTransition } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import Header from '@/components/Header';
-import { Bot, Send, Sparkles, User } from 'lucide-react';
-import { getChatbotResponse } from './actions';
-import { Card, CardContent } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
-import { useToast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowRight, Bot, FileText, Youtube, MessageSquare } from 'lucide-react';
+import Link from 'next/link';
 
-type Message = {
-  role: 'user' | 'assistant';
-  content: string;
-};
+const aiTools = [
+  {
+    name: 'AI Assistant',
+    description: 'Your personal tutor for any question, any time.',
+    icon: MessageSquare,
+    href: '/ai-assistant/chat',
+  },
+  {
+    name: 'Text Summarizer',
+    description: 'Get key points from long articles or documents.',
+    icon: FileText,
+    href: '#',
+    disabled: true,
+  },
+  {
+    name: 'PDF Summarizer',
+    description: 'Summarize entire PDF documents in seconds.',
+    icon: FileText,
+    href: '#',
+    disabled: true,
+  },
+  {
+    name: 'YouTube Video Summarizer',
+    description: 'Get a summary of any YouTube educational video.',
+    icon: Youtube,
+    href: '#',
+    disabled: true,
+  },
+];
 
-export default function AiAssistantPage() {
-  const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: "Hello! I'm your AI learning assistant. How can I help you today?" },
-  ]);
-  const [input, setInput] = useState('');
-  const [isPending, startTransition] = useTransition();
-  const { toast } = useToast();
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    // Only scroll to bottom if there are more than the initial message
-    if (messages.length > 1) {
-      scrollToBottom();
-    }
-  }, [messages]);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!input.trim() || isPending) return;
-
-    const userMessage: Message = { role: 'user', content: input };
-    setMessages((prev) => [...prev, userMessage]);
-    setInput('');
-
-    startTransition(async () => {
-      try {
-        const response = await getChatbotResponse(input);
-        const assistantMessage: Message = { role: 'assistant', content: response };
-        setMessages((prev) => [...prev, assistantMessage]);
-      } catch (error) {
-        toast({
-          variant: "destructive",
-          title: "An error occurred.",
-          description: "Failed to get a response from the AI assistant. Please try again.",
-        });
-        // Optionally remove the user's message or add an error message to the chat
-        setMessages(prev => prev.slice(0, prev.length - 1));
-      }
-    });
-  };
-
+export default function AiZonePage() {
   return (
     <>
       <Header />
-      <main className="flex-1 py-8">
-        <div className="container max-w-3xl h-full flex flex-col">
-            <div className="text-center mb-8 fade-in-up">
-                <Sparkles className="mx-auto h-12 w-12 text-primary mb-2" />
-                <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl">AI Assistant</h1>
-                <p className="mt-2 text-muted-foreground md:text-lg">Your personal tutor for any question, any time.</p>
-            </div>
+      <main className="flex-1 py-12">
+        <div className="container max-w-4xl">
+          <div className="text-center mb-12">
+            <Bot className="mx-auto h-12 w-12 text-primary mb-4" />
+            <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl">
+              AI Zone
+            </h1>
+            <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">
+              Explore powerful AI tools to accelerate your learning.
+            </p>
+          </div>
 
-            <Card className="flex-1 flex flex-col shadow-lg fade-in-up" style={{ animationDelay: '0.2s' }}>
-                <CardContent className="p-0 flex-1 flex flex-col">
-                    <div className="flex-1 p-6 space-y-6 overflow-y-auto">
-                        {messages.map((message, index) => (
-                        <div key={index} className={cn('flex items-start gap-4', message.role === 'user' ? 'justify-end' : 'justify-start')}>
-                            {message.role === 'assistant' && (
-                            <Avatar className="h-9 w-9 border-2 border-primary">
-                                <div className='flex h-full w-full items-center justify-center rounded-full bg-primary/20'>
-                                <Bot className="h-5 w-5 text-primary" />
-                                </div>
-                            </Avatar>
-                            )}
-                            <div className={cn('max-w-[75%] rounded-lg p-3 text-sm', message.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted')}>
-                                {message.content}
-                            </div>
-                            {message.role === 'user' && (
-                            <Avatar className="h-9 w-9 border-2 border-muted-foreground/50">
-                                 <div className='flex h-full w-full items-center justify-center rounded-full bg-muted'>
-                                <User className="h-5 w-5 text-muted-foreground" />
-                                </div>
-                            </Avatar>
-                            )}
-                        </div>
-                        ))}
-                        {isPending && (
-                            <div className="flex items-start gap-4 justify-start">
-                                <Avatar className="h-9 w-9 border-2 border-primary">
-                                     <div className='flex h-full w-full items-center justify-center rounded-full bg-primary/20'>
-                                        <Bot className="h-5 w-5 text-primary" />
-                                    </div>
-                                </Avatar>
-                                <div className="max-w-[75%] rounded-lg p-3 text-sm bg-muted flex items-center gap-2">
-                                <span className="h-2 w-2 bg-primary rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                                <span className="h-2 w-2 bg-primary rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                                <span className="h-2 w-2 bg-primary rounded-full animate-bounce"></span>
-                                </div>
-                            </div>
-                        )}
-                        <div ref={messagesEndRef} />
+          <div className="grid gap-6">
+            {aiTools.map((tool, index) => (
+              <Link key={tool.name} href={tool.href} className={tool.disabled ? 'pointer-events-none' : ''} aria-disabled={tool.disabled}>
+                <Card className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 fade-in-up" style={{ animationDelay: `${index * 100}ms`}}>
+                  <CardHeader className="flex flex-row items-center justify-between p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-primary/10 rounded-lg">
+                        <tool.icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle className="font-headline text-lg">{tool.name}</CardTitle>
+                        <p className="text-sm text-muted-foreground">{tool.description}</p>
+                      </div>
                     </div>
-                    <div className="p-4 bg-background border-t">
-                        <form onSubmit={handleSubmit} className="flex items-center gap-2">
-                        <Input
-                            className="flex-1"
-                            placeholder="Type your question here..."
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                            disabled={isPending}
-                        />
-                        <Button type="submit" size="icon" disabled={!input.trim() || isPending}>
-                            <Send className="h-4 w-4" />
-                            <span className="sr-only">Send</span>
-                        </Button>
-                        </form>
-                    </div>
-                </CardContent>
-            </Card>
+                     {tool.disabled ? (
+                        <span className="text-xs font-semibold text-muted-foreground bg-muted px-2 py-1 rounded-full">Coming Soon</span>
+                     ) : (
+                        <ArrowRight className="h-5 w-5 text-muted-foreground" />
+                     )}
+                  </CardHeader>
+                </Card>
+              </Link>
+            ))}
+          </div>
         </div>
       </main>
     </>
