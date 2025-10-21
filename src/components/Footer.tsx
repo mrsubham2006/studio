@@ -1,5 +1,11 @@
 import Link from 'next/link';
 import { Book, Twitter, Facebook, Instagram, Linkedin } from 'lucide-react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 export default function Footer() {
   return (
@@ -19,7 +25,39 @@ export default function Footer() {
             <h3 className="text-sm font-semibold text-foreground tracking-wider uppercase">Quick Links</h3>
             <ul className="mt-4 space-y-2">
               <li><Link href="/about" className="text-base text-muted-foreground hover:text-primary">About</Link></li>
-              <li><Link href="/courses" className="text-base text-muted-foreground hover:text-primary">Courses</Link></li>
+              <li>
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="courses" className="border-b-0">
+                    <AccordionTrigger className="p-0 text-base text-muted-foreground hover:text-primary hover:no-underline">Courses</AccordionTrigger>
+                    <AccordionContent className="pt-2 pl-4">
+                      <ul className="space-y-2">
+                        <li><Link href="/courses?category=Class%201st-8th" className="text-base text-muted-foreground hover:text-primary">Class 1-10th</Link></li>
+                        <li><Link href="/courses?category=Class%2012th" className="text-base text-muted-foreground hover:text-primary">Class 12th</Link></li>
+                        <li><Link href="/courses?category=JEE" className="text-base text-muted-foreground hover:text-primary">JEE</Link></li>
+                        <li><Link href="/courses?category=NEET" className="text-base text-muted-foreground hover:text-primary">NEET</Link></li>
+                        <li><Link href="/courses?category=Competitive%20Exams" className="text-base text-muted-foreground hover:text-primary">Competitive Exams</Link></li>
+                        <li>
+                          <Accordion type="single" collapsible>
+                            <AccordionItem value="engineering" className="border-b-0">
+                              <AccordionTrigger className="p-0 text-base text-muted-foreground hover:text-primary hover:no-underline">Engineering</AccordionTrigger>
+                              <AccordionContent className="pt-2 pl-4">
+                                <ul className="space-y-2">
+                                  <li><Link href="/courses/engineering/cse" className="text-base text-muted-foreground hover:text-primary">CSE</Link></li>
+                                  <li><Link href="/courses/engineering/mechanical" className="text-base text-muted-foreground hover:text-primary">Mechanical</Link></li>
+                                  <li><Link href="/courses/engineering/civil" className="text-base text-muted-foreground hover:text-primary">Civil</Link></li>
+                                  <li><Link href="/courses/engineering/electrical" className="text-base text-muted-foreground hover:text-primary">Electrical</Link></li>
+                                  <li><Link href="/courses/engineering/ece" className="text-base text-muted-foreground hover:text-primary">ECE</Link></li>
+                                  <li><Link href="/courses/engineering/mining" className="text-base text-muted-foreground hover:text-primary">Mining</Link></li>
+                                </ul>
+                              </AccordionContent>
+                            </AccordionItem>
+                          </Accordion>
+                        </li>
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </li>
               <li><Link href="#contact-support" className="text-base text-muted-foreground hover:text-primary">Help</Link></li>
             </ul>
           </div>
