@@ -1,7 +1,8 @@
+
 'use client';
 
 import Link from 'next/link';
-import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell } from 'lucide-react';
+import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell, LifeBuoy, Mail, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
@@ -13,6 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { useAuth, useUser } from '@/firebase';
 import { signOut } from 'firebase/auth';
@@ -20,15 +22,6 @@ import { useRouter } from 'next/navigation';
 import { Input } from './ui/input';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './theme-toggle';
-
-const mainNavLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/courses', label: 'Courses' },
-  { href: '/live-classes', label: 'Live Classes' },
-  { href: '/ai-assistant', label: 'AI Assistant' },
-  { href: '/about', label: 'About' },
-  { href: '/dashboard', label: 'Dashboard' },
-];
 
 const mobileNavLinks = [
   { href: '/', label: 'Home', icon: Book },
@@ -70,17 +63,17 @@ export default function Header() {
                 <SheetHeader className='p-6'>
                   <SheetTitle className="sr-only">Menu</SheetTitle>
                 </SheetHeader>
-                <div className="flex flex-col gap-6 px-6">
-                  <Link href="/" className="flex items-center gap-2" onClick={() => setSheetOpen(false)}>
+                <div className="flex flex-col gap-2 px-4">
+                  <Link href="/" className="flex items-center gap-2 px-2 pb-4" onClick={() => setSheetOpen(false)}>
                     <Book className="h-6 w-6 text-primary" />
                     <span className="font-bold font-headline text-xl">EduNex</span>
                   </Link>
-                  <nav className="flex flex-col gap-2">
+                  <nav className="flex flex-col gap-1">
                     {mobileNavLinks.map((link) => (
                       <Link
                         key={link.href}
                         href={link.href}
-                        className="flex items-center gap-3 rounded-lg px-3 py-2 text-lg font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary"
+                        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary"
                         onClick={() => setSheetOpen(false)}
                       >
                         <link.icon className="h-5 w-5" />
@@ -88,6 +81,28 @@ export default function Header() {
                       </Link>
                     ))}
                   </nav>
+
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="help" className="border-b-0">
+                      <AccordionTrigger className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary hover:no-underline">
+                        <LifeBuoy className="h-5 w-5" />
+                        Help & Support
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-0 pl-8">
+                        <div className="flex flex-col gap-2 text-foreground/70">
+                            <h4 className="font-semibold text-foreground/90 mt-2">Customer Support</h4>
+                            <a href="tel:7848049774" className="flex items-center gap-3 rounded-lg px-3 py-2 text-base font-medium transition-colors hover:text-primary">
+                                <Phone className="h-5 w-5" />
+                                <span>7848049774</span>
+                            </a>
+                            <a href="mailto:support@edunex.demo" className="flex items-center gap-3 rounded-lg px-3 py-2 text-base font-medium transition-colors hover:text-primary">
+                                <Mail className="h-5 w-5" />
+                                <span>support@edunex.demo</span>
+                            </a>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 </div>
               </SheetContent>
             </Sheet>
@@ -121,7 +136,7 @@ export default function Header() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src={user.photoURL || `https://picsum.photos/seed/${'\'\''}${user.uid}/100/100`} alt="User Avatar" />
+                    <AvatarImage src={user.photoURL || `https://picsum.photos/seed/${user.uid}/100/100`} alt="User Avatar" />
                     <AvatarFallback>{user.email?.charAt(0).toUpperCase()}</AvatarFallback>
                   </Avatar>
                 </Button>
@@ -162,3 +177,5 @@ export default function Header() {
     </header>
   );
 }
+
+    
