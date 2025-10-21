@@ -15,7 +15,7 @@ const classes = [
 
 export default function ClassSelectorSection() {
   return (
-    <section className="py-16 md:py-24 bg-card shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.2)] relative -mt-12 rounded-t-3xl">
+    <section className="py-16 md:py-24 bg-card shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.2)] relative -mt-12 rounded-t-lg z-0">
       <div className="container max-w-3xl mx-auto text-center">
         <GraduationCap className="mx-auto h-12 w-12 text-primary mb-4"/>
         <h2 className="text-3xl font-bold font-headline tracking-tighter sm:text-4xl md:text-5xl">
