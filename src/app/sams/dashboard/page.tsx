@@ -13,7 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload, FileCheck, ArrowRight } from 'lucide-react';
+import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload, FileCheck } from 'lucide-react';
 import SAMSLoading from './loading';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';

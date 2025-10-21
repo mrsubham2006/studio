@@ -7,8 +7,10 @@ import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Calendar, Clock, MapPin, Trophy } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, MapPin, Trophy, CheckCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 // Mock data - in a real app, this would be fetched from a database
 const mockActivities = [
@@ -44,10 +46,21 @@ const mockActivities = [
 export default function ActivityDetailsPage() {
     const params = useParams();
     const router = useRouter();
+    const { toast } = useToast();
     const activityId = params.id;
 
     const activity = mockActivities.find(a => a.id === activityId);
     const activityImage = activity ? PlaceHolderImages.find(img => img.id === activity.imageId) : null;
+    
+    const [isRegistered, setIsRegistered] = useState(false);
+
+    const handleRegister = () => {
+        setIsRegistered(true);
+        toast({
+            title: "Registration Successful!",
+            description: `You have been registered for ${activity?.title}.`,
+        });
+    };
 
     if (!activity) {
         return (
@@ -128,7 +141,16 @@ export default function ActivityDetailsPage() {
                             </div>
                         </div>
                          <div className="text-center pt-4">
-                            <Button size="lg">Register Now</Button>
+                            <Button size="lg" onClick={handleRegister} disabled={isRegistered}>
+                                {isRegistered ? (
+                                    <>
+                                        <CheckCircle className="mr-2 h-4 w-4" />
+                                        Registered
+                                    </>
+                                ) : (
+                                    'Register Now'
+                                )}
+                            </Button>
                         </div>
                     </CardContent>
                 </Card>
