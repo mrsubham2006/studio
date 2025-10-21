@@ -1,24 +1,53 @@
+'use client';
+
+import { useState } from 'react';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import productData from '@/lib/products.json';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BookOpen, Search } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-const allCourses = [
-  { id: 1, title: 'Mastering Physics for Class 12', subject: 'Physics', imageId: 'course-physics' },
-  { id: 2, title: 'Organic Chemistry Made Easy', subject: 'Chemistry', imageId: 'course-chemistry' },
-  { id: 3, title: 'Calculus for Beginners', subject: 'Mathematics', imageId: 'course-maths' },
-  { id: 4, title: 'The World of Biology', subject: 'Biology', imageId: 'course-biology' },
-  { id: 5, title: 'Introduction to B.Tech CS', subject: 'B.Tech', imageId: 'course-btech' },
-  { id: 6, title: 'Diploma in Electrical Eng.', subject: 'Diploma', imageId: 'course-diploma' },
-  { id: 7, title: 'Advanced Physics Concepts', subject: 'Physics', imageId: 'course-physics' },
-  { id: 8, title: 'Inorganic Chemistry', subject: 'Chemistry', imageId: 'course-chemistry' },
+
+const allCourses = productData.products;
+
+const categories = [
+  "All",
+  "Class 1st-8th",
+  "Class 9th",
+  "Class 10th",
+  "Class 12th",
+  "JEE",
+  "NEET",
+  "Competitive Exams",
 ];
 
+const categoryMap: { [key: string]: string[] } = {
+  "All": allCourses.map(c => c.category),
+  "Class 1st-8th": ["Class 8th"], // Simplified for demo
+  "Class 9th": ["Class 9th"],
+  "Class 10th": ["Class 10th"],
+  "Class 12th": ["Class 12th"],
+  "JEE": ["JEE"],
+  "NEET": ["NEET"],
+  "Competitive Exams": ["Competitive Exams"],
+};
+
+
 export default function CoursesPage() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  const filteredCourses = allCourses.filter(course => {
+    const termMatch = course.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const categoryMatch = activeCategory === 'All' || categoryMap[activeCategory].includes(course.category);
+    return termMatch && categoryMatch;
+  });
+
   return (
     <>
       <Header />
@@ -36,13 +65,30 @@ export default function CoursesPage() {
           <div className="flex flex-col md:flex-row gap-4 mb-8">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search for courses..." className="pl-9 h-12" />
+              <Input
+                placeholder="Search for courses..."
+                className="pl-9 h-12"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
-            {/* Add more filters like dropdowns for class and subject here */}
+          </div>
+
+          <div className="mb-8 flex flex-wrap justify-center gap-2">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={activeCategory === category ? "default" : "outline"}
+                onClick={() => setActiveCategory(category)}
+                className="rounded-full"
+              >
+                {category}
+              </Button>
+            ))}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {allCourses.map((course) => {
+            {filteredCourses.map((course) => {
               const courseImage = PlaceHolderImages.find(img => img.id === course.imageId);
               return (
                 <Card key={course.id} className="flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
@@ -50,7 +96,7 @@ export default function CoursesPage() {
                     {courseImage && (
                       <Image
                         src={courseImage.imageUrl}
-                        alt={courseImage.description}
+                        alt={course.name}
                         data-ai-hint={courseImage.imageHint}
                         width={400}
                         height={250}
@@ -59,10 +105,10 @@ export default function CoursesPage() {
                     )}
                   </CardHeader>
                   <CardContent className="flex-1 p-6">
-                    <CardTitle className="font-headline text-lg leading-tight mb-2">{course.title}</CardTitle>
+                    <CardTitle className="font-headline text-lg leading-tight mb-2 h-14 overflow-hidden">{course.title || course.name}</CardTitle>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <BookOpen className="w-4 h-4 mr-2" />
-                      <span>{course.subject}</span>
+                      <span>{course.category}</span>
                     </div>
                   </CardContent>
                   <CardFooter className="p-6 pt-0">
@@ -74,6 +120,13 @@ export default function CoursesPage() {
               );
             })}
           </div>
+
+          {filteredCourses.length === 0 && (
+            <div className="text-center py-16 text-muted-foreground">
+                <p className='text-lg font-semibold'>No courses found</p>
+                <p>Try adjusting your search or filter.</p>
+            </div>
+          )}
         </div>
       </main>
     </>

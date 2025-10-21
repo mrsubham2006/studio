@@ -2,60 +2,84 @@
 {
   "products": [
     {
-      "id": "prod_001",
-      "name": "Comprehensive Physics Guide",
+      "id": "course-phy-12",
+      "name": "Mastering Physics for Class 12",
       "description": "A complete guide for Class 12th Physics, covering all topics with detailed explanations and practice questions.",
       "price": 450,
-      "category": "Class 12th Books",
-      "imageId": "edustore-book-generic"
+      "category": "Class 12th",
+      "imageId": "course-physics"
     },
     {
-      "id": "prod_002",
-      "name": "Mathematics for Young Minds",
-      "description": "Engaging and fun mathematics book for students in classes 1-9. Builds a strong foundation.",
-      "price": 250,
-      "category": "Class 1-9th Books",
-      "imageId": "edustore-book-generic"
+      "id": "course-chem-12",
+      "name": "Organic Chemistry Made Easy",
+      "description": "Master organic chemistry concepts for Class 12th with easy-to-understand lessons and examples.",
+      "price": 420,
+      "category": "Class 12th",
+      "imageId": "course-chemistry"
     },
     {
-      "id": "prod_003",
-      "name": "Science Explorer",
-      "description": "An exciting science book for Class 10th students, with experiments and real-world examples.",
+      "id": "course-math-10",
+      "name": "Foundation Mathematics Class 10",
+      "description": "Build a strong foundation in Mathematics for Class 10, covering algebra, geometry, and trigonometry.",
       "price": 350,
-      "category": "Class 10th Books",
+      "category": "Class 10th",
+      "imageId": "course-maths"
+    },
+    {
+      "id": "course-jee-math",
+      "name": "JEE Advanced Calculus",
+      "description": "An advanced course on calculus designed for students preparing for the JEE Advanced examination.",
+      "price": 750,
+      "category": "JEE",
+      "imageId": "course-maths"
+    },
+    {
+      "id": "course-neet-bio",
+      "name": "NEET Biology Crash Course",
+      "description": "A comprehensive crash course covering the entire NEET biology syllabus with quick revision notes.",
+      "price": 800,
+      "category": "NEET",
+      "imageId": "course-biology"
+    },
+    {
+      "id": "course-jee-phy",
+      "name": "JEE Mains Physics Mechanics",
+      "description": "Focus on the mechanics section of the JEE Mains physics syllabus with problem-solving techniques.",
+      "price": 700,
+      "category": "JEE",
+      "imageId": "course-physics"
+    },
+    {
+      "id": "course-neet-chem",
+      "name": "NEET Inorganic Chemistry",
+      "description": "Master the concepts of inorganic chemistry for the NEET exam, including periodic trends and bonding.",
+      "price": 780,
+      "category": "NEET",
+      "imageId": "course-chemistry"
+    },
+    {
+      "id": "course-sci-9",
+      "name": "Science for Class 9",
+      "description": "An integrated science course for Class 9 students covering Physics, Chemistry, and Biology.",
+      "price": 400,
+      "category": "Class 9th",
       "imageId": "edustore-book-generic"
     },
     {
-      "id": "prod_004",
-      "name": "IIT-JEE Advanced Chemistry",
-      "description": "In-depth coverage of chemistry topics for IIT-JEE aspirants. Includes solved papers.",
-      "price": 650,
-      "category": "IIT Books",
-      "imageId": "edustore-iit-book"
+      "id": "course-eng-8",
+      "name": "English Grammar for Class 8",
+      "description": "Improve your grammar and writing skills with this comprehensive English course for Class 8.",
+      "price": 250,
+      "category": "Class 8th",
+      "imageId": "edustore-book-generic"
     },
     {
-      "id": "prod_005",
-      "name": "NEET Biology Objective",
-      "description": "A must-have for NEET aspirants, with thousands of objective questions and detailed solutions for Biology.",
-      "price": 600,
-      "category": "NEET Books",
-      "imageId": "edustore-neet-book"
-    },
-    {
-      "id": "prod_006",
-      "name": "Premium Pen Set",
-      "description": "A set of 5 smooth-writing pens, perfect for notes and exams. Black, blue, and red ink.",
-      "price": 150,
-      "category": "Office Stationary",
-      "imageId": "edustore-stationary"
-    },
-    {
-      "id": "prod_007",
-      "name": "Student Notebook Pack",
-      "description": "Pack of 6 high-quality notebooks for all your subjects. 200 pages, single line.",
-      "price": 300,
-      "category": "Office Stationary",
-      "imageId": "edustore-stationary"
+      "id": "course-upsc-hist",
+      "name": "History for UPSC/IAS",
+      "description": "A detailed course on Indian History, from ancient to modern, for UPSC and other competitive exams.",
+      "price": 950,
+      "category": "Competitive Exams",
+      "imageId": "edustore-book-generic"
     }
   ]
 }
