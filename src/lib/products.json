@@ -344,6 +344,30 @@
         "price": 800,
         "category": "Mechanical",
         "imageId": "mech-design"
+    },
+    {
+        "id": "civil-structures",
+        "name": "Structural Analysis",
+        "description": "Learn to analyze and design structures like beams, trusses, and frames.",
+        "price": 820,
+        "category": "Civil",
+        "imageId": "civil-structures"
+    },
+    {
+        "id": "civil-construction",
+        "name": "Construction Management",
+        "description": "Master the principles of planning, coordinating, and executing construction projects.",
+        "price": 750,
+        "category": "Civil",
+        "imageId": "civil-construction"
+    },
+    {
+        "id": "civil-geotech",
+        "name": "Geotechnical Engineering",
+        "description": "An introduction to soil mechanics and its application in civil engineering.",
+        "price": 780,
+        "category": "Civil",
+        "imageId": "civil-geotech"
     }
   ]
 }

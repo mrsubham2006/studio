@@ -57,7 +57,7 @@
     {
       "id": "testimonial-3",
       "description": "Avatar for the third testimonial.",
-      "imageUrl": "https://images.unsplash.com/photo-1484863137850-59afcfe05386?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBzbWlsaW5nfGVufDB8fHx8MTc2MDk1NTA4Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1484863137850-59afcfe05386?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBzbWlsaW5nfGVufDB8fHx8MTc2MDk1NTA4Mnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "person smiling"
     },
     {
@@ -105,7 +105,7 @@
     {
       "id": "course-history",
       "description": "Thumbnail for a History course.",
-      "imageUrl": "https://images.unsplash.com/photo-1718355471693-47316bb23f90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhbmNpZW50JTIwc2Nyb2xsfGVufDB8fHx8MTc2MDk0ODcxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1718355471693-47316bb23f90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhbmNpZW50JTIwc2Nyb2xsfGVufDB8fHx8MTc2MDk0ODcxMnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "ancient scroll"
     },
     {
@@ -117,7 +117,7 @@
     {
       "id": "course-odia",
       "description": "Thumbnail for an Odia language course.",
-      "imageUrl": "https://images.unsplash.com/photo-1749947165301-0594efb27963?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvZGlhJTIwc2NyaXB0fGVufDB8fHx8MTc2MTA2MjY4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1749947165301-0594efb27963?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvZGlhJTIwc2NyaXB0fGVufDB8fHx8MTc2MTA2MjY4MHww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "odia script"
     },
     {
@@ -141,13 +141,13 @@
     {
       "id": "cse-os",
       "description": "Thumbnail for an Operating Systems course.",
-      "imageUrl": "https://images.unsplash.com/photo-1614741118884-62ac161b2349?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvcGVyYXRpbmclMjBzeXN0ZW0lMjBjb25jZXB0fGVufDB8fHx8MTc2MTA3NDU0NXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1614741118884-62ac161b2349?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvcGVyYXRpbmclMjBzeXN0ZW0lMjBjb25jZXB0fGVufDB8fHx8MTc2MTA3NDU0NXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "operating system"
     },
     {
       "id": "cse-cn",
       "description": "Thumbnail for a Computer Networks course.",
-      "imageUrl": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21wdXRlciUyMG5ldHdvcmt8ZW58MHx8fHwxNzYxMDc0NTQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21wdXRlciUyMG5ldHdvcmt8ZW58MHx8fHwxNzYxMDc0NTQ1fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "computer network"
     },
     {
@@ -159,14 +159,32 @@
     {
       "id": "mech-fluids",
       "description": "Thumbnail for a Fluid Mechanics course.",
-      "imageUrl": "https://images.unsplash.com/photo-1631557983403-1e5b15a62075?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmbHVpZCUyMGR5bmFtaWNzfGVufDB8fHx8MTc2MTc0NTkzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1631557983403-1e5b15a62075?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmbHVpZCUyMGR5bmFtaWNzfGVufDB8fHx8MTc2MTc0NTkzNHww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "fluid dynamics"
     },
     {
       "id": "mech-design",
       "description": "Thumbnail for a Machine Design course.",
-      "imageUrl": "https://images.unsplash.com/photo-1560969184-10fe8719e047?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYWNoaW5lJTIwZ2VhcnN8ZW58MHx8fHwxNzYxNzQ1OTM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1560969184-10fe8719e047?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYWNoaW5lJTIwZ2VhcnN8ZW58MHx8fHwxNzYxNzQ1OTM0fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "machine gears"
+    },
+    {
+      "id": "civil-structures",
+      "description": "Thumbnail for a Structural Analysis course.",
+      "imageUrl": "https://images.unsplash.com/photo-1581092916259-1f4a9b5f4c4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxicmlkZ2UlMjBjb25zdHJ1Y3Rpb258ZW58MHx8fHwxNzYxNzQ4NjU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bridge construction"
+    },
+    {
+      "id": "civil-construction",
+      "description": "Thumbnail for a Construction Management course.",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlfGVufDB8fHx8MTc2MTc0ODY1OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "construction site"
+    },
+    {
+      "id": "civil-geotech",
+      "description": "Thumbnail for a Geotechnical Engineering course.",
+      "imageUrl": "https://images.unsplash.com/photo-1628198906379-11c5e6f3d45e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2lsJTIwdGVzdGluZ3xlbnwwfHx8fDE3NjE3NDg2NTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "soil testing"
     }
   ]
 }
