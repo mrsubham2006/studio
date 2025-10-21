@@ -17,6 +17,8 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { useAuth, useUser } from '@/firebase';
 import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
+import { Input } from './ui/input';
+import { cn } from '@/lib/utils';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -29,6 +31,7 @@ const navLinks = [
 
 export default function Header() {
   const [isSheetOpen, setSheetOpen] = useState(false);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const { user } = useUser();
   const auth = useAuth();
   const router = useRouter();
@@ -40,54 +43,78 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 max-w-7xl items-center justify-between">
-        <div className="flex items-center gap-4">
-            <div className="md:hidden">
+      <div className="container flex h-16 max-w-7xl items-center justify-between gap-4">
+        {/* Left Section */}
+        <div className="flex items-center gap-2">
+          <div className="md:hidden">
             <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
-                <SheetTrigger asChild>
+              <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
-                    <Menu className="h-6 w-6" />
-                    <span className="sr-only">Toggle Menu</span>
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle Menu</span>
                 </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="p-0">
-                  <SheetHeader className='p-6'>
-                    <SheetTitle className="sr-only">Menu</SheetTitle>
-                  </SheetHeader>
-                  <div className="flex flex-col gap-6 px-6">
-                      <Link href="/" className="flex items-center gap-2" onClick={() => setSheetOpen(false)}>
-                      <Book className="h-6 w-6 text-primary" />
-                      <span className="font-bold font-headline text-xl">EduNex</span>
+              </SheetTrigger>
+              <SheetContent side="left" className="p-0">
+                <SheetHeader className='p-6'>
+                  <SheetTitle className="sr-only">Menu</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col gap-6 px-6">
+                  <Link href="/" className="flex items-center gap-2" onClick={() => setSheetOpen(false)}>
+                    <Book className="h-6 w-6 text-primary" />
+                    <span className="font-bold font-headline text-xl">EduNex</span>
+                  </Link>
+                  <nav className="flex flex-col gap-4">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
+                        onClick={() => setSheetOpen(false)}
+                      >
+                        {link.label}
                       </Link>
-                      <nav className="flex flex-col gap-4">
-                      {navLinks.map((link) => (
-                          <Link
-                          key={link.href}
-                          href={link.href}
-                          className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
-                          onClick={() => setSheetOpen(false)}
-                          >
-                          {link.label}
-                          </Link>
-                      ))}
-                      </nav>
-                  </div>
-                </SheetContent>
+                    ))}
+                  </nav>
+                </div>
+              </SheetContent>
             </Sheet>
-            </div>
-            <Link href="/" className="flex items-center gap-2">
-                <Book className="h-6 w-6 text-primary" />
-                <span className="font-bold font-headline text-xl hidden sm:inline-block">EduNex</span>
-            </Link>
+          </div>
+          <Link href="/" className="flex items-center gap-2">
+            <Book className="h-6 w-6 text-primary" />
+            <span className="font-bold font-headline text-xl hidden sm:inline-block">EduNex</span>
+          </Link>
         </div>
 
+        {/* Center Section (Search) */}
+        <div className="flex-1 flex justify-center px-4">
+          <div className="relative w-full max-w-md">
+            <div className={cn(
+                "absolute inset-0 flex items-center justify-center transition-opacity",
+                isSearchExpanded ? "opacity-0 pointer-events-none" : "opacity-100"
+              )}>
+                 <Button variant="ghost" className="rounded-full h-10 w-10 p-0" onClick={() => setIsSearchExpanded(true)}>
+                    <Search className="h-5 w-5" />
+                 </Button>
+            </div>
+            <div className={cn(
+                "flex items-center w-full transition-all duration-300",
+                 isSearchExpanded ? 'w-full opacity-100' : 'w-10 opacity-0'
+              )}>
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input 
+                placeholder="Search..." 
+                className={cn(
+                    "pl-10 h-10 w-full rounded-full transition-all duration-300",
+                    isSearchExpanded ? 'w-full' : 'w-10'
+                )}
+                onBlur={() => setIsSearchExpanded(false)}
+              />
+            </div>
+          </div>
+        </div>
 
-        <div className="flex items-center gap-2 md:gap-4">
-          <Button variant="ghost" size="icon">
-            <Search className="h-5 w-5" />
-            <span className="sr-only">Search</span>
-          </Button>
-          
+        {/* Right Section */}
+        <div className="flex items-center gap-2">
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -118,11 +145,11 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-             <Button variant="ghost" asChild>
-                <Link href="/login" className='gap-1'>
-                    <User className="h-5 w-5" />
-                    <span className='text-sm font-medium'>Login</span>
-                </Link>
+            <Button variant="ghost" asChild>
+              <Link href="/login" className='gap-1'>
+                <User className="h-5 w-5" />
+                <span className='text-sm font-medium'>Login</span>
+              </Link>
             </Button>
           )}
         </div>
