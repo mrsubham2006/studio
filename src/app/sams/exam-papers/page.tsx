@@ -1,8 +1,10 @@
 
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, FileText } from 'lucide-react';
+import { ArrowLeft, FileText, Film } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function ExamPapersPage() {
@@ -30,19 +32,22 @@ export default function ExamPapersPage() {
       <main className="container max-w-5xl mx-auto p-4 py-8">
         <Card>
           <CardHeader>
-            <CardTitle>Sample Technical Questions</CardTitle>
+            <CardTitle>Sample Technical Questions Video</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="relative w-full overflow-hidden rounded-lg border">
-              <Image
-                src="https://i.postimg.cc/3rb1Tm7G/General-Technical-Questions.png"
-                alt="Sample technical questions for exam preparation"
-                width={1200}
-                height={1600}
-                className="w-full h-auto"
-                priority
-              />
-            </div>
+            <Link href="https://www.youtube.com/watch?v=M2N3tm9pA78" target="_blank" rel="noopener noreferrer">
+                <div className="relative aspect-video overflow-hidden rounded-lg cursor-pointer group border">
+                    <Image
+                    src="https://i.ytimg.com/vi/M2N3tm9pA78/hq720.jpg"
+                    alt="Sample video for technical questions"
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <Film className="h-12 w-12 text-white" />
+                    </div>
+                </div>
+            </Link>
           </CardContent>
         </Card>
       </main>
