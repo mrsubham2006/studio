@@ -43,7 +43,6 @@ export default function SAMSRegisterPage() {
   const { toast } = useToast();
   const auth = useAuth();
   const firestore = useFirestore();
-  const { user: existingUser, isUserLoading } = useUser();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -77,7 +76,11 @@ export default function SAMSRegisterPage() {
     setValue('course', value);
     setSelectedCourse(value);
     setBranchOptions(courseBranchMap[value] || []);
-    setValue('branch', ''); // Reset branch selection
+    if (!courseBranchMap[value]) {
+      setValue('branch', 'N/A'); // Set a default value if no branches
+    } else {
+      setValue('branch', ''); // Reset branch selection
+    }
   };
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
@@ -87,20 +90,9 @@ export default function SAMSRegisterPage() {
     // For now, we'll use a placeholder URL.
     
     try {
-        let userId;
-        let userEmail;
-
-        if (existingUser) {
-             // If a user is already logged in (e.g. via Google from main app)
-             // We just use their UID and create a student profile
-             userId = existingUser.uid;
-             userEmail = existingUser.email;
-        } else {
-            // If no user is logged in, create a new one with email/password
-            const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
-            userId = userCredential.user.uid;
-            userEmail = userCredential.user.email;
-        }
+        const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+        const userId = userCredential.user.uid;
+        const userEmail = userCredential.user.email;
 
         const studentDocRef = doc(firestore, 'students', userId);
         const studentData = {
@@ -187,7 +179,7 @@ export default function SAMSRegisterPage() {
                     </Select>
                      {errors.course && <p className="text-sm text-destructive">{errors.course.message}</p>}
                 </div>
-                 {branchOptions.length > 0 && (
+                 {selectedCourse && courseBranchMap[selectedCourse] && (
                     <div className="space-y-2">
                         <Label>Branch / Stream</Label>
                         <Select onValueChange={(value) => setValue('branch', value)}>
@@ -203,20 +195,16 @@ export default function SAMSRegisterPage() {
                  )}
             </div>
 
-            { !existingUser && (
-                <>
-                    <div className="space-y-2">
-                        <Label htmlFor="email">Email ID</Label>
-                        <Input id="email" type="email" {...register('email')} />
-                        {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="password">Password</Label>
-                        <Input id="password" type="password" {...register('password')} />
-                        {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
-                    </div>
-                </>
-            )}
+            <div className="space-y-2">
+                <Label htmlFor="email">Email ID</Label>
+                <Input id="email" type="email" {...register('email')} />
+                {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
+            </div>
+            <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input id="password" type="password" {...register('password')} />
+                {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
+            </div>
             
             <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting ? <div className="h-5 w-5 animate-spin rounded-full border-2 border-dashed border-primary-foreground"></div> : 'Register & Continue'}
