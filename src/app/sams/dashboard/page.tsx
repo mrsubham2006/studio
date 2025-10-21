@@ -1,8 +1,9 @@
+
 'use client';
 
 import { useUser, useFirestore, useMemoFirebase, useFirebase } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { doc } from 'firebase/firestore';
 import { useDoc } from '@/firebase/firestore/use-doc';
 import { signOut } from 'firebase/auth';
@@ -15,6 +16,14 @@ import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calen
 import SAMSLoading from './loading';
 
 // Mock data
+const mockStudentData = {
+    fullName: 'Subham Pradhan',
+    course: 'B.Tech',
+    branch: 'CSE',
+    rollNumber: '2101340024',
+    photoURL: 'https://images.unsplash.com/photo-1649768453000-07c369a51b36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwc21pbGluZ3xlbnwwfHx8fDE3NjA5NjgyNjJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
+};
+
 const mockAssignments = [
     { title: 'Physics: Ch 3 Problems', dueDate: '2024-08-15', pdfUrl: '#' },
     { title: 'Maths: Integration Worksheet', dueDate: '2024-08-18', pdfUrl: '#' },
@@ -31,31 +40,30 @@ const mockTimetable = [
 ];
 
 export default function SAMSDashboardPage() {
-    const { user, isUserLoading, auth } = useFirebase();
+    const { auth } = useFirebase();
     const router = useRouter();
-    const firestore = useFirestore();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (!isUserLoading && !user) {
-            router.replace('/sams/login');
-        }
-    }, [user, isUserLoading, router]);
-
-    const studentDocRef = useMemoFirebase(() => {
-        if (!user || !firestore) return null;
-        return doc(firestore, 'students', user.uid);
-    }, [user, firestore]);
-
-    const { data: studentData, isLoading: isStudentDataLoading } = useDoc(studentDocRef);
+        // Simulate loading for demo purposes
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleLogout = async () => {
-        await signOut(auth);
+        if(auth) {
+            await signOut(auth);
+        }
         router.push('/sams/login');
     };
 
-    if (isUserLoading || isStudentDataLoading || !studentData) {
+    if (isLoading) {
         return <SAMSLoading />;
     }
+    
+    const studentData = mockStudentData;
 
     return (
         <div className="min-h-screen bg-background text-foreground">
