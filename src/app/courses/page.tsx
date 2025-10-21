@@ -1,53 +1,38 @@
 'use client';
 
-import { useState } from 'react';
 import Header from '@/components/Header';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import productData from '@/lib/products.json';
-import Image from 'next/image';
+import { Card } from '@/components/ui/card';
 import Link from 'next/link';
-import { BookOpen, Search } from 'lucide-react';
-import { cn } from '@/lib/utils';
-
-
-const allCourses = productData.products;
+import { Book, Microscope, HardHat, MoreHorizontal, ChevronRight } from 'lucide-react';
 
 const categories = [
-  "All",
-  "Class 1st-8th",
-  "Class 9th",
-  "Class 10th",
-  "Class 12th",
-  "JEE",
-  "NEET",
-  "Competitive Exams",
+  {
+    name: 'Class 1st to 10th',
+    href: '/courses/school',
+    icon: Book,
+    description: 'Comprehensive courses for school curriculum.',
+  },
+  {
+    name: 'Engineering',
+    href: '/courses/engineering',
+    icon: HardHat,
+    description: 'Explore various engineering branches.',
+  },
+  {
+    name: 'Pharmacy',
+    href: '/courses/pharmacy',
+    icon: Microscope,
+    description: 'Courses for pharmaceutical studies.',
+  },
+  {
+    name: 'Others',
+    href: '/courses/others',
+    icon: MoreHorizontal,
+    description: 'Discover a variety of other courses.',
+  },
 ];
 
-const categoryMap: { [key: string]: string[] } = {
-  "All": allCourses.map(c => c.category),
-  "Class 1st-8th": ["Class 1st", "Class 2nd", "Class 3rd", "Class 4th", "Class 5th", "Class 6th", "Class 7th", "Class 8th"],
-  "Class 9th": ["Class 9th"],
-  "Class 10th": ["Class 10th"],
-  "Class 12th": ["Class 12th"],
-  "JEE": ["JEE"],
-  "NEET": ["NEET"],
-  "Competitive Exams": ["Competitive Exams"],
-};
-
-
 export default function CoursesPage() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState('All');
-
-  const filteredCourses = allCourses.filter(course => {
-    const termMatch = course.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const categoryMatch = activeCategory === 'All' || categoryMap[activeCategory].includes(course.category);
-    return termMatch && categoryMatch;
-  });
-
   return (
     <>
       <Header />
@@ -55,78 +40,32 @@ export default function CoursesPage() {
         <div className="container max-w-7xl py-12">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl md:text-6xl">
-              All Courses
+              Explore Our Courses
             </h1>
             <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">
-              Find the perfect course to excel in your studies.
+              Choose a category to start your learning journey.
             </p>
           </div>
-          
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search for courses..."
-                className="pl-9 h-12"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-          </div>
 
-          <div className="mb-8 flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={activeCategory === category ? "default" : "outline"}
-                onClick={() => setActiveCategory(category)}
-                className="rounded-full"
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredCourses.map((course) => {
-              const courseImage = PlaceHolderImages.find(img => img.id === course.imageId);
+          <div className="max-w-2xl mx-auto space-y-4">
+            {categories.map((category) => {
+              const Icon = category.icon;
               return (
-                <Card key={course.id} className="flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
-                  <CardHeader className="p-0">
-                    {courseImage && (
-                      <Image
-                        src={courseImage.imageUrl}
-                        alt={course.name}
-                        data-ai-hint={courseImage.imageHint}
-                        width={400}
-                        height={250}
-                        className="object-cover w-full h-48"
-                      />
-                    )}
-                  </CardHeader>
-                  <CardContent className="flex-1 p-6">
-                    <CardTitle className="font-headline text-lg leading-tight mb-2 h-14 overflow-hidden">{course.title || course.name}</CardTitle>
-                    <div className="flex items-center text-sm text-muted-foreground">
-                      <BookOpen className="w-4 h-4 mr-2" />
-                      <span>{course.category}</span>
+                <Link key={category.name} href={category.href} passHref>
+                  <Card className="p-6 flex items-center gap-6 hover:bg-muted hover:shadow-lg transition-all duration-200 cursor-pointer">
+                    <div className="p-3 bg-primary/10 rounded-lg">
+                      <Icon className="h-8 w-8 text-primary" />
                     </div>
-                  </CardContent>
-                  <CardFooter className="p-6 pt-0">
-                    <Button asChild className="w-full">
-                      <Link href={`/courses/${course.id}`}>View Details</Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
+                    <div className="flex-1">
+                      <h2 className="text-xl font-bold font-headline">{category.name}</h2>
+                      <p className="text-muted-foreground">{category.description}</p>
+                    </div>
+                    <ChevronRight className="h-6 w-6 text-muted-foreground" />
+                  </Card>
+                </Link>
               );
             })}
           </div>
-
-          {filteredCourses.length === 0 && (
-            <div className="text-center py-16 text-muted-foreground">
-                <p className='text-lg font-semibold'>No courses found</p>
-                <p>Try adjusting your search or filter.</p>
-            </div>
-          )}
         </div>
       </main>
     </>
