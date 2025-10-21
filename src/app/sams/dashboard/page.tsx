@@ -145,7 +145,7 @@ export default function SAMSDashboardPage() {
                             })}
                          </div>
                     </DashboardCard>
-                     <DashboardCard title="Exam Papers" icon={FileText} href="#">
+                     <DashboardCard title="Exam Papers" icon={FileText} href="/sams/exam-papers">
                         <p className="text-sm text-muted-foreground">Past year and upcoming exam papers.</p>
                     </DashboardCard>
                      <DashboardCard title="Notes & Syllabus" icon={CheckSquare} href="#">
