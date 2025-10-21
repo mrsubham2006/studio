@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Book, Menu, Search, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
 import {
   DropdownMenu,
@@ -50,25 +50,28 @@ export default function Header() {
                     <span className="sr-only">Toggle Menu</span>
                 </Button>
                 </SheetTrigger>
-                <SheetContent side="left">
-                <div className="flex flex-col gap-6 p-6">
-                    <Link href="/" className="flex items-center gap-2" onClick={() => setSheetOpen(false)}>
-                    <Book className="h-6 w-6 text-primary" />
-                    <span className="font-bold font-headline text-xl">Pragyan Path</span>
-                    </Link>
-                    <nav className="flex flex-col gap-4">
-                    {navLinks.map((link) => (
-                        <Link
-                        key={link.href}
-                        href={link.href}
-                        className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
-                        onClick={() => setSheetOpen(false)}
-                        >
-                        {link.label}
-                        </Link>
-                    ))}
-                    </nav>
-                </div>
+                <SheetContent side="left" className="p-0">
+                  <SheetHeader className='p-6'>
+                    <SheetTitle className="sr-only">Menu</SheetTitle>
+                  </SheetHeader>
+                  <div className="flex flex-col gap-6 px-6">
+                      <Link href="/" className="flex items-center gap-2" onClick={() => setSheetOpen(false)}>
+                      <Book className="h-6 w-6 text-primary" />
+                      <span className="font-bold font-headline text-xl">Pragyan Path</span>
+                      </Link>
+                      <nav className="flex flex-col gap-4">
+                      {navLinks.map((link) => (
+                          <Link
+                          key={link.href}
+                          href={link.href}
+                          className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
+                          onClick={() => setSheetOpen(false)}
+                          >
+                          {link.label}
+                          </Link>
+                      ))}
+                      </nav>
+                  </div>
                 </SheetContent>
             </Sheet>
             </div>
