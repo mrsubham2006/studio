@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 
 const navLinks = [
-  { href: '/ai-assistant', label: 'AI', icon: Bot },
+  { href: '/ai-assistant', label: 'AI Zone', icon: Bot },
   { href: '/', label: 'Home', icon: Home },
   { href: '/courses', label: 'Courses', icon: LayoutGrid },
   { href: '/dashboard', label: 'SAMS', icon: BarChart2 },
