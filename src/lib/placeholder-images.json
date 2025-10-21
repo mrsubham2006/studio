@@ -89,6 +89,42 @@
       "description": "UPI QR Code for payment.",
       "imageUrl": "https://storage.googleapis.com/stabl-agent-test-images/qr-code-1.png",
       "imageHint": "qr code"
+    },
+    {
+      "id": "course-science",
+      "description": "Thumbnail for a Science course.",
+      "imageUrl": "https://images.unsplash.com/photo-1711408524517-caec3d9700ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzY2llbmNlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYxMDQwMzYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "science abstract"
+    },
+    {
+      "id": "course-geography",
+      "description": "Thumbnail for a Geography course.",
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b3JsZCUyMG1hcHxlbnwwfHx8fDE3NjEwMzU5MjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "world map"
+    },
+    {
+      "id": "course-history",
+      "description": "Thumbnail for a History course.",
+      "imageUrl": "https://images.unsplash.com/photo-1718355471693-47316bb23f90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhbmNpZW50JTIwc2Nyb2xsfGVufDB8fHx8MTc2MDk0ODcxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ancient scroll"
+    },
+    {
+      "id": "course-it",
+      "description": "Thumbnail for an IT course.",
+      "imageUrl": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21wdXRlciUyMGNvZGV8ZW58MHx8fHwxNzYwOTczODczfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "computer code"
+    },
+    {
+      "id": "course-odia",
+      "description": "Thumbnail for an Odia language course.",
+      "imageUrl": "https://images.unsplash.com/photo-1749947165301-0594efb27963?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvZGlhJTIwc2NyaXB0fGVufDB8fHx8MTc2MTA2MjY4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "odia script"
+    },
+    {
+      "id": "course-sanskrit",
+      "description": "Thumbnail for a Sanskrit language course.",
+      "imageUrl": "https://images.unsplash.com/photo-1620968277880-a795336583ab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzYW5za3JpdCUyMHRleHR8ZW58MHx8fHwxNzYxMDYyNjgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sanskrit text"
     }
   ]
 }

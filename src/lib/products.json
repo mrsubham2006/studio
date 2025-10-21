@@ -80,6 +80,78 @@
       "price": 950,
       "category": "Competitive Exams",
       "imageId": "edustore-book-generic"
+    },
+    {
+      "id": "book-math-8",
+      "name": "Mathematics for Class 8",
+      "description": "Comprehensive textbook for Class 8 Mathematics, following the latest curriculum.",
+      "price": 280,
+      "category": "Class 8th",
+      "imageId": "course-maths"
+    },
+    {
+      "id": "book-science-8",
+      "name": "Integrated Science Class 8",
+      "description": "Explore the wonders of science with this book for Class 8, covering Physics, Chemistry, and Biology.",
+      "price": 320,
+      "category": "Class 8th",
+      "imageId": "course-science"
+    },
+    {
+      "id": "book-geo-7",
+      "name": "Our World: Geography Class 7",
+      "description": "A geography textbook for Class 7 students, exploring continents, climates, and cultures.",
+      "price": 260,
+      "category": "Class 7th",
+      "imageId": "course-geography"
+    },
+    {
+      "id": "book-history-7",
+      "name": "Indian History for Class 7",
+      "description": "Learn about the rich history of India with this engaging textbook for Class 7.",
+      "price": 260,
+      "category": "Class 7th",
+      "imageId": "course-history"
+    },
+    {
+      "id": "book-phy-sci-9",
+      "name": "Physical Science Class 9",
+      "description": "An introductory book on physical sciences, including fundamental concepts of physics and chemistry.",
+      "price": 300,
+      "category": "Class 9th",
+      "imageId": "course-physics"
+    },
+    {
+      "id": "book-biology-9",
+      "name": "Biology for Class 9",
+      "description": "Dive into the world of living organisms with this detailed biology book for Class 9.",
+      "price": 310,
+      "category": "Class 9th",
+      "imageId": "course-biology"
+    },
+    {
+      "id": "book-it-8",
+      "name": "Introduction to IT Class 8",
+      "description": "Learn the basics of Information Technology, computers, and the internet.",
+      "price": 290,
+      "category": "Class 8th",
+      "imageId": "course-it"
+    },
+    {
+      "id": "book-odia-6",
+      "name": "Odia Language Primer Class 6",
+      "description": "A beginner's guide to the Odia language for students of Class 6.",
+      "price": 180,
+      "category": "Class 6th",
+      "imageId": "course-odia"
+    },
+    {
+      "id": "book-sanskrit-6",
+      "name": "Sanskrit for Beginners Class 6",
+      "description": "An easy-to-follow introduction to the Sanskrit language for young learners.",
+      "price": 200,
+      "category": "Class 6th",
+      "imageId": "course-sanskrit"
     }
   ]
 }
