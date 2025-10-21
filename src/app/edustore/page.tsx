@@ -9,7 +9,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import productData from '@/lib/products.json';
 import Image from 'next/image';
-import { ShoppingCart, Search, Plus, Minus, ShoppingBag } from 'lucide-react';
+import { ShoppingCart, Search, Plus, Minus, ShoppingBag, X } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from '@/hooks/use-toast';
 import { useCart } from '@/context/CartProvider';
