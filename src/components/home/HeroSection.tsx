@@ -2,9 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useUser } from '@/firebase';
 
 export default function HeroSection() {
   const heroImage = PlaceHolderImages.find(img => img.id === 'hero-banner');
+  const { user } = useUser();
 
   return (
     <section className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center text-center bg-gradient-to-br from-primary/20 via-background to-background">
@@ -29,9 +31,11 @@ export default function HeroSection() {
             <Button size="lg" asChild className="shadow-lg shadow-primary/30">
               <Link href="/courses">Start Learning</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
-              <Link href="/login">Login Now</Link>
-            </Button>
+            {!user && (
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/login">Login Now</Link>
+              </Button>
+            )}
           </div>
         </div>
       </div>
