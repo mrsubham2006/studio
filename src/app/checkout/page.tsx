@@ -18,6 +18,7 @@ import { CreditCard, Home, ShoppingBag, Truck, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Link from 'next/link';
 
 const addressSchema = z.object({
   name: z.string().min(2, 'Full name is required'),
@@ -252,3 +253,5 @@ export default function CheckoutPage() {
         </>
     );
 }
+
+    
