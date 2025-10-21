@@ -87,23 +87,42 @@ export default function TextSummarizerPage() {
           </div>
 
           <Card className="shadow-2xl backdrop-blur-lg bg-card/80">
-            <CardContent className="p-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <CardContent className="p-6 space-y-6">
                 {/* Input Area */}
                 <div className="space-y-4">
                     <h3 className="font-semibold text-lg">Your Text</h3>
                     <Textarea
                         placeholder="Enter or paste your text here..."
-                        className="h-72 resize-none"
+                        className="h-60 resize-none"
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
                     />
                 </div>
+
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                        <Label htmlFor="summary-length" className="text-sm font-medium">Summary Length:</Label>
+                        <Select value={summaryLength} onValueChange={(value: SummaryLength) => setSummaryLength(value)}>
+                            <SelectTrigger id="summary-length" className="flex-1 sm:w-[280px]">
+                                <SelectValue placeholder="Select summary length" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Short (approx. 50 words)">Short (~50 words)</SelectItem>
+                                <SelectItem value="Medium (approx. 100 words)">Medium (~100 words)</SelectItem>
+                                <SelectItem value="Long (approx. 200 words)">Long (~200 words)</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <Button size="lg" onClick={handleGenerateSummary} disabled={isPending} className="w-full sm:w-auto glow-on-hover">
+                        <Wand2 className="mr-2 h-5 w-5" />
+                        {isPending ? 'Generating...' : 'Generate Summary'}
+                    </Button>
+                </div>
                 
-                {/* Controls and Output Area */}
+                {/* Output Area */}
                 <div className="space-y-4">
                     <h3 className="font-semibold text-lg">Summary</h3>
-                    <div className={cn("relative rounded-md border bg-muted/50 p-4 h-72 overflow-y-auto", summary && "text-foreground")}>
+                    <div className={cn("relative rounded-md border bg-muted/50 p-4 h-60 overflow-y-auto", summary && "text-foreground")}>
                         {isPending ? (
                             <div className="flex flex-col items-center justify-center h-full text-muted-foreground">
                                 <Wand2 className="h-8 w-8 mb-2 animate-pulse" />
@@ -130,28 +149,6 @@ export default function TextSummarizerPage() {
                         )}
                     </div>
                 </div>
-              </div>
-
-              <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                 <div className="flex items-center gap-2">
-                    <Label htmlFor="summary-length" className="text-sm font-medium">Summary Length:</Label>
-                    <Select value={summaryLength} onValueChange={(value: SummaryLength) => setSummaryLength(value)}>
-                        <SelectTrigger id="summary-length" className="w-full sm:w-[280px]">
-                            <SelectValue placeholder="Select summary length" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="Short (approx. 50 words)">Short (~50 words)</SelectItem>
-                            <SelectItem value="Medium (approx. 100 words)">Medium (~100 words)</SelectItem>
-                            <SelectItem value="Long (approx. 200 words)">Long (~200 words)</SelectItem>
-                        </SelectContent>
-                    </Select>
-                 </div>
-                 <Button size="lg" onClick={handleGenerateSummary} disabled={isPending} className="w-full sm:w-auto glow-on-hover">
-                    <Wand2 className="mr-2 h-5 w-5" />
-                    {isPending ? 'Generating...' : 'Generate Summary'}
-                 </Button>
-              </div>
-
             </CardContent>
           </Card>
         </div>
