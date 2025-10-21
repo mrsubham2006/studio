@@ -32,6 +32,12 @@ const registerSchema = z.object({
 
 type RegisterFormInputs = z.infer<typeof registerSchema>;
 
+const courseBranchMap: Record<string, string[]> = {
+    'B.Tech': ['CSE', 'Mechanical', 'Civil', 'Electrical', 'ECE', 'Mining'],
+    'Class 12th': ['Science', 'Arts', 'Commerce'],
+};
+
+
 export default function SAMSRegisterPage() {
   const router = useRouter();
   const { toast } = useToast();
@@ -41,6 +47,9 @@ export default function SAMSRegisterPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [selectedCourse, setSelectedCourse] = useState<string>('');
+  const [branchOptions, setBranchOptions] = useState<string[]>([]);
+
 
   const {
     register,
@@ -62,6 +71,13 @@ export default function SAMSRegisterPage() {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleCourseChange = (value: string) => {
+    setValue('course', value);
+    setSelectedCourse(value);
+    setBranchOptions(courseBranchMap[value] || []);
+    setValue('branch', ''); // Reset branch selection
   };
 
   const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
@@ -159,29 +175,32 @@ export default function SAMSRegisterPage() {
              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                     <Label>Course/Class</Label>
-                    <Select onValueChange={(value) => setValue('course', value)}>
+                    <Select onValueChange={handleCourseChange}>
                         <SelectTrigger><SelectValue placeholder="Select Course" /></SelectTrigger>
                         <SelectContent>
                             <SelectItem value="B.Tech">B.Tech</SelectItem>
                             <SelectItem value="Class 12th">Class 12th</SelectItem>
+                            <SelectItem value="Class 11th">Class 11th</SelectItem>
                             <SelectItem value="Class 10th">Class 10th</SelectItem>
+                            <SelectItem value="Class 9th">Class 9th</SelectItem>
                         </SelectContent>
                     </Select>
                      {errors.course && <p className="text-sm text-destructive">{errors.course.message}</p>}
                 </div>
-                 <div className="space-y-2">
-                    <Label>Branch</Label>
-                    <Select onValueChange={(value) => setValue('branch', value)}>
-                        <SelectTrigger><SelectValue placeholder="Select Branch" /></SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="CSE">Computer Science</SelectItem>
-                            <SelectItem value="Mechanical">Mechanical</SelectItem>
-                            <SelectItem value="Civil">Civil</SelectItem>
-                            <SelectItem value="Science">Science</SelectItem>
-                        </SelectContent>
-                    </Select>
-                    {errors.branch && <p className="text-sm text-destructive">{errors.branch.message}</p>}
-                </div>
+                 {branchOptions.length > 0 && (
+                    <div className="space-y-2">
+                        <Label>Branch / Stream</Label>
+                        <Select onValueChange={(value) => setValue('branch', value)}>
+                            <SelectTrigger><SelectValue placeholder="Select Branch" /></SelectTrigger>
+                            <SelectContent>
+                                {branchOptions.map(option => (
+                                    <SelectItem key={option} value={option}>{option}</SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                        {errors.branch && <p className="text-sm text-destructive">{errors.branch.message}</p>}
+                    </div>
+                 )}
             </div>
 
             { !existingUser && (
