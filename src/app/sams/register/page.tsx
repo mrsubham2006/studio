@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth, useFirestore, useUser } from '@/firebase';
+import { useAuth, useFirestore } from '@/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc } from 'firebase/firestore';
 import { setDocumentNonBlocking } from '@/firebase/non-blocking-updates';
@@ -27,14 +27,22 @@ const registerSchema = z.object({
   rollNumber: z.string().min(1, 'Roll number is required'),
   email: z.string().email('Invalid email address'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
+  confirmPassword: z.string().min(6, 'Password must be at least 6 characters'),
   photo: z.instanceof(File).optional(),
+}).refine(data => data.password === data.confirmPassword, {
+  message: "Passwords don't match",
+  path: ["confirmPassword"],
 });
+
 
 type RegisterFormInputs = z.infer<typeof registerSchema>;
 
-const courseBranchMap: Record<string, string[]> = {
+const courseBranchMap: Record<string, string[] | null> = {
     'B.Tech': ['CSE', 'Mechanical', 'Civil', 'Electrical', 'ECE', 'Mining'],
     'Class 12th': ['Science', 'Arts', 'Commerce'],
+    'Class 11th': ['Science', 'Arts', 'Commerce'],
+    'Class 10th': null,
+    'Class 9th': null,
 };
 
 
@@ -47,14 +55,13 @@ export default function SAMSRegisterPage() {
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedCourse, setSelectedCourse] = useState<string>('');
-  const [branchOptions, setBranchOptions] = useState<string[]>([]);
+  const [branchOptions, setBranchOptions] = useState<string[] | null>([]);
 
 
   const {
     register,
     handleSubmit,
     setValue,
-    control,
     formState: { errors },
   } = useForm<RegisterFormInputs>({
     resolver: zodResolver(registerSchema),
@@ -75,11 +82,12 @@ export default function SAMSRegisterPage() {
   const handleCourseChange = (value: string) => {
     setValue('course', value);
     setSelectedCourse(value);
-    setBranchOptions(courseBranchMap[value] || []);
-    if (!courseBranchMap[value]) {
-      setValue('branch', 'N/A'); // Set a default value if no branches
+    const branches = courseBranchMap[value]
+    setBranchOptions(branches);
+    if (!branches) {
+      setValue('branch', 'N/A');
     } else {
-      setValue('branch', ''); // Reset branch selection
+      setValue('branch', '');
     }
   };
 
@@ -179,7 +187,7 @@ export default function SAMSRegisterPage() {
                     </Select>
                      {errors.course && <p className="text-sm text-destructive">{errors.course.message}</p>}
                 </div>
-                 {selectedCourse && courseBranchMap[selectedCourse] && (
+                 {selectedCourse && branchOptions && (
                     <div className="space-y-2">
                         <Label>Branch / Stream</Label>
                         <Select onValueChange={(value) => setValue('branch', value)}>
@@ -200,10 +208,18 @@ export default function SAMSRegisterPage() {
                 <Input id="email" type="email" {...register('email')} />
                 {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
             </div>
-            <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" {...register('password')} />
-                {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                    <Label htmlFor="password">Password</Label>
+                    <Input id="password" type="password" {...register('password')} />
+                    {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="confirmPassword">Confirm Password</Label>
+                    <Input id="confirmPassword" type="password" {...register('confirmPassword')} />
+                    {errors.confirmPassword && <p className="text-sm text-destructive">{errors.confirmPassword.message}</p>}
+                </div>
             </div>
             
             <Button type="submit" className="w-full" disabled={isSubmitting}>
