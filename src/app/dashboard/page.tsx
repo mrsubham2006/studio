@@ -1,19 +1,19 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { recommendContent } from '@/ai/flows/ai-powered-content-recommendation';
 import type { RecommendContentInput, RecommendContentOutput } from '@/ai/flows/ai-powered-content-recommendation';
-import { BarChart, BookCheck, Lightbulb, Target } from 'lucide-react';
-import { ChartContainer, ChartTooltip, ChartTooltipContent, Bar, BarChart as RechartsBarChart } from '@/components/ui/chart';
+import { BookCheck, Lightbulb, Target } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, BarChart as RechartsBarChart } from 'recharts';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { Separator } from '@/components/ui/separator';
 import { useUser } from '@/firebase';
 import Loading from './loading';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useState } from 'react';
 
 const chartConfig = {
   score: {
@@ -118,8 +118,8 @@ export default function DashboardPage() {
                                     <stop offset="95%" stopColor="var(--color-score)" stopOpacity={0.1}/>
                                 </linearGradient>
                                 </defs>
-                                <RechartsPrimitive.XAxis dataKey="topic" tickLine={false} axisLine={false} tickMargin={8} />
-                                <RechartsPrimitive.YAxis domain={[0, 100]} unit="%" tickLine={false} axisLine={false} tickMargin={8}/>
+                                <XAxis dataKey="topic" tickLine={false} axisLine={false} tickMargin={8} />
+                                <YAxis domain={[0, 100]} unit="%" tickLine={false} axisLine={false} tickMargin={8}/>
                                 <ChartTooltip content={<ChartTooltipContent />} />
                                 <Bar dataKey="score" fill="url(#fillScore)" radius={8} />
                             </RechartsBarChart>
@@ -179,6 +179,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
-// Re-exporting recharts components for server-side rendering
-import * as RechartsPrimitive from 'recharts';

@@ -1,0 +1,61 @@
+
+{
+  "products": [
+    {
+      "id": "prod_001",
+      "name": "Comprehensive Physics Guide",
+      "description": "A complete guide for Class 12th Physics, covering all topics with detailed explanations and practice questions.",
+      "price": 450,
+      "category": "Class 12th Books",
+      "imageId": "edustore-book-generic"
+    },
+    {
+      "id": "prod_002",
+      "name": "Mathematics for Young Minds",
+      "description": "Engaging and fun mathematics book for students in classes 1-9. Builds a strong foundation.",
+      "price": 250,
+      "category": "Class 1-9th Books",
+      "imageId": "edustore-book-generic"
+    },
+    {
+      "id": "prod_003",
+      "name": "Science Explorer",
+      "description": "An exciting science book for Class 10th students, with experiments and real-world examples.",
+      "price": 350,
+      "category": "Class 10th Books",
+      "imageId": "edustore-book-generic"
+    },
+    {
+      "id": "prod_004",
+      "name": "IIT-JEE Advanced Chemistry",
+      "description": "In-depth coverage of chemistry topics for IIT-JEE aspirants. Includes solved papers.",
+      "price": 650,
+      "category": "IIT Books",
+      "imageId": "edustore-iit-book"
+    },
+    {
+      "id": "prod_005",
+      "name": "NEET Biology Objective",
+      "description": "A must-have for NEET aspirants, with thousands of objective questions and detailed solutions for Biology.",
+      "price": 600,
+      "category": "NEET Books",
+      "imageId": "edustore-neet-book"
+    },
+    {
+      "id": "prod_006",
+      "name": "Premium Pen Set",
+      "description": "A set of 5 smooth-writing pens, perfect for notes and exams. Black, blue, and red ink.",
+      "price": 150,
+      "category": "Office Stationary",
+      "imageId": "edustore-stationary"
+    },
+    {
+      "id": "prod_007",
+      "name": "Student Notebook Pack",
+      "description": "Pack of 6 high-quality notebooks for all your subjects. 200 pages, single line.",
+      "price": 300,
+      "category": "Office Stationary",
+      "imageId": "edustore-stationary"
+    }
+  ]
+}
