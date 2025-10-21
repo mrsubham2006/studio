@@ -34,17 +34,17 @@
           "format": "date-time"
         },
         "govtIdType": {
-            "type": "string",
-            "description": "Type of government ID (e.g., Aadhar, PAN)."
+          "type": "string",
+          "description": "Type of government ID (e.g., Aadhar, PAN)."
         },
         "govtIdNumber": {
-            "type": "string",
-            "description": "The number of the government ID."
+          "type": "string",
+          "description": "The number of the government ID."
         },
         "govtIdProofUrl": {
-            "type": "string",
-            "description": "URL of the uploaded government ID proof document.",
-            "format": "uri"
+          "type": "string",
+          "description": "URL of the uploaded government ID proof document.",
+          "format": "uri"
         }
       },
       "required": [
@@ -138,6 +138,43 @@
         "lastAccessed",
         "completionPercentage"
       ]
+    },
+    "Student": {
+      "title": "Student",
+      "type": "object",
+      "description": "SAMS student profile.",
+      "properties": {
+        "fullName": { "type": "string" },
+        "course": { "type": "string" },
+        "branch": { "type": "string" },
+        "rollNumber": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "photoURL": { "type": "string", "format": "uri" }
+      },
+      "required": ["fullName", "course", "branch", "rollNumber", "email"]
+    },
+    "Assignment": {
+      "title": "Assignment",
+      "type": "object",
+      "description": "An assignment for a course.",
+      "properties": {
+        "title": { "type": "string" },
+        "course": { "type": "string" },
+        "dueDate": { "type": "string", "format": "date" },
+        "fileUrl": { "type": "string", "format": "uri" }
+      },
+      "required": ["title", "course", "dueDate", "fileUrl"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "type": "object",
+      "description": "An academic notification.",
+      "properties": {
+        "title": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "content": { "type": "string" }
+      },
+      "required": ["title", "date", "content"]
     }
   },
   "auth": {
@@ -153,55 +190,51 @@
         "path": "/users/{userId}",
         "definition": {
           "entityName": "User",
-          "schema": {
-            "$ref": "#/backend/entities/User"
-          },
-          "description": "Stores user profile information. Path-based ownership ensures only the user can access their data.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The unique identifier of the user."
-            }
-          ]
+          "schema": { "$ref": "#/backend/entities/User" },
+          "description": "Stores user profile information. Path-based ownership ensures only the user can access their data."
         }
       },
       {
         "path": "/courses/{courseId}",
         "definition": {
           "entityName": "Course",
-          "schema": {
-            "$ref": "#/backend/entities/Course"
-          },
-          "description": "Stores course details. No specific authorization is required.",
-          "params": [
-            {
-              "name": "courseId",
-              "description": "The unique identifier of the course."
-            }
-          ]
+          "schema": { "$ref": "#/backend/entities/Course" },
+          "description": "Stores course details. No specific authorization is required."
         }
       },
       {
         "path": "/users/{userId}/progress/{progressId}",
         "definition": {
           "entityName": "Progress",
-          "schema": {
-            "$ref": "#/backend/entities/Progress"
-          },
-          "description": "Stores user-specific course progress. Path-based ownership ensures only the user can access their progress data.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The unique identifier of the user."
-            },
-            {
-              "name": "progressId",
-              "description": "The unique identifier of the progress record."
-            }
-          ]
+          "schema": { "$ref": "#/backend/entities/Progress" },
+          "description": "Stores user-specific course progress. Path-based ownership ensures only the user can access their progress data."
+        }
+      },
+      {
+        "path": "/students/{studentId}",
+        "definition": {
+          "entityName": "Student",
+          "schema": { "$ref": "#/backend/entities/Student" },
+          "description": "Stores SAMS student profiles. The studentId should match the Firebase Auth UID."
+        }
+      },
+      {
+        "path": "/assignments/{assignmentId}",
+        "definition": {
+          "entityName": "Assignment",
+          "schema": { "$ref": "#/backend/entities/Assignment" },
+          "description": "Stores academic assignments."
+        }
+      },
+      {
+        "path": "/notifications/{notificationId}",
+        "definition": {
+          "entityName": "Notification",
+          "schema": { "$ref": "#/backend/entities/Notification" },
+          "description": "Stores academic notifications."
         }
       }
     ],
-    "reasoning": "The Firestore structure is designed to support a personalized learning experience, prioritizing authorization independence, clarity, and scalability. User data is stored in `/users/{userId}`, ensuring path-based ownership. Courses are stored in a top-level `/courses` collection. User progress is tracked in `/users/{userId}/progress/{progressId}`, maintaining a clear hierarchy for user-specific data. This structure allows for efficient data retrieval and straightforward security rule implementation without relying on complex `get()` calls. Denormalization isn't required as path-based ownership effectively secures user data. Segregation is achieved by separating user-specific data (progress) from global course data, simplifying security postures. QAPs are supported as listing courses doesn't require filtering based on user roles or permissions, as the course data is publicly accessible."
+    "reasoning": "The Firestore structure is designed to support a personalized learning experience, prioritizing authorization independence, clarity, and scalability. User data is stored in `/users/{userId}`, ensuring path-based ownership. Courses are stored in a top-level `/courses` collection. User progress is tracked in `/users/{userId}/progress/{progressId}`, maintaining a clear hierarchy for user-specific data. This structure allows for efficient data retrieval and straightforward security rule implementation without relying on complex `get()` calls. Denormalization isn't required as path-based ownership effectively secures user data. Segregation is achieved by separating user-specific data (progress) from global course data, simplifying security postures. QAPs are supported as listing courses doesn't require filtering based on user roles or permissions, as the course data is publicly accessible. SAMS data is stored in separate top-level collections for global access by authorized staff, while student-specific data could be nested under `/students/{studentId}` if needed in the future."
   }
 }

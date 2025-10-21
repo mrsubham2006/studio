@@ -1,0 +1,213 @@
+'use client';
+
+import { useState, useRef } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useToast } from '@/hooks/use-toast';
+import { useAuth, useFirestore, useUser } from '@/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc } from 'firebase/firestore';
+import { setDocumentNonBlocking } from '@/firebase/non-blocking-updates';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Camera, GraduationCap } from 'lucide-react';
+
+const registerSchema = z.object({
+  fullName: z.string().min(2, 'Full name is required'),
+  course: z.string().min(1, 'Course is required'),
+  branch: z.string().min(1, 'Branch is required'),
+  rollNumber: z.string().min(1, 'Roll number is required'),
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+  photo: z.instanceof(File).optional(),
+});
+
+type RegisterFormInputs = z.infer<typeof registerSchema>;
+
+export default function SAMSRegisterPage() {
+  const router = useRouter();
+  const { toast } = useToast();
+  const auth = useAuth();
+  const firestore = useFirestore();
+  const { user: existingUser, isUserLoading } = useUser();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    control,
+    formState: { errors },
+  } = useForm<RegisterFormInputs>({
+    resolver: zodResolver(registerSchema),
+  });
+  
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setValue('photo', file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
+    setIsSubmitting(true);
+    
+    // In a real app, you would handle file uploads to Firebase Storage here.
+    // For now, we'll use a placeholder URL.
+    
+    try {
+        let userId;
+        let userEmail;
+
+        if (existingUser) {
+             // If a user is already logged in (e.g. via Google from main app)
+             // We just use their UID and create a student profile
+             userId = existingUser.uid;
+             userEmail = existingUser.email;
+        } else {
+            // If no user is logged in, create a new one with email/password
+            const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+            userId = userCredential.user.uid;
+            userEmail = userCredential.user.email;
+        }
+
+        const studentDocRef = doc(firestore, 'students', userId);
+        const studentData = {
+            uid: userId,
+            fullName: data.fullName,
+            course: data.course,
+            branch: data.branch,
+            rollNumber: data.rollNumber,
+            email: userEmail,
+            photoURL: photoPreview || `https://avatar.vercel.sh/${userId}.png`, // Placeholder
+        };
+
+        setDocumentNonBlocking(studentDocRef, studentData, { merge: true });
+
+        toast({
+            title: "Registration Successful!",
+            description: "Your SAMS profile has been created.",
+        });
+
+        router.push('/sams/dashboard');
+
+    } catch (error: any) {
+        console.error("SAMS Registration failed:", error);
+        toast({
+            variant: "destructive",
+            title: "Registration Failed",
+            description: error.message || "An unexpected error occurred. Please try again.",
+        });
+    } finally {
+        setIsSubmitting(false);
+    }
+  };
+  
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background p-4">
+      <Card className="w-full max-w-lg mx-auto shadow-2xl bg-card glow-on-hover">
+        <CardHeader className="text-center space-y-2">
+           <GraduationCap className="mx-auto h-10 w-10 text-primary" />
+          <CardTitle className="text-3xl font-headline">SAMS Onboarding</CardTitle>
+          <CardDescription>Register to access the Student Academic Management System.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="flex justify-center mb-4">
+                <div className="relative">
+                    <Avatar className="h-24 w-24 border-4 border-primary/20">
+                    <AvatarImage src={photoPreview || ''} alt="Profile Photo" />
+                    <AvatarFallback className="bg-muted">
+                        <Camera className="h-8 w-8 text-muted-foreground" />
+                    </AvatarFallback>
+                    </Avatar>
+                    <Button type="button" variant="ghost" size="icon" className="absolute bottom-0 right-0 rounded-full h-8 w-8 border bg-card/80 backdrop-blur" onClick={() => fileInputRef.current?.click()}>
+                        <Camera className="h-4 w-4 text-foreground" />
+                    </Button>
+                    <Input type="file" className="hidden" ref={fileInputRef} accept="image/*" onChange={handlePhotoChange} />
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                    <Label htmlFor="fullName">Full Name</Label>
+                    <Input id="fullName" {...register('fullName')} />
+                    {errors.fullName && <p className="text-sm text-destructive">{errors.fullName.message}</p>}
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="rollNumber">Roll Number</Label>
+                    <Input id="rollNumber" {...register('rollNumber')} />
+                    {errors.rollNumber && <p className="text-sm text-destructive">{errors.rollNumber.message}</p>}
+                </div>
+            </div>
+
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                    <Label>Course/Class</Label>
+                    <Select onValueChange={(value) => setValue('course', value)}>
+                        <SelectTrigger><SelectValue placeholder="Select Course" /></SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="B.Tech">B.Tech</SelectItem>
+                            <SelectItem value="Class 12th">Class 12th</SelectItem>
+                            <SelectItem value="Class 10th">Class 10th</SelectItem>
+                        </SelectContent>
+                    </Select>
+                     {errors.course && <p className="text-sm text-destructive">{errors.course.message}</p>}
+                </div>
+                 <div className="space-y-2">
+                    <Label>Branch</Label>
+                    <Select onValueChange={(value) => setValue('branch', value)}>
+                        <SelectTrigger><SelectValue placeholder="Select Branch" /></SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="CSE">Computer Science</SelectItem>
+                            <SelectItem value="Mechanical">Mechanical</SelectItem>
+                            <SelectItem value="Civil">Civil</SelectItem>
+                            <SelectItem value="Science">Science</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    {errors.branch && <p className="text-sm text-destructive">{errors.branch.message}</p>}
+                </div>
+            </div>
+
+            { !existingUser && (
+                <>
+                    <div className="space-y-2">
+                        <Label htmlFor="email">Email ID</Label>
+                        <Input id="email" type="email" {...register('email')} />
+                        {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="password">Password</Label>
+                        <Input id="password" type="password" {...register('password')} />
+                        {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
+                    </div>
+                </>
+            )}
+            
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? <div className="h-5 w-5 animate-spin rounded-full border-2 border-dashed border-primary-foreground"></div> : 'Register & Continue'}
+            </Button>
+             <div className="text-center text-sm">
+                <p>Already have a SAMS account? <Link href="/sams/login" className="text-primary underline">Login here</Link></p>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
