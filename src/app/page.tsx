@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect } from 'react';
@@ -12,16 +13,45 @@ import Header from '@/components/Header';
 import BottomNavBar from '@/components/BottomNavBar';
 import { useUser } from '@/firebase';
 import Loading from './dashboard/loading';
+import { useToast } from '@/hooks/use-toast';
+import { Rocket } from 'lucide-react';
+
+const motivationalMessages = [
+  "Believe you can and you're halfway there.",
+  "The secret of getting ahead is getting started.",
+  "It’s not whether you get knocked down, it’s whether you get up.",
+  "The only way to do great work is to love what you do.",
+  "Success is not final, failure is not fatal: it is the courage to continue that counts."
+];
 
 export default function Home() {
   const { user, isUserLoading } = useUser();
   const router = useRouter();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!isUserLoading && !user) {
       router.replace('/login');
     }
   }, [user, isUserLoading, router]);
+
+  useEffect(() => {
+    if(user) {
+      const randomMessage = motivationalMessages[Math.floor(Math.random() * motivationalMessages.length)];
+      setTimeout(() => {
+        toast({
+          title: (
+            <div className="flex items-center gap-2">
+              <Rocket className="h-5 w-5 text-primary" />
+              <span className="font-semibold">Daily Motivation</span>
+            </div>
+          ),
+          description: randomMessage,
+          duration: 5000,
+        });
+      }, 1000);
+    }
+  }, [user, toast]);
 
   if (isUserLoading || !user) {
     return <Loading />;
