@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -21,6 +21,9 @@ export default function ProfilePage() {
   const { user, isUserLoading } = useUser();
   const router = useRouter();
   const firestore = useFirestore();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+
 
   useEffect(() => {
     if (!isUserLoading && !user) {
@@ -34,6 +37,17 @@ export default function ProfilePage() {
   }, [user, firestore]);
 
   const { data: userData, isLoading: isUserDataLoading } = useDoc(userDocRef);
+
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   if (isUserLoading || !user || isUserDataLoading) {
     return (
@@ -89,7 +103,7 @@ export default function ProfilePage() {
             <CardContent>
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <Avatar className="h-32 w-32 border-4 border-primary/20">
-                  <AvatarImage src={userData?.photoURL || ''} alt={userData?.name || 'User'} />
+                  <AvatarImage src={photoPreview || userData?.photoURL || ''} alt={userData?.name || 'User'} />
                   <AvatarFallback>
                     <UserIcon className="h-16 w-16" />
                   </AvatarFallback>
@@ -98,7 +112,14 @@ export default function ProfilePage() {
                   <h2 className="text-2xl font-bold">{userData?.name}</h2>
                   <p className="text-muted-foreground">{userData?.email}</p>
                 </div>
-                <Button>Change Photo</Button>
+                <Button onClick={() => fileInputRef.current?.click()}>Change Photo</Button>
+                <Input 
+                    type="file" 
+                    ref={fileInputRef} 
+                    className="hidden" 
+                    accept="image/png, image/jpeg, image/gif"
+                    onChange={handlePhotoChange}
+                />
               </div>
               <Separator className="my-8" />
               <form className="space-y-6">
