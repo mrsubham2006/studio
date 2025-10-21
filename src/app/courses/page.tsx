@@ -9,13 +9,13 @@ const courseCategories = [
     title: 'Class 1st to 10th',
     description: 'Comprehensive courses for school-level subjects.',
     icon: Book,
-    href: '/edustore?category=Class%201st-10th', // This will need a page or filtering logic
+    href: '/edustore?category=Class%201st-10th',
   },
   {
     title: 'Engineering',
     description: 'Courses for various engineering disciplines.',
     icon: GraduationCap,
-    href: '/courses/engineering/cse', // Link to a main engineering page or first branch
+    href: '/courses/engineering/cse',
   },
   {
     title: 'Pharmacy',
