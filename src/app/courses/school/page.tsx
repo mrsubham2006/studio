@@ -27,9 +27,9 @@ const ProductCard = ({ product }: { product: Product }) => {
 
     return (
         <Card className="flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-            <Link href={`/courses/${product.id}`} className='flex flex-col h-full'>
-                <CardHeader className="p-0">
-                    {productImage && (
+            <CardHeader className="p-0">
+                {productImage && (
+                    <Link href={`/courses/${product.id}`}>
                         <Image
                             src={productImage.imageUrl}
                             alt={product.name}
@@ -38,19 +38,21 @@ const ProductCard = ({ product }: { product: Product }) => {
                             height={400}
                             className="object-cover w-full h-56"
                         />
-                    )}
-                </CardHeader>
-                <CardContent className="flex-1 p-4">
-                    <CardTitle className="font-headline text-lg leading-tight mb-2">{product.name}</CardTitle>
-                    <p className="text-sm text-muted-foreground mb-2 h-10 overflow-hidden">{product.description}</p>
-                    <p className="text-xl font-bold text-primary">₹{product.price}</p>
-                </CardContent>
-                <CardFooter className="p-4 pt-0">
-                     <Button className="w-full" asChild>
-                        <Link href={`/courses/${product.id}`}>View Details</Link>
-                    </Button>
-                </CardFooter>
-            </Link>
+                    </Link>
+                )}
+            </CardHeader>
+            <CardContent className="flex-1 p-4">
+                <Link href={`/courses/${product.id}`}>
+                    <CardTitle className="font-headline text-lg leading-tight mb-2 hover:text-primary transition-colors">{product.name}</CardTitle>
+                </Link>
+                <p className="text-sm text-muted-foreground mb-2 h-10 overflow-hidden">{product.description}</p>
+                <p className="text-xl font-bold text-primary">₹{product.price}</p>
+            </CardContent>
+            <CardFooter className="p-4 pt-0">
+                 <Button className="w-full" asChild>
+                    <Link href={`/courses/${product.id}`}>View Details</Link>
+                </Button>
+            </CardFooter>
         </Card>
     );
 };
@@ -89,4 +91,3 @@ export default function SchoolCoursesPage() {
         </>
     );
 }
-
