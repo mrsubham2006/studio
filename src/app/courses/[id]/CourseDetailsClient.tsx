@@ -21,9 +21,9 @@ export default function CourseDetailsClient({ course }: { course: Course }) {
   const router = useRouter();
 
   const handleBuyNow = () => {
-    // Add to cart and redirect to checkout
+    // Add to cart and redirect to checkout, signaling to skip to payment
     addItem(course, 1);
-    router.push('/checkout');
+    router.push('/checkout?flow=buy_now');
   };
 
   const handleAddToCart = () => {

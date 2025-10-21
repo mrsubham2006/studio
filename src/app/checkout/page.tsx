@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,7 +13,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { CreditCard, Home, ShoppingBag, Truck, User, Banknote, Landmark, Upload, FileCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
@@ -44,7 +44,10 @@ export default function CheckoutPage() {
     const { items, total, clearCart } = useCart();
     const { toast } = useToast();
     const router = useRouter();
-    const [currentStep, setCurrentStep] = useState('address');
+    const searchParams = useSearchParams();
+    const isBuyNowFlow = searchParams.get('flow') === 'buy_now';
+
+    const [currentStep, setCurrentStep] = useState(isBuyNowFlow ? 'payment' : 'address');
     const [address, setAddress] = useState<AddressFormInputs | null>(null);
     const upiQrImage = PlaceHolderImages.find(img => img.id === 'upi-qr-code');
     const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
@@ -58,6 +61,20 @@ export default function CheckoutPage() {
     } = useForm<AddressFormInputs>({
         resolver: zodResolver(addressSchema),
     });
+
+    // If it's a "buy now" flow and there's no address yet, pre-fill with dummy data to skip the step
+    useEffect(() => {
+        if (isBuyNowFlow && !address) {
+            setAddress({
+                name: 'Digital Purchase',
+                mobile: '0000000000',
+                pincode: '000000',
+                city: 'N/A',
+                houseNo: 'N/A',
+                area: 'N/A',
+            });
+        }
+    }, [isBuyNowFlow, address]);
 
     const onAddressSubmit: SubmitHandler<AddressFormInputs> = (data) => {
         setAddress(data);
