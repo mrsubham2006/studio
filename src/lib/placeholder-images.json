@@ -9,7 +9,7 @@
     {
       "id": "course-physics",
       "description": "Thumbnail for a Physics course.",
-      "imageUrl": "https://images.unsplash.com/photo-1675458134252-1968ac5ef177?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaHlzaWNzJTIwc2NpZW5jZXxlbnwwfHx8fDE3NjA5NzYwNDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1675458134252-1968ac5ef177?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaHlzaWNzJTIwc2NpZW5jZXxlbnwwfHx8fDE3NjA5NzYwNDF8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "physics science"
     },
     {
@@ -45,7 +45,7 @@
     {
       "id": "testimonial-1",
       "description": "Avatar for the first testimonial.",
-      "imageUrl": "https://images.unsplash.com/photo-1561065533-316e3142d586?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdHVkZW50JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYwOTM0NjgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1561065533-316e3142d586?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdHVkZW50JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYwOTM0NjgzfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "student portrait"
     },
     {
@@ -87,7 +87,7 @@
     {
       "id": "upi-qr-code",
       "description": "UPI QR Code for payment.",
-      "imageUrl": "https://storage.googleapis.com/stabl-agent-test-images/qr-code-1.png",
+      "imageUrl": "https://i.postimg.cc/bwCMjyff/Whats-App-Image-2025-10-21-at-8-43-40-PM-1.jpg",
       "imageHint": "qr code"
     },
     {
@@ -189,7 +189,7 @@
     {
       "id": "activity-workshop",
       "description": "Banner for a tech workshop.",
-      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwd29ya3Nob3B8ZW58MHx8fHwxNzIxMjI3MDIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwd29ya3Nob3B8ZW58MHx8fHwxNzIxMjI3MDIwfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "tech workshop"
     },
     {
