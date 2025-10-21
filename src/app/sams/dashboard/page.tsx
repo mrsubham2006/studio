@@ -1,19 +1,19 @@
 
 'use client';
 
-import { useUser, useFirestore, useMemoFirebase, useFirebase } from '@/firebase';
+import { useFirebase } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { doc } from 'firebase/firestore';
-import { useDoc } from '@/firebase/firestore/use-doc';
+import { useEffect, useState, useRef } from 'react';
 import { signOut } from 'firebase/auth';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload } from 'lucide-react';
+import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload, FileCheck } from 'lucide-react';
 import SAMSLoading from './loading';
+import { useToast } from '@/hooks/use-toast';
+import { Input } from '@/components/ui/input';
 
 // Mock data
 const mockStudentData = {
@@ -43,6 +43,9 @@ export default function SAMSDashboardPage() {
     const { auth } = useFirebase();
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(true);
+    const { toast } = useToast();
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const [selectedAssignment, setSelectedAssignment] = useState<{title: string, file: File | null} | null>(null);
 
     useEffect(() => {
         // Simulate loading for demo purposes
@@ -59,6 +62,35 @@ export default function SAMSDashboardPage() {
         router.push('/sams/login');
     };
 
+    const handleUploadClick = (assignmentTitle: string) => {
+        setSelectedAssignment({ title: assignmentTitle, file: null });
+        fileInputRef.current?.click();
+    };
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file && selectedAssignment) {
+            setSelectedAssignment({ ...selectedAssignment, file: file });
+            toast({
+                title: "File Selected",
+                description: `Selected '${'\'\''}${file.name}' for '${'\'\''}${selectedAssignment.title}'. Ready to submit.`,
+            });
+            
+             // For demo, we can just show a success message after a short delay
+            setTimeout(() => {
+                toast({
+                    title: "Submission Successful!",
+                    description: `Your assignment '${'\'\''}${selectedAssignment.title}' has been submitted.`,
+                });
+                setSelectedAssignment(null);
+            }, 1000);
+
+            // Reset file input to allow selecting the same file again
+            event.target.value = '';
+        }
+    };
+
+
     if (isLoading) {
         return <SAMSLoading />;
     }
@@ -67,6 +99,12 @@ export default function SAMSDashboardPage() {
 
     return (
         <div className="min-h-screen bg-background text-foreground">
+             <Input 
+                type="file" 
+                ref={fileInputRef} 
+                className="hidden" 
+                onChange={handleFileChange}
+            />
             {/* Header */}
             <header className="sticky top-0 z-40 w-full border-b bg-card/80 backdrop-blur">
                 <div className="container max-w-7xl mx-auto flex h-20 items-center justify-between p-4">
@@ -98,9 +136,9 @@ export default function SAMSDashboardPage() {
                                         <p className="font-semibold">{assignment.title}</p>
                                         <Badge variant="outline" className="mt-1">Due: {assignment.dueDate}</Badge>
                                     </div>
-                                    <Button size="sm" variant="secondary">
-                                        <Upload className="mr-2 h-4 w-4" />
-                                        Upload Submission
+                                    <Button size="sm" variant="secondary" onClick={() => handleUploadClick(assignment.title)}>
+                                        {selectedAssignment?.title === assignment.title && selectedAssignment?.file ? <FileCheck className="mr-2 h-4 w-4"/> : <Upload className="mr-2 h-4 w-4" />}
+                                        {selectedAssignment?.title === assignment.title && selectedAssignment?.file ? 'Submitted!' : 'Upload Submission'}
                                     </Button>
                                 </div>
                             ))}
