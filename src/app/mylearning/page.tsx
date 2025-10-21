@@ -1,11 +1,11 @@
 
 'use client';
 
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { BookCopy, CheckCircle, ShoppingCart } from 'lucide-react';
-import { useCart } from '@/context/CartProvider';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -21,8 +21,49 @@ const mockProgress: { [key: string]: number } = {
     'mech-thermo': 55,
 };
 
+type Course = {
+  id: string;
+  name: string;
+  price: number;
+  imageId: string;
+  quantity: number;
+};
+
+
 export default function MyLearningPage() {
-    const { items: purchasedCourses } = useCart();
+    const [purchasedCourses, setPurchasedCourses] = useState<Course[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        try {
+            const savedPurchases = localStorage.getItem('purchasedCourses');
+            if (savedPurchases) {
+                setPurchasedCourses(JSON.parse(savedPurchases));
+            }
+        } catch (error) {
+            console.error("Failed to load purchased courses from localStorage", error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, []);
+
+    if (isLoading) {
+        return (
+             <div className="flex-1 bg-muted/40 min-h-screen">
+                <Header />
+                <main className="flex-1 py-8">
+                    <div className="container max-w-5xl">
+                         <div className="flex h-screen w-full items-center justify-center bg-background">
+                            <div className="flex flex-col items-center gap-2">
+                                <div className="h-8 w-8 animate-spin rounded-full border-4 border-dashed border-primary"></div>
+                                <p className="text-muted-foreground">Loading your courses...</p>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        )
+    }
 
     return (
         <div className="flex-1 bg-muted/40 min-h-screen">

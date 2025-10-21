@@ -74,11 +74,29 @@ export default function CheckoutPage() {
 
     const handlePayment = () => {
         // Simulate payment success
+
+        // Add cart items to purchased courses in localStorage
+        try {
+            const existingPurchased = JSON.parse(localStorage.getItem('purchasedCourses') || '[]');
+            const newPurchased = [...existingPurchased];
+            
+            items.forEach(cartItem => {
+                // Avoid adding duplicates
+                if (!newPurchased.some((purchasedItem: any) => purchasedItem.id === cartItem.id)) {
+                    newPurchased.push(cartItem);
+                }
+            });
+
+            localStorage.setItem('purchasedCourses', JSON.stringify(newPurchased));
+        } catch (error) {
+            console.error("Could not update purchased courses in localStorage", error);
+        }
+
         clearCart();
         toast({
             title: 'Order Placed!',
-            description: 'Your order has been successfully placed.',
-            duration: 2000,
+            description: 'Your order has been successfully placed. Your courses are in "My Learning".',
+            duration: 3000,
         });
 
         // Add a new order to mock data for demonstration
@@ -104,7 +122,7 @@ export default function CheckoutPage() {
         setCurrentStep('confirmation');
 
         setTimeout(() => {
-            router.push('/orders');
+            router.push('/mylearning');
         }, 3000);
     };
 
@@ -282,16 +300,16 @@ export default function CheckoutPage() {
                                         <Truck className="mx-auto h-16 w-16 text-green-500" />
                                         <CardTitle className="text-2xl mt-4">Order Placed Successfully!</CardTitle>
                                         <CardDescription>
-                                            Thank you for your purchase. You will be redirected to your orders page shortly.
+                                            Thank you for your purchase. You will be redirected to your learning page shortly.
                                         </CardDescription>
                                     </CardHeader>
                                     <CardContent>
                                         <p>Order ID: EDUNEX-{Math.floor(Math.random() * 9000) + 1000}</p>
-                                        <p className="mt-4">A confirmation has been sent to your email.</p>
+                                        <p className="mt-4">You can find your new courses in the "My Learning" section.</p>
                                     </CardContent>
                                     <CardFooter>
                                         <Button asChild className="mx-auto">
-                                            <Link href="/orders">View My Orders</Link>
+                                            <Link href="/mylearning">Go to My Learning</Link>
                                         </Button>
                                     </CardFooter>
                                 </Card>
