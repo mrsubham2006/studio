@@ -9,7 +9,7 @@ const courseCategories = [
     title: 'Class 1st to 10th',
     description: 'Comprehensive courses for school-level subjects.',
     icon: Book,
-    href: '/edustore?category=Class%201st-10th',
+    href: '/courses/school',
   },
   {
     title: 'Engineering',
