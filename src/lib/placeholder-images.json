@@ -15,31 +15,31 @@
     {
       "id": "course-chemistry",
       "description": "Thumbnail for a Chemistry course.",
-      "imageUrl": "https://images.unsplash.com/photo-1602052577122-f73b9710adba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaGVtaXN0cnklMjBsYWJ8ZW58MHx8fHwxNzYwOTkxNjQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1602052577122-f73b9710adba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaGVtaXN0cnklMjBsYWJ8ZW58MHx8fHwxNzYwOTkxNjQ5fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "chemistry lab"
     },
     {
       "id": "course-maths",
       "description": "Thumbnail for a Mathematics course.",
-      "imageUrl": "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtYXRoZW1hdGljcyUyMGNoYWxrYm9hcmR8ZW58MHx8fHwxNzYxMDIxNDUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtYXRoZW1hdGljcyUyMGNoYWxrYm9hcmR8ZW58MHx8fHwxNzYxMDIxNDUxfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "mathematics chalkboard"
     },
     {
       "id": "course-biology",
       "description": "Thumbnail for a Biology course.",
-      "imageUrl": "https://images.unsplash.com/photo-1748711728491-d08d4a1b23ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YmlvbG9neSUyMG5hdHVyZXxlbnwwfHx8fDE3NjEwMjE0NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1748711728491-d08d4a1b23ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YmlvbG9neSUyMG5hdHVyZXxlbnwwfHx8fDE3NjEwMjE0NTF8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "biology nature"
     },
     {
       "id": "course-btech",
       "description": "Thumbnail for a B.Tech course.",
-      "imageUrl": "https://images.unsplash.com/photo-1697665896701-1b8bd594f860?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbmdpbmVlcmluZyUyMGNpcmN1aXR8ZW58MHx8fHwxNzYxMDIxNDUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1697665896701-1b8bd594f860?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxlbmdpbmVlcmluZyUyMGNpcmN1aXR8ZW58MHx8fHwxNzYxMDIxNDUxfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "engineering circuit"
     },
     {
       "id": "course-diploma",
       "description": "Thumbnail for a Diploma course.",
-      "imageUrl": "https://images.unsplash.com/photo-1503387837-b154d5074bd2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNobmljYWwlMjBkcmF3aW5nfGVufDB8fHx8MTc2MDk4MjcxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1503387837-b154d5074bd2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNobmljYWwlMjBkcmF3aW5nfGVufDB8fHx8MTc2MDk4MjcxNnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "technical drawing"
     },
     {
@@ -51,7 +51,7 @@
     {
       "id": "testimonial-2",
       "description": "Avatar for the second testimonial.",
-      "imageUrl": "https://images.unsplash.com/photo-1649768453000-07c369a51b36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwc21pbGluZ3xlbnwwfHx8fDE3NjA5NjgyNjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1649768453000-07c369a51b36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwc21pbGluZ3xlbnwwfHx8fDE3NjA5NjgyNjJ8MA&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "student smiling"
     },
     {
@@ -63,25 +63,25 @@
     {
       "id": "edustore-book-generic",
       "description": "A generic book for the EduStore.",
-      "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzYxMDIxNjk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzYxMDIxNjk5fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "book cover"
     },
     {
       "id": "edustore-stationary",
       "description": "Office stationary for the EduStore.",
-      "imageUrl": "https://images.unsplash.com/photo-1523289333742-be1143f6b766?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxvZmZpY2UlMjBzdXBwbGllc3xlbnwwfHx8fDE3NjA5MzU1ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1523289333742-be1143f6b766?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxvZmZpY2UlMjBzdXBwbGllc3xlbnwwfHx8fDE3NjA5MzU1ODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "office supplies"
     },
     {
       "id": "edustore-iit-book",
       "description": "An IIT preparation book.",
-      "imageUrl": "https://images.unsplash.com/photo-1724080924533-535a3a316acb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZXh0Ym9vayUyMGV4YW18ZW58MHx8fHwxNzYxMDMwODA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1724080924533-535a3a316acb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZXh0Ym9vayUyMGV4YW18ZW58MHx8fHwxNzYxMDMwODA1fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "textbook exam"
     },
     {
       "id": "edustore-neet-book",
       "description": "A NEET preparation book.",
-      "imageUrl": "https://images.unsplash.com/photo-1646495785840-7ff6be438d63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtZWRpY2FsJTIwdGV4dGJvb2t8ZW58MHx8fHwxNzYxMDMwODA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1646495785840-7ff6be438d63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtZWRpY2FsJTIwdGV4dGJvb2t8ZW58MHx8fHwxNzYxMDMwODA1fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "medical textbook"
     },
     {
@@ -93,13 +93,13 @@
     {
       "id": "course-science",
       "description": "Thumbnail for a Science course.",
-      "imageUrl": "https://images.unsplash.com/photo-1711408524517-caec3d9700ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzY2llbmNlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYxMDQwMzYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1711408524517-caec3d9700ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzY2llbmNlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYxMDQwMzYzfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "science abstract"
     },
     {
       "id": "course-geography",
       "description": "Thumbnail for a Geography course.",
-      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b3JsZCUyMG1hcHxlbnwwfHx8fDE3NjEwMzU5MjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b3JsZCUyMG1hcHxlbnwwfHx8fDE3NjEwMzU5MjR8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "world map"
     },
     {
@@ -129,19 +129,19 @@
     {
       "id": "cse-dsa",
       "description": "Thumbnail for a Data Structures course.",
-      "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb2RpbmclMjBhbGdvcml0aG18ZW58MHx8fHwxNzYxMDc0NTQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb2RpbmclMjBhbGdvcml0aG18ZW58MHx8fHwxNzYxMDc0NTQ1fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "coding algorithm"
     },
     {
       "id": "cse-dbms",
       "description": "Thumbnail for a Database Management course.",
-      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXRhYmFzZSUyMHNlcnZlcnxlbnwwfHx8fDE3NjEwNzQ1NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXRhYmFzZSUyMHNlcnZlcnxlbnwwfHx8fDE3NjEwNzQ1NDV8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "database server"
     },
     {
       "id": "cse-os",
       "description": "Thumbnail for an Operating Systems course.",
-      "imageUrl": "https://images.unsplash.com/photo-1614741118884-62ac161b2349?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvcGVyYXRpbmclMjBzeXN0ZW0lMjBjb25jZXB0fGVufDB8fHx8MTc2MTA3NDU0NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1614741118884-62ac161b2349?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvcGVyYXRpbmclMjBzeXN0ZW0lMjBjb25jZXB0fGVufDB8fHx8MTc2MTA3NDU0NXww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "operating system"
     },
     {
@@ -153,7 +153,7 @@
     {
       "id": "mech-thermo",
       "description": "Thumbnail for a Thermodynamics course.",
-      "imageUrl": "https://images.unsplash.com/photo-1632788343519-5d53c8f395f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0aGVybW9keW5hbWljcyUyMGVuZ2luZXxlbnwwfHx8fDE3NjE3NDU5MzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1632788343519-5d53c8f395f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0aGVybW9keW5hbWljcyUyMGVuZ2luZXxlbnwwfHx8fDE3NjE3NDU5MzR8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "thermodynamics engine"
     },
     {
@@ -171,20 +171,38 @@
     {
       "id": "civil-structures",
       "description": "Thumbnail for a Structural Analysis course.",
-      "imageUrl": "https://images.unsplash.com/photo-1581092916259-1f4a9b5f4c4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxicmlkZ2UlMjBjb25zdHJ1Y3Rpb258ZW58MHx8fHwxNzYxNzQ4NjU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1581092916259-1f4a9b5f4c4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxicmlkZ2UlMjBjb25zdHJ1Y3Rpb258ZW58MHx8fHwxNzYxNzQ4NjU5fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "bridge construction"
     },
     {
       "id": "civil-construction",
       "description": "Thumbnail for a Construction Management course.",
-      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlfGVufDB8fHx8MTc2MTc0ODY1OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBzaXRlfGVufDB8fHx8MTc2MTc0ODY1OXww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "construction site"
     },
     {
       "id": "civil-geotech",
       "description": "Thumbnail for a Geotechnical Engineering course.",
-      "imageUrl": "https://images.unsplash.com/photo-1628198906379-11c5e6f3d45e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2lsJTIwdGVzdGluZ3xlbnwwfHx8fDE3NjE3NDg2NTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1628198906379-11c5e6f3d45e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2lsJTIwdGVzdGluZ3xlbnwwfHx8fDE3NjE3NDg2NTl8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "soil testing"
+    },
+    {
+      "id": "activity-workshop",
+      "description": "Banner for a tech workshop.",
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWNoJTIwd29ya3Nob3B8ZW58MHx8fHwxNzIxMjI3MDIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tech workshop"
+    },
+    {
+      "id": "activity-hackathon",
+      "description": "Banner for a hackathon.",
+      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoYWNrYXRob24lMjBjb2Rpbmd8ZW58MHx8fHwxNzIxMjI3MDIwfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "hackathon coding"
+    },
+    {
+      "id": "activity-robotics",
+      "description": "Banner for a robotics competition.",
+      "imageUrl": "https://images.unsplash.com/photo-1690903348173-95e4a8d01b1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyb2JvdGljcyUyMGNvbXBldGl0aW9ufGVufDB8fHx8MTcyMTIyNzAyMHww&ixlibrb-4.1.0&q=80&w=1080",
+      "imageHint": "robotics competition"
     }
   ]
 }

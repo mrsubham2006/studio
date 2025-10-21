@@ -6,15 +6,20 @@ import { useFirebase } from '@/firebase';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import { signOut } from 'firebase/auth';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload, FileCheck } from 'lucide-react';
+import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload, FileCheck, ArrowRight } from 'lucide-react';
 import SAMSLoading from './loading';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+
 
 // Mock data
 const mockStudentData = {
@@ -40,6 +45,37 @@ const mockTimetable = [
     { day: 'Tue', time: '10:00 AM', subject: 'Chemistry' },
     { day: 'Wed', time: '11:00 AM', subject: 'Mathematics' },
 ];
+
+const mockActivities = [
+    { 
+        id: 'workshop-ai', 
+        title: 'AI & Machine Learning Workshop', 
+        description: 'Join us for a hands-on workshop on the fundamentals of AI and Machine Learning. Learn to build your first model!',
+        date: '2024-08-25',
+        time: '10:00 AM - 4:00 PM',
+        venue: 'Auditorium',
+        imageId: 'activity-workshop'
+    },
+    { 
+        id: 'hackathon-24', 
+        title: 'InnovateX Hackathon 2024',
+        description: 'A 24-hour coding marathon to solve real-world problems. Exciting prizes to be won!',
+        date: '2024-09-05',
+        time: 'Starts 9:00 AM',
+        venue: 'CSE Department Labs',
+        imageId: 'activity-hackathon'
+    },
+    { 
+        id: 'robotics-expo', 
+        title: 'Robotics Expo',
+        description: 'Witness the future of automation. A showcase of student-built robots and automation projects.',
+        date: '2024-09-12',
+        time: '11:00 AM - 3:00 PM',
+        venue: 'Main Quad',
+        imageId: 'activity-robotics'
+    },
+];
+
 
 export default function SAMSDashboardPage() {
     const { auth } = useFirebase();
@@ -170,12 +206,45 @@ export default function SAMSDashboardPage() {
                             {mockNotifications.map(n => <li key={n.title} className="flex justify-between"><span>{n.title}</span> <span className="text-muted-foreground">{n.date}</span></li>)}
                          </ul>
                     </DashboardCard>
-                     <DashboardCard title="Extra Curricular" icon={Trophy} href="#">
-                        <p className="text-sm text-muted-foreground">Event notices and registrations.</p>
-                    </DashboardCard>
                      <DashboardCard title="Time Table" icon={Calendar} href="/sams/timetable">
                         <p className="text-sm text-muted-foreground">View your weekly class schedule.</p>
                     </DashboardCard>
+
+                     <div className="md:col-span-2 lg:col-span-3 xl:col-span-4">
+                        <DashboardCard title="Extra Curricular Activities" icon={Trophy}>
+                            <Carousel opts={{ align: "start", loop: true }} className="w-full">
+                                <CarouselContent className="-ml-4">
+                                    {mockActivities.map((activity) => {
+                                        const activityImage = PlaceHolderImages.find(img => img.id === activity.imageId);
+                                        return (
+                                        <CarouselItem key={activity.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                                            <Link href={`/sams/activity/${activity.id}`}>
+                                                <div className="group relative overflow-hidden rounded-lg">
+                                                    {activityImage && (
+                                                        <Image
+                                                            src={activityImage.imageUrl}
+                                                            alt={activity.title}
+                                                            data-ai-hint={activityImage.imageHint}
+                                                            width={400}
+                                                            height={250}
+                                                            className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                        />
+                                                    )}
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                                                    <div className="absolute bottom-0 left-0 p-4">
+                                                        <h4 className="font-bold text-lg text-white font-headline">{activity.title}</h4>
+                                                        <Badge variant="secondary" className="mt-1">{activity.date}</Badge>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </CarouselItem>
+                                    )})}
+                                </CarouselContent>
+                                <CarouselPrevious className="left-2" />
+                                <CarouselNext className="right-2" />
+                            </Carousel>
+                        </DashboardCard>
+                    </div>
                 </div>
             </main>
         </div>
@@ -193,16 +262,16 @@ type DashboardCardProps = {
 
 const DashboardCard = ({ title, icon: Icon, children, href, className }: DashboardCardProps) => {
     const content = (
-        <Card className={`bg-card glow-on-hover transition-all duration-300 ${''}${href ? 'hover:-translate-y-1' : ''}${''} ${''}${className}${''}`}>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Card className={`bg-card glow-on-hover transition-all duration-300 flex flex-col h-full ${''}${href ? 'hover:-translate-y-1' : ''}${''} ${''}${className}${''}`}>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
                 <CardTitle className="text-lg font-medium font-headline">{title}</CardTitle>
                 <Icon className="h-5 w-5 text-muted-foreground" />
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-1">
                 {children}
             </CardContent>
         </Card>
     );
 
-    return href ? <a href={href}>{content}</a> : content;
+    return href ? <Link href={href} className="flex">{content}</Link> : content;
 }
