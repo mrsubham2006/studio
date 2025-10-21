@@ -24,8 +24,8 @@ const aiTools = [
     name: 'PDF Summarizer',
     description: 'Summarize entire PDF documents in seconds.',
     icon: FileText,
-    href: '#',
-    disabled: true,
+    href: '/ai-assistant/pdf-summarizer',
+    disabled: false,
   },
   {
     name: 'YouTube Video Summarizer',
