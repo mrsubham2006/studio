@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -5,6 +6,7 @@ import productData from '@/lib/products.json';
 import Image from 'next/image';
 import { BookOpen, Clock, Film, Star, FileText } from 'lucide-react';
 import CourseDetailsClient from './CourseDetailsClient';
+import Link from 'next/link';
 
 type Course = {
   id: string;
@@ -116,6 +118,26 @@ export default function CourseDetailsPage({ params }: { params: { id: string } }
                   ))}
                 </ul>
               </div>
+
+              {course.id === 'course-math-10' && (
+                <div className="border rounded-lg p-6 bg-background">
+                  <h3 className="text-xl font-bold font-headline mb-4">Sample Video Lecture</h3>
+                  <Link href="https://www.youtube.com/watch?v=rNSm2pSZ2Xo" target="_blank" rel="noopener noreferrer">
+                    <div className="relative aspect-video overflow-hidden rounded-lg cursor-pointer group">
+                      <Image
+                        src="https://i.ytimg.com/vi/rNSm2pSZ2Xo/hq720.jpg"
+                        alt="Sample video for Foundation Mathematics Class 10"
+                        layout="fill"
+                        objectFit="cover"
+                        className="transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                          <Film className="h-12 w-12 text-white" />
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              )}
             </div>
             
             <div className="md:col-span-1 space-y-4">
