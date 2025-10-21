@@ -45,7 +45,9 @@ export default function SAMSDashboardPage() {
     const [isLoading, setIsLoading] = useState(true);
     const { toast } = useToast();
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const [selectedAssignment, setSelectedAssignment] = useState<{title: string, file: File | null} | null>(null);
+    const [selectedAssignmentTitle, setSelectedAssignmentTitle] = useState<string | null>(null);
+    const [submittedAssignments, setSubmittedAssignments] = useState<string[]>([]);
+
 
     useEffect(() => {
         // Simulate loading for demo purposes
@@ -63,26 +65,22 @@ export default function SAMSDashboardPage() {
     };
 
     const handleUploadClick = (assignmentTitle: string) => {
-        setSelectedAssignment({ title: assignmentTitle, file: null });
+        setSelectedAssignmentTitle(assignmentTitle);
         fileInputRef.current?.click();
     };
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
-        if (file && selectedAssignment) {
-            setSelectedAssignment({ ...selectedAssignment, file: file });
-            toast({
-                title: "File Selected",
-                description: `Selected '${'\'\''}${file.name}' for '${'\'\''}${selectedAssignment.title}'. Ready to submit.`,
-            });
+        if (file && selectedAssignmentTitle) {
             
-             // For demo, we can just show a success message after a short delay
+            // For demo, we can just show a success message after a short delay
             setTimeout(() => {
                 toast({
                     title: "Submission Successful!",
-                    description: `Your assignment '${'\'\''}${selectedAssignment.title}' has been submitted.`,
+                    description: `Your assignment '${'\'\''}${selectedAssignmentTitle}' has been submitted.`,
                 });
-                setSelectedAssignment(null);
+                setSubmittedAssignments(prev => [...prev, selectedAssignmentTitle]);
+                setSelectedAssignmentTitle(null);
             }, 1000);
 
             // Reset file input to allow selecting the same file again
@@ -130,18 +128,21 @@ export default function SAMSDashboardPage() {
                     {/* Feature Cards */}
                     <DashboardCard title="Assignments" icon={BookOpen} className="md:col-span-2">
                          <div className="space-y-4">
-                            {mockAssignments.map(assignment => (
-                                <div key={assignment.title} className="p-3 bg-muted/50 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                                    <div>
-                                        <p className="font-semibold">{assignment.title}</p>
-                                        <Badge variant="outline" className="mt-1">Due: {assignment.dueDate}</Badge>
+                            {mockAssignments.map(assignment => {
+                                const isSubmitted = submittedAssignments.includes(assignment.title);
+                                return (
+                                    <div key={assignment.title} className="p-3 bg-muted/50 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                        <div>
+                                            <p className="font-semibold">{assignment.title}</p>
+                                            <Badge variant="outline" className="mt-1">Due: {assignment.dueDate}</Badge>
+                                        </div>
+                                        <Button size="sm" variant={isSubmitted ? "default" : "secondary"} onClick={() => !isSubmitted && handleUploadClick(assignment.title)} disabled={isSubmitted}>
+                                            {isSubmitted ? <FileCheck className="mr-2 h-4 w-4"/> : <Upload className="mr-2 h-4 w-4" />}
+                                            {isSubmitted ? 'Submitted!' : 'Upload Submission'}
+                                        </Button>
                                     </div>
-                                    <Button size="sm" variant="secondary" onClick={() => handleUploadClick(assignment.title)}>
-                                        {selectedAssignment?.title === assignment.title && selectedAssignment?.file ? <FileCheck className="mr-2 h-4 w-4"/> : <Upload className="mr-2 h-4 w-4" />}
-                                        {selectedAssignment?.title === assignment.title && selectedAssignment?.file ? 'Submitted!' : 'Upload Submission'}
-                                    </Button>
-                                </div>
-                            ))}
+                                );
+                            })}
                          </div>
                     </DashboardCard>
                      <DashboardCard title="Exam Papers" icon={FileText} href="#">
@@ -190,7 +191,7 @@ type DashboardCardProps = {
 
 const DashboardCard = ({ title, icon: Icon, children, href, className }: DashboardCardProps) => {
     const content = (
-        <Card className={`bg-card glow-on-hover transition-all duration-300 ${href ? 'hover:-translate-y-1' : ''} ${className}`}>
+        <Card className={`bg-card glow-on-hover transition-all duration-300 ${'\'\''}${href ? 'hover:-translate-y-1' : ''}${'\'\''} ${'\'\''}${className}${'\'\''}`}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-lg font-medium font-headline">{title}</CardTitle>
                 <Icon className="h-5 w-5 text-muted-foreground" />
