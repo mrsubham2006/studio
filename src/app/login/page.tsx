@@ -17,9 +17,11 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth, useUser } from '@/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuth, useFirestore, useUser } from '@/firebase';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { useEffect, useState } from 'react';
+import { doc } from "firebase/firestore";
+import { setDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -32,6 +34,7 @@ export default function LoginPage() {
   const router = useRouter();
   const { toast } = useToast();
   const auth = useAuth();
+  const firestore = useFirestore();
   const { user, isUserLoading } = useUser();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -48,6 +51,42 @@ export default function LoginPage() {
       router.replace('/');
     }
   }, [user, isUserLoading, router]);
+
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    setIsSubmitting(true);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      const userDocRef = doc(firestore, "users", user.uid);
+      const userData = {
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        registrationDate: new Date().toISOString(),
+      };
+      
+      // Create or update user document without blocking
+      setDocumentNonBlocking(userDocRef, userData, { merge: true });
+
+      toast({
+        title: "Login Successful",
+        description: `Welcome back, ${user.displayName || 'user'}!`,
+      });
+      router.push('/');
+    } catch (error: any) {
+      console.error("Google Sign-in failed:", error);
+      toast({
+        variant: "destructive",
+        title: "Google Sign-in Failed",
+        description: error.message || "An unexpected error occurred. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     setIsSubmitting(true);
@@ -119,7 +158,7 @@ export default function LoginPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4">
-            <Button variant="outline">Google</Button>
+            <Button variant="outline" onClick={handleGoogleSignIn} disabled={isSubmitting}>Google</Button>
           </div>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}

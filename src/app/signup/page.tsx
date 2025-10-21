@@ -18,7 +18,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth, useFirestore } from '@/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { doc } from 'firebase/firestore';
 import { setDocumentNonBlocking } from '@/firebase/non-blocking-updates';
 import { useState, useRef } from "react";
@@ -67,16 +67,48 @@ export default function SignupPage() {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    setIsSubmitting(true);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      const userDocRef = doc(firestore, "users", user.uid);
+      const userData = {
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        registrationDate: new Date().toISOString(),
+      };
+      
+      setDocumentNonBlocking(userDocRef, userData, { merge: true });
+
+      toast({
+        title: "Sign-in Successful",
+        description: `Welcome, ${user.displayName || 'user'}!`,
+      });
+      router.push('/');
+    } catch (error: any) {
+      console.error("Google Sign-in failed:", error);
+      toast({
+        variant: "destructive",
+        title: "Google Sign-in Failed",
+        description: error.message || "An unexpected error occurred. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
     setIsSubmitting(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       const user = userCredential.user;
       
-      // NOTE: In a real app, you would upload the photo to a service like Firebase Storage
-      // and get a URL. For this prototype, we'll use a placeholder.
       const photoURL = photoPreview || `https://picsum.photos/seed/${user.uid}/100/100`;
-
 
       const userDocRef = doc(firestore, "users", user.uid);
       const userData = {
@@ -95,7 +127,8 @@ export default function SignupPage() {
         description: "You have been successfully registered.",
       });
       router.push('/login');
-    } catch (error: any) {
+    } catch (error: any)
+{
       console.error("Signup failed:", error);
       toast({
         variant: "destructive",
@@ -181,7 +214,7 @@ export default function SignupPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4">
-            <Button variant="outline">Google</Button>
+            <Button variant="outline" onClick={handleGoogleSignIn} disabled={isSubmitting}>Google</Button>
           </div>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
