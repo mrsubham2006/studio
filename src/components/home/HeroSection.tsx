@@ -24,7 +24,7 @@ export default function HeroSection() {
       <div className="container relative z-10 px-4 md:px-6">
         <div className="max-w-3xl mx-auto space-y-4">
           <h1 className="text-4xl font-headline font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Learn Smartly with AI-Powered Personalization
+            Welcome to EduNex “Where Next-Gen Learning Begins.” 🌟
           </h1>
           <p className="text-lg text-muted-foreground md:text-xl">
             Adaptive lessons, offline access, and real-time feedback — designed for every learner.
