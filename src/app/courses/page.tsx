@@ -15,7 +15,7 @@ const courseCategories = [
     title: 'Engineering',
     description: 'Courses for various engineering disciplines.',
     icon: GraduationCap,
-    href: '/courses/engineering/cse',
+    href: '/courses/engineering',
   },
   {
     title: 'Pharmacy',
