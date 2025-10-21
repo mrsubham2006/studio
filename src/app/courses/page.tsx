@@ -1,7 +1,7 @@
 
 import Header from '@/components/Header';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Book, GraduationCap, Microscope, MoreHorizontal } from 'lucide-react';
+import { Book, GraduationCap, Microscope, MoreHorizontal, BookCopy } from 'lucide-react';
 import Link from 'next/link';
 
 const courseCategories = [
@@ -10,6 +10,12 @@ const courseCategories = [
     description: 'Comprehensive courses for school-level subjects.',
     icon: Book,
     href: '/courses/school',
+  },
+  {
+    title: 'Class 11th & 12th',
+    description: 'Specialized courses for senior secondary students.',
+    icon: BookCopy,
+    href: '/courses/class-11-12',
   },
   {
     title: 'Engineering',
