@@ -5,7 +5,7 @@ import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 
 export const metadata: Metadata = {
-  title: 'Pragyan Path – AI Learning Assistant',
+  title: 'EduNex – AI Learning Assistant',
   description: 'Learn Smartly with AI-Powered Personalization. Adaptive lessons, offline access, and real-time feedback — designed for every learner.',
 };
 

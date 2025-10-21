@@ -84,7 +84,7 @@ export default function LoginPage() {
         <CardHeader className="space-y-1 text-center">
           <Link href="/" className="flex items-center justify-center gap-2 mb-4">
               <Book className="h-7 w-7 text-primary" />
-              <span className="font-bold font-headline text-2xl">Pragyan Path</span>
+              <span className="font-bold font-headline text-2xl">EduNex</span>
           </Link>
           <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>
           <CardDescription>Enter your credentials to access your account</CardDescription>

@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Book className="h-7 w-7 text-primary" />
-              <span className="font-bold font-headline text-2xl">Pragyan Path</span>
+              <span className="font-bold font-headline text-2xl">EduNex</span>
             </Link>
             <p className="text-muted-foreground text-sm">
               AI-Powered personalization for every learner.
@@ -42,7 +42,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t pt-8 text-center">
-          <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} Pragyan Path. All Rights Reserved.</p>
+          <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} EduNex. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
