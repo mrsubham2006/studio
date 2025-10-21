@@ -288,8 +288,38 @@
       "price": 450,
       "category": "Class 12th",
       "imageId": "course-it"
+    },
+    {
+      "id": "cse-dsa",
+      "name": "Data Structures & Algorithms",
+      "description": "Master essential data structures and algorithms with hands-on coding exercises.",
+      "price": 850,
+      "category": "CSE",
+      "imageId": "cse-dsa"
+    },
+    {
+      "id": "cse-dbms",
+      "name": "Database Management Systems",
+      "description": "Learn SQL, database design, and management principles for robust data solutions.",
+      "price": 750,
+      "category": "CSE",
+      "imageId": "cse-dbms"
+    },
+    {
+      "id": "cse-os",
+      "name": "Operating Systems",
+      "description": "Understand the core concepts of operating systems, from process management to memory handling.",
+      "price": 800,
+      "category": "CSE",
+      "imageId": "cse-os"
+    },
+    {
+      "id": "cse-cn",
+      "name": "Computer Networks",
+      "description": "Explore the fundamentals of computer networking, including protocols and architectures.",
+      "price": 780,
+      "category": "CSE",
+      "imageId": "cse-cn"
     }
   ]
 }
-
-    
