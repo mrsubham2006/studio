@@ -17,6 +17,7 @@ import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetT
 import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 type Product = {
     id: string;
@@ -159,6 +160,9 @@ const CartSheet = () => {
 export default function EduStorePage() {
     const [searchTerm, setSearchTerm] = useState('');
     const allProducts: Product[] = productData.products;
+    const searchParams = useSearchParams();
+    const initialCategory = searchParams.get('category') || 'All';
+
 
     const categories = ["All", ...new Set(allProducts.map(p => p.category))];
 
@@ -200,7 +204,7 @@ export default function EduStorePage() {
                         </div>
                     </div>
 
-                    <Tabs defaultValue="All" className="w-full">
+                    <Tabs defaultValue={initialCategory} className="w-full">
                         <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 mb-8">
                             {categories.map(category => (
                                 <TabsTrigger key={category} value={category}>{category}</TabsTrigger>
