@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, BookCopy } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 export default function NotesPage() {
   return (
@@ -28,23 +29,44 @@ export default function NotesPage() {
 
       {/* Main Content */}
       <main className="container max-w-5xl mx-auto p-4 py-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Sample CSS Notes</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="relative w-full overflow-hidden rounded-lg border">
-              <Image
-                src="https://i.postimg.cc/1XkJZnbQ/CSS-Notes.png"
-                alt="Sample CSS notes for exam preparation"
-                width={1200}
-                height={1600}
-                className="w-full h-auto"
-                priority
-              />
-            </div>
-          </CardContent>
-        </Card>
+        <div className="space-y-8">
+            <Card>
+            <CardHeader>
+                <CardTitle>Sample CSS Notes</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="relative w-full overflow-hidden rounded-lg border">
+                <Image
+                    src="https://i.postimg.cc/1XkJZnbQ/CSS-Notes.png"
+                    alt="Sample CSS notes for exam preparation"
+                    width={1200}
+                    height={1600}
+                    className="w-full h-auto"
+                    priority
+                />
+                </div>
+            </CardContent>
+            </Card>
+
+            <Separator />
+            
+            <Card>
+            <CardHeader>
+                <CardTitle>Sample JavaScript Notes</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="relative w-full overflow-hidden rounded-lg border">
+                <Image
+                    src="https://i9.ytimg.com/vi/aveu0krAGvU/hq720_custom_1.jpg?sqp=CJzY38cG-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDCs4SNEyb9al3B5nV6LISsEmhffA"
+                    alt="Sample JavaScript notes for exam preparation"
+                    width={1280}
+                    height={720}
+                    className="w-full h-auto"
+                />
+                </div>
+            </CardContent>
+            </Card>
+        </div>
       </main>
     </div>
   );
