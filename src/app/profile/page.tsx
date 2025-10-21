@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Upload, User as UserIcon } from 'lucide-react';
+import { FileCheck, Upload, User as UserIcon } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -31,8 +31,10 @@ export default function ProfilePage() {
   const router = useRouter();
   const firestore = useFirestore();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const idProofInputRef = useRef<HTMLInputElement>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [selectedIdType, setSelectedIdType] = useState<string | undefined>();
+  const [idProofFile, setIdProofFile] = useState<File | null>(null);
 
 
   useEffect(() => {
@@ -63,6 +65,13 @@ export default function ProfilePage() {
         setPhotoPreview(reader.result as string);
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  const handleIdProofChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setIdProofFile(file);
     }
   };
 
@@ -192,12 +201,20 @@ export default function ProfilePage() {
                         <Label htmlFor="id-proof">Upload ID Proof</Label>
                         <div className="flex items-center justify-center w-full">
                             <label htmlFor="id-proof" className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer bg-muted/50 hover:bg-muted">
-                                <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <Upload className="w-8 h-8 mb-2 text-muted-foreground" />
-                                    <p className="mb-1 text-sm text-muted-foreground"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                                    <p className="text-xs text-muted-foreground">SVG, PNG, JPG or PDF (MAX. 800x400px)</p>
-                                </div>
-                                <Input id="id-proof" type="file" className="hidden" />
+                                {idProofFile ? (
+                                    <div className="flex flex-col items-center justify-center pt-5 pb-6 text-primary">
+                                        <FileCheck className="w-8 h-8 mb-2" />
+                                        <p className="font-semibold">{idProofFile.name}</p>
+                                        <p className="text-xs text-muted-foreground">Click to change file</p>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <Upload className="w-8 h-8 mb-2 text-muted-foreground" />
+                                        <p className="mb-1 text-sm text-muted-foreground"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+                                        <p className="text-xs text-muted-foreground">PDF, PNG, or JPG</p>
+                                    </div>
+                                )}
+                                <Input id="id-proof" type="file" className="hidden" ref={idProofInputRef} onChange={handleIdProofChange} accept="application/pdf,image/png,image/jpeg" />
                             </label>
                         </div> 
                     </div>
