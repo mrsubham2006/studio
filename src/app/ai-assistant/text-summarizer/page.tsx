@@ -136,7 +136,7 @@ export default function TextSummarizerPage() {
                  <div className="flex items-center gap-2">
                     <Label htmlFor="summary-length" className="text-sm font-medium">Summary Length:</Label>
                     <Select value={summaryLength} onValueChange={(value: SummaryLength) => setSummaryLength(value)}>
-                        <SelectTrigger id="summary-length" className="w-[280px]">
+                        <SelectTrigger id="summary-length" className="w-full sm:w-[280px]">
                             <SelectValue placeholder="Select summary length" />
                         </SelectTrigger>
                         <SelectContent>
