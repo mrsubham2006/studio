@@ -1,4 +1,3 @@
-
 'use client';
 
 import Header from '@/components/Header';
@@ -18,8 +17,8 @@ const aiTools = [
     name: 'Text Summarizer',
     description: 'Get key points from long articles or documents.',
     icon: FileText,
-    href: '#',
-    disabled: true,
+    href: '/ai-assistant/text-summarizer',
+    disabled: false,
   },
   {
     name: 'PDF Summarizer',
