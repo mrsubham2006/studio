@@ -381,5 +381,3 @@
     "reasoning": "The Firestore structure is designed to support a personalized learning experience, prioritizing authorization independence, clarity, and scalability. User data is stored in `/users/{userId}`, ensuring path-based ownership. Courses are stored in a top-level `/courses` collection. User progress is tracked in `/users/{userId}/progress/{progressId}`, maintaining a clear hierarchy for user-specific data. This structure allows for efficient data retrieval and straightforward security rule implementation without relying on complex `get()` calls. Denormalization isn't required as path-based ownership effectively secures user data. Segregation is achieved by separating user-specific data (progress) from global course data, simplifying security postures. QAPs are supported as listing courses doesn't require filtering based on user roles or permissions, as the course data is publicly accessible. SAMS data is stored in separate top-level collections for global access by authorized staff, while student-specific data could be nested under `/students/{studentId}` if needed in the future."
   }
 }
-
-    
