@@ -47,6 +47,22 @@ export default function NotesPage() {
                 </div>
             </CardContent>
             </Card>
+            <Card>
+            <CardHeader>
+                <CardTitle>Sample CSS Notes</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="relative w-full overflow-hidden rounded-lg border">
+                <Image
+                    src="https://i.postimg.cc/vmDhcwfQ/hq720-custom-1.avif"
+                    alt="Sample CSS notes for exam preparation"
+                    width={1280}
+                    height={720}
+                    className="w-full h-auto"
+                />
+                </div>
+            </CardContent>
+            </Card>
         </div>
       </main>
     </div>
