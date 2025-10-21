@@ -18,12 +18,21 @@ import { Upload, User as UserIcon } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
+const idPlaceholders: { [key: string]: string } = {
+    "Aadhar": "XXXX XXXX XXXX",
+    "PAN": "ABCDE1234F",
+    "Voter ID": "ABC1234567",
+    "APPAR ID": "Enter APPAR ID"
+};
+
+
 export default function ProfilePage() {
   const { user, isUserLoading } = useUser();
   const router = useRouter();
   const firestore = useFirestore();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [selectedIdType, setSelectedIdType] = useState<string | undefined>();
 
 
   useEffect(() => {
@@ -38,6 +47,13 @@ export default function ProfilePage() {
   }, [user, firestore]);
 
   const { data: userData, isLoading: isUserDataLoading } = useDoc(userDocRef);
+
+  useEffect(() => {
+    if (userData?.govtIdType) {
+        setSelectedIdType(userData.govtIdType);
+    }
+  }, [userData]);
+
 
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -155,7 +171,7 @@ export default function ProfilePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <Label htmlFor="govtIdType">ID Type</Label>
-                            <Select defaultValue={userData?.govtIdType}>
+                            <Select value={selectedIdType} onValueChange={setSelectedIdType}>
                               <SelectTrigger id="govtIdType">
                                 <SelectValue placeholder="Select ID type" />
                               </SelectTrigger>
@@ -169,7 +185,7 @@ export default function ProfilePage() {
                         </div>
                         <div className="space-y-2">
                             <Label htmlFor="govtIdNumber">ID Number</Label>
-                            <Input id="govtIdNumber" placeholder="Enter ID number" defaultValue={userData?.govtIdNumber} />
+                            <Input id="govtIdNumber" placeholder={selectedIdType ? idPlaceholders[selectedIdType] : "Enter ID number"} defaultValue={userData?.govtIdNumber} />
                         </div>
                     </div>
                     <div className="space-y-2">
