@@ -3,13 +3,13 @@
     {
       "id": "hero-banner",
       "description": "A student learning with technology in a rural setting.",
-      "imageUrl": "https://images.unsplash.com/photo-1663535067514-66386c117b6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdHVkZW50JTIwdGVjaG5vbG9neXxlbnwwfHx8fDE3NjEwMjE0NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://i.postimg.cc/pdvSLJt3/Whats-App-Image-2025-10-22-at-04-31-49-934f9611.jpg",
       "imageHint": "student technology"
     },
     {
       "id": "course-physics",
       "description": "Thumbnail for a Physics course.",
-      "imageUrl": "https://images.unsplash.com/photo-1675458134252-1968ac5ef177?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaHlzaWNzJTIwc2NpZW5jZXxlbnwwfHx8fDE3NjA5NzYwNDF8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1675458134252-1968ac5ef177?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwaHlzaWNzJTIwc2NpZW5jZXxlbnwwfHx8fDE3NjA5NzYwNDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "physics science"
     },
     {
