@@ -19,10 +19,10 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const idPlaceholders: { [key: string]: string } = {
-    "Aadhar": "XXXX XXXX XXXX",
-    "PAN": "ABCDE1234F",
-    "Voter ID": "ABC1234567",
-    "APPAR ID": "Enter APPAR ID"
+    "Aadhar": "Enter your Aadhar number",
+    "PAN": "Enter your PAN number",
+    "Voter ID": "Enter your Voter ID number",
+    "APPAR ID": "Enter your APPAR ID"
 };
 
 
