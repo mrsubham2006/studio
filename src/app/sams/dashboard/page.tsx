@@ -13,13 +13,14 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload, FileCheck } from 'lucide-react';
+import { LogOut, BookOpen, FileText, CheckSquare, BarChart2, Bell, Trophy, Calendar, Upload, FileCheck, BookMarked } from 'lucide-react';
 import SAMSLoading from './loading';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
+import { Progress } from '@/components/ui/progress';
 
 
 // Mock data
@@ -41,10 +42,10 @@ const mockNotifications = [
 ];
 const mockAttendance = { percentage: 92 };
 const mockMarks = { latestExam: 'Mid-Term 1', grade: 'A' };
-const mockTimetable = [
-    { day: 'Mon', time: '9:00 AM', subject: 'Physics' },
-    { day: 'Tue', time: '10:00 AM', subject: 'Chemistry' },
-    { day: 'Wed', time: '11:00 AM', subject: 'Mathematics' },
+const mockMyLearning = [
+    { title: 'Mastering Physics for Class 12', progress: 75 },
+    { title: 'JEE Advanced Calculus', progress: 40 },
+    { title: 'Data Structures & Algorithms', progress: 90 },
 ];
 
 const mockActivities = [
@@ -167,10 +168,22 @@ export default function SAMSDashboardPage() {
             content: <p className="text-sm text-muted-foreground">Past year and upcoming exam papers.</p>
         },
         {
-            title: 'Notes & Syllabus',
-            icon: CheckSquare,
-            href: '#',
-            content: <p className="text-sm text-muted-foreground">Downloadable materials for your courses.</p>
+            title: 'My Learning',
+            icon: BookMarked,
+            href: undefined,
+            content: (
+                <div className="space-y-3">
+                    {mockMyLearning.map(course => (
+                        <div key={course.title}>
+                            <div className="flex justify-between items-center mb-1">
+                                <p className="text-sm font-medium truncate">{course.title}</p>
+                                <span className="text-xs text-muted-foreground">{course.progress}%</span>
+                            </div>
+                            <Progress value={course.progress} className="h-2" />
+                        </div>
+                    ))}
+                </div>
+            )
         },
         {
             title: 'Marks & Attendance',
@@ -317,3 +330,5 @@ const DashboardCard = ({ title, icon: Icon, children, href, className, style }: 
 
     return href ? <Link href={href} className="flex">{content}</Link> : content;
 }
+
+    
