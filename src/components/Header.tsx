@@ -34,6 +34,7 @@ export default function Header() {
   const { user } = useUser();
   const auth = useAuth();
   const router = useRouter();
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -86,11 +87,16 @@ export default function Header() {
 
         {/* Center Section (Search) */}
         <div className="flex-1 flex justify-center px-4">
-          <div className="relative w-full max-w-md">
+          <div className={cn(
+              "relative w-full max-w-[200px] transition-all duration-300 ease-in-out",
+              isSearchFocused && "max-w-sm"
+            )}>
              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
              <Input 
                 placeholder="Search..." 
                 className="pl-10 h-10 w-full rounded-full bg-muted/50 border-transparent focus:bg-background focus:border-border"
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
               />
           </div>
         </div>
