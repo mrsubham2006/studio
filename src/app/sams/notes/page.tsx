@@ -32,26 +32,6 @@ export default function NotesPage() {
         <div className="space-y-8">
             <Card>
             <CardHeader>
-                <CardTitle>Sample CSS Notes</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <div className="relative w-full overflow-hidden rounded-lg border">
-                <Image
-                    src="https://i.postimg.cc/1XkJZnbQ/CSS-Notes.png"
-                    alt="Sample CSS notes for exam preparation"
-                    width={1200}
-                    height={1600}
-                    className="w-full h-auto"
-                    priority
-                />
-                </div>
-            </CardContent>
-            </Card>
-
-            <Separator />
-            
-            <Card>
-            <CardHeader>
                 <CardTitle>Sample JavaScript Notes</CardTitle>
             </CardHeader>
             <CardContent>
@@ -62,6 +42,7 @@ export default function NotesPage() {
                     width={1280}
                     height={720}
                     className="w-full h-auto"
+                    priority
                 />
                 </div>
             </CardContent>
