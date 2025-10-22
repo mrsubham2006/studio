@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const aiTools = [
   {
-    name: 'AI Assistant',
+    name: 'EduNex AI Chat',
     description: 'Your personal tutor for any question, any time.',
     icon: MessageSquare,
     href: '/ai-assistant/chat',
@@ -33,13 +33,6 @@ const aiTools = [
     description: 'Get a summary of any YouTube educational video.',
     icon: Youtube,
     href: '/ai-assistant/youtube-summarizer',
-    disabled: false,
-  },
-  {
-    name: 'HuggingChat',
-    description: 'Chat with open-source AI models from Hugging Face.',
-    icon: BrainCircuit,
-    href: '/ai-assistant/huggingchat',
     disabled: false,
   },
 ];

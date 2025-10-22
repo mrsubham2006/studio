@@ -23,8 +23,8 @@ async function getChatbotResponse(prompt: string) {
   });
 
   if (!res.ok) {
-    // This will be caught by the catch block in handleSendMessage
-    throw new Error("Failed to get response from server.");
+    const errorData = await res.json().catch(() => ({ error: "Failed to get response from server." }));
+    throw new Error(errorData.error);
   }
 
   const data = await res.json();
@@ -37,6 +37,7 @@ export default function AiAssistantChatPage() {
   const [isPending, startTransition] = useTransition();
   const [apiError, setApiError] = useState<string | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const [userMessageForRetry, setUserMessageForRetry] = useState<Message | null>(null);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -50,21 +51,28 @@ export default function AiAssistantChatPage() {
   }, [messages]);
 
 
-  const handleSendMessage = () => {
-    if (input.trim() === '') return;
+  const handleSendMessage = (messageText: string) => {
+    if (messageText.trim() === '') return;
 
     setApiError(null); // Clear previous errors
-    const userMessage: Message = { text: input, sender: 'user' };
-    setMessages(prev => [...prev, userMessage]);
-    const currentInput = input;
+    const userMessage: Message = { text: messageText, sender: 'user' };
+    
+    // Add user message to chat, unless it's a retry of the same message
+    if (userMessageForRetry?.text !== messageText) {
+       setMessages(prev => [...prev, userMessage]);
+    }
+    
+    setUserMessageForRetry(userMessage); // Store for potential retry
     setInput('');
 
     startTransition(async () => {
       try {
-        const botResponse = await getChatbotResponse(currentInput);
+        const botResponse = await getChatbotResponse(messageText);
         const botMessage: Message = { text: botResponse, sender: 'bot' };
         setMessages(prev => [...prev, botMessage]);
+        setUserMessageForRetry(null); // Clear on success
       } catch (error) {
+        console.error(error);
         setApiError("⚠️ AI Assistant is temporarily unavailable. Please try again later.");
       }
     });
@@ -84,7 +92,7 @@ export default function AiAssistantChatPage() {
                 </Button>
                 <div className="text-center fade-in-up">
                     <Sparkles className="mx-auto h-12 w-12 text-primary mb-2" />
-                    <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl">AI Assistant</h1>
+                    <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl">EduNex AI Chat</h1>
                     <p className="mt-2 text-muted-foreground md:text-lg">Your personal AI-powered tutor.</p>
                 </div>
             </div>
@@ -140,9 +148,16 @@ export default function AiAssistantChatPage() {
                       </div>
                    </ScrollArea>
                     {apiError && (
-                      <div className="p-4 border-t text-destructive bg-destructive/10 text-sm flex items-center gap-2">
-                          <AlertTriangle className="h-4 w-4" />
-                          {apiError}
+                      <div className="p-4 border-t text-destructive bg-destructive/10 text-sm flex items-center justify-between">
+                          <div className='flex items-center gap-2'>
+                            <AlertTriangle className="h-4 w-4" />
+                            {apiError}
+                          </div>
+                          {userMessageForRetry && (
+                            <Button variant="ghost" className='text-destructive' onClick={() => handleSendMessage(userMessageForRetry.text)}>
+                                Retry
+                            </Button>
+                          )}
                       </div>
                     )}
                     <div className="p-4 border-t bg-background/80">
@@ -152,14 +167,14 @@ export default function AiAssistantChatPage() {
                                 className="pr-12 h-11"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
-                                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage(input)}
                                 disabled={isPending}
                             />
                             <Button 
                                 type="submit" 
                                 size="icon" 
                                 className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 w-8" 
-                                onClick={handleSendMessage}
+                                onClick={() => handleSendMessage(input)}
                                 disabled={isPending || input.trim() === ''}
                             >
                                 <SendHorizontal className="h-4 w-4" />

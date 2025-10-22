@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     } else {
         // This case handles situations where the API returns a 200 OK but with no valid candidates (e.g., due to safety filters)
         console.warn("Google API returned no valid candidates. Response:", data);
-        return NextResponse.json({ reply: "I am unable to provide a response to that prompt. Please try a different one." });
+        return NextResponse.json({ error: "The AI could not generate a response for this prompt, possibly due to safety filters. Please try a different prompt." }, { status: 400 });
     }
     
   } catch (error) {
