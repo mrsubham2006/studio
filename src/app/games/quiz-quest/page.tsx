@@ -110,8 +110,8 @@ export default function QuizQuestPage() {
           <Card className="bg-[#2A2A3E] border-[#3A3A4F] shadow-2xl">
             <CardHeader className="text-center">
               <Target className="mx-auto h-12 w-12 text-[#00BFA6] mb-2" />
-              <CardTitle className="text-3xl font-headline">Quiz Quest</CardTitle>
-              <div className="flex items-center justify-between text-lg mt-4">
+              <CardTitle className="text-3xl font-headline text-white">Quiz Quest</CardTitle>
+              <div className="flex items-center justify-between text-lg mt-4 text-white">
                 <p>Question: <span className="font-bold">{currentQuestionIndex + 1} / {quizQuestions.length}</span></p>
                 <p>Score: <span className="font-bold">{score}</span></p>
               </div>
