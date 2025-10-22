@@ -24,7 +24,7 @@ async function getChatbotResponse(prompt: string) {
 
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({ error: "Failed to get response from server." }));
-    throw new Error(errorData.error);
+    throw new Error(errorData.error || "An unknown error occurred.");
   }
 
   const data = await res.json();
@@ -71,9 +71,9 @@ export default function AiAssistantChatPage() {
         const botMessage: Message = { text: botResponse, sender: 'bot' };
         setMessages(prev => [...prev, botMessage]);
         setUserMessageForRetry(null); // Clear on success
-      } catch (error) {
+      } catch (error: any) {
         console.error(error);
-        setApiError("⚠️ AI Assistant is temporarily unavailable. Please try again later.");
+        setApiError(error.message || "⚠️ AI Assistant is temporarily unavailable. Please try again later.");
       }
     });
   };

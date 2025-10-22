@@ -1,54 +1,23 @@
+
 import { NextRequest, NextResponse } from 'next/server';
+import { aiLearningAssistantChatbot } from '@/ai/flows/ai-learning-assistant-chatbot';
 
 export async function POST(req: NextRequest) {
   try {
     const { prompt } = await req.json();
 
-    if (!process.env.GEMINI_API_KEY) {
-      console.error("Gemini API key is missing from environment variables.");
-      return NextResponse.json({ error: "API key is missing." }, { status: 500 });
-    }
-
     if (!prompt) {
-        return NextResponse.json({ error: "Prompt is missing." }, { status: 400 });
+      return NextResponse.json({ error: 'Prompt is missing.' }, { status: 400 });
     }
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [{ text: prompt }],
-            },
-          ],
-        }),
-      }
-    );
-
-    if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Google API Error:", errorText);
-        throw new Error(`API request failed with status ${response.status}`);
-    }
-
-    const data = await response.json();
+    // Use the Genkit flow to get the response
+    const result = await aiLearningAssistantChatbot({ query: prompt });
     
-    if (data.candidates && data.candidates.length > 0 && data.candidates[0].content) {
-        const reply = data.candidates[0].content.parts[0].text;
-        return NextResponse.json({ reply: reply || "I am unable to provide a response to that prompt. Please try a different one." });
-    } else {
-        // This case handles situations where the API returns a 200 OK but with no valid candidates (e.g., due to safety filters)
-        console.warn("Google API returned no valid candidates. Response:", data);
-        return NextResponse.json({ error: "The AI could not generate a response for this prompt, possibly due to safety filters. Please try a different prompt." }, { status: 400 });
-    }
-    
-  } catch (error) {
+    return NextResponse.json({ reply: result.response });
+
+  } catch (error: any) {
     console.error("Error in /api/assistant:", error);
-    return NextResponse.json({ error: "Failed to communicate with the AI assistant" }, { status: 500 });
+    const errorMessage = error.message || "Failed to communicate with the AI assistant";
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
