@@ -29,7 +29,7 @@ const mockStudentData = {
     course: 'B.Tech',
     branch: 'CSE',
     rollNumber: '2101340024',
-    photoURL: 'https://images.unsplash.com/photo-1649768453000-07c369a51b36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwc21pbGluZ3xlbnwwfHx8fDE3NjA5NjgyNjJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    photoURL: 'https://i.postimg.cc/nhpydZtf/IMG20251011155001.jpg',
 };
 
 const mockAssignments = [
