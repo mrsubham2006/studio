@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowLeft, Youtube, Wand2, Sparkles, Copy, Check, Video, Upload } from 'lucide-react';
 import Link from 'next/link';
-import { getYoutubeSummary, getAudioSummary } from './actions';
+import { getYoutubeSummary, getVideoSummary } from './actions';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { Label } from '@/components/ui/label';
@@ -49,7 +49,7 @@ export default function YoutubeSummarizerPage() {
           reader.onload = async (e) => {
             const dataUri = e.target?.result as string;
             try {
-               const videoResult = await getAudioSummary(dataUri, summaryLength);
+               const videoResult = await getVideoSummary(dataUri, summaryLength);
                setSummary(videoResult);
                toast({
                 title: 'Summary Generated!',

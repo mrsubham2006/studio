@@ -10,8 +10,8 @@ const YoutubeSummaryInputSchema = z.object({
   summaryLength: z.enum(['Short (approx. 50 words)', 'Medium (approx. 100 words)', 'Long (approx. 200 words)']),
 });
 
-const AudioSummaryInputSchema = z.object({
-    audioDataUri: z.string().startsWith('data:video/', 'Invalid video data URI.'),
+const VideoSummaryInputSchema = z.object({
+    videoDataUri: z.string().startsWith('data:video/', 'Invalid video data URI.'),
     summaryLength: z.enum(['Short (approx. 50 words)', 'Medium (approx. 100 words)', 'Long (approx. 200 words)']),
 });
 
@@ -33,16 +33,16 @@ export async function getYoutubeSummary(videoUrl: string, summaryLength: 'Short 
   }
 }
 
-export async function getAudioSummary(audioDataUri: string, summaryLength: 'Short (approx. 50 words)' | 'Medium (approx. 100 words)' | 'Long (approx. 200 words)') {
+export async function getVideoSummary(videoDataUri: string, summaryLength: 'Short (approx. 50 words)' | 'Medium (approx. 100 words)' | 'Long (approx. 200 words)') {
     try {
-        const validatedInput = AudioSummaryInputSchema.parse({ audioDataUri, summaryLength });
-        const result = await transcribeAndSummarizeAudio(validatedInput);
+        const validatedInput = VideoSummaryInputSchema.parse({ videoDataUri: videoDataUri, summaryLength });
+        const result = await transcribeAndSummarizeAudio({audioDataUri: validatedInput.videoDataUri, summaryLength: validatedInput.summaryLength});
         return result.summary;
     } catch (error) {
         if (error instanceof z.ZodError) {
             throw new Error(`Invalid input: ${error.errors.map(e => e.message).join(', ')}`);
         }
-        console.error("Error getting audio summary:", error);
+        console.error("Error getting video summary:", error);
         throw new Error("Failed to process the video file. Please ensure it's a valid format and try again.");
     }
 }

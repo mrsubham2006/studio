@@ -43,7 +43,7 @@ const audioSummarizerFlow = ai.defineFlow(
     
     const { text: transcription } = await ai.generate({
         model: 'googleai/gemini-1.5-flash-latest',
-        prompt: [{ media: { url: input.audioDataUri } }, {text: 'Transcribe this video.'}],
+        prompt: [{ media: { url: input.audioDataUri } }, {text: 'Transcribe this audio.'}],
     });
     
     if (!transcription) {

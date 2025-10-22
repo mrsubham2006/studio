@@ -4,7 +4,7 @@
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Bot, FileText, Youtube, MessageSquare, BrainCircuit } from 'lucide-react';
+import { ArrowRight, Bot, FileText, Youtube, MessageSquare, BrainCircuit, Mic } from 'lucide-react';
 import Link from 'next/link';
 
 const aiTools = [
@@ -31,9 +31,16 @@ const aiTools = [
   },
   {
     name: 'Video Summarizer',
-    description: 'Get a summary of any YouTube educational video.',
+    description: 'Get a summary of YouTube videos or local video files.',
     icon: Youtube,
     href: '/ai-assistant/youtube-summarizer',
+    disabled: false,
+  },
+  {
+    name: 'Audio Summarizer',
+    description: 'Upload and summarize audio files like lectures or podcasts.',
+    icon: Mic,
+    href: '/ai-assistant/audio-summarizer',
     disabled: false,
   },
 ];
