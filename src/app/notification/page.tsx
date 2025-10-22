@@ -1,3 +1,4 @@
+
 'use client';
 
 import Header from '@/components/Header';
@@ -67,20 +68,20 @@ export default function NotificationPage() {
             </p>
           </div>
           
-          <div className="space-y-6">
+          <div className="space-y-4">
             {notifications.map(notification => (
               <Card key={notification.id} className={`shadow-md transition-all ${notification.read ? 'bg-card/50 opacity-70' : 'bg-card'}`}>
-                <CardHeader className="flex flex-row items-start justify-between gap-4">
+                <CardHeader className="flex flex-row items-start justify-between gap-4 p-4">
                   <div>
-                    <CardTitle className="font-headline">{notification.title}</CardTitle>
+                    <CardTitle className="font-headline text-base">{notification.title}</CardTitle>
                     <CardDescription className="text-xs mt-1">
                         {format(new Date(notification.date), 'PPP p')}
                     </CardDescription>
                   </div>
                   {!notification.read && <Badge>New</Badge>}
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{notification.content}</p>
+                <CardContent className="p-4 pt-0">
+                  <p className="text-sm text-muted-foreground">{notification.content}</p>
                   {!notification.read && (
                     <div className="mt-4 text-right">
                         <Button variant="ghost" size="sm" onClick={() => markAsRead(notification.id)}>
