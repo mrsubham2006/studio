@@ -35,8 +35,8 @@ const ProductCard = ({ product }: { product: Product }) => {
                             alt={product.name}
                             data-ai-hint={productImage.imageHint}
                             width={400}
-                            height={400}
-                            className="object-cover w-full h-56"
+                            height={225}
+                            className="object-cover w-full aspect-video"
                         />
                     </Link>
                 )}

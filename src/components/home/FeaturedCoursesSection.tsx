@@ -66,7 +66,7 @@ export default function FeaturedCoursesSection({ selectedClass }: { selectedClas
             {selectedClass ? `Top courses for ${selectedClass}` : 'Explore our most popular courses, designed for excellence.'}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuredCourses.map((course, index) => {
             const courseImage = PlaceHolderImages.find(img => img.id === course.imageId);
             return (
@@ -85,7 +85,7 @@ export default function FeaturedCoursesSection({ selectedClass }: { selectedClas
                         data-ai-hint={courseImage.imageHint}
                         width={400}
                         height={225}
-                        className="object-cover w-full h-48"
+                        className="object-cover w-full aspect-video"
                         />
                      </Link>
                   )}

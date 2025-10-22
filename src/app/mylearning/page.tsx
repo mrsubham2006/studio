@@ -98,8 +98,8 @@ export default function MyLearningPage() {
                                                 alt={course.name}
                                                 data-ai-hint={courseImage.imageHint}
                                                 width={400}
-                                                height={200}
-                                                className="object-cover w-full h-40"
+                                                height={225}
+                                                className="object-cover w-full aspect-video"
                                             />
                                         )}
                                         <CardHeader>
