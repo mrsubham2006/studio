@@ -13,6 +13,7 @@ import { useUser } from '@/firebase';
 import Loading from './dashboard/loading';
 import { useToast } from '@/hooks/use-toast';
 import { Rocket } from 'lucide-react';
+import OurFeaturesSection from '@/components/home/OurFeaturesSection';
 
 const motivationalMessages = [
   "Believe you can and you're halfway there.",
@@ -64,6 +65,7 @@ export default function Home() {
         <HeroSection />
         <ClassSelectorSection onClassChange={setSelectedClass} />
         <FeaturedCoursesSection selectedClass={selectedClass} />
+        <OurFeaturesSection />
         <AiAssistantPreview />
         <TestimonialsSection />
       </main>
