@@ -85,8 +85,12 @@ export default function MyLearningPage() {
                             {purchasedCourses.map((course) => {
                                 const courseImage = PlaceHolderImages.find(img => img.id === course.imageId);
                                 const progress = mockProgress[course.id] || Math.floor(Math.random() * 81); // Random progress if not in mock
+                                
+                                // Special handling for the video course
+                                const courseLink = course.id === 'cse-dsa' ? '/mylearning/player' : `/courses/${course.id}`;
+                                
                                 return (
-                                <Link href={`/courses/${course.id}`} key={course.id} className="block hover:no-underline">
+                                <Link href={courseLink} key={course.id} className="block hover:no-underline">
                                     <Card className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full">
                                         {courseImage && (
                                             <Image

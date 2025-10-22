@@ -81,11 +81,6 @@ export default function CourseDetailsPage({ params }: { params: { id: string } }
   const courseImage = PlaceHolderImages.find(img => img.id === course.imageId);
   const totalLectures = details.modules.reduce((sum: number, mod: any) => sum + mod.lectures, 0);
 
-  const getYouTubeEmbedUrl = (url: string) => {
-    const videoId = url.split('?si=')[0].split('/').pop();
-    return `https://www.youtube.com/embed/${videoId}`;
-  }
-
   return (
     <>
       <Header />
@@ -128,17 +123,7 @@ export default function CourseDetailsPage({ params }: { params: { id: string } }
             <div className="md:col-span-1 space-y-4">
               <div className="sticky top-24">
                 <div className="border rounded-lg overflow-hidden bg-background shadow-lg">
-                  {course.id === 'cse-dsa' ? (
-                     <div className="aspect-video">
-                        <iframe
-                            className="w-full h-full"
-                            src={getYouTubeEmbedUrl("https://youtu.be/Hb9QvSODBPY?si=8ZMfeZ8EohAVaZZC")}
-                            title="YouTube video player"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                        ></iframe>
-                    </div>
-                  ) : courseImage && (
+                  {courseImage && (
                     <Image
                       src={courseImage.imageUrl}
                       alt={course.name}
