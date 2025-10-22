@@ -8,6 +8,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { ArrowRight, BrainCircuit, Puzzle, Target, Brain, Code, Divide, Trophy } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 const games = [
   {
@@ -129,9 +130,15 @@ export default function GamesPage() {
                         <h4 className="font-bold text-white mb-4">Leaderboard</h4>
                         <div className="space-y-3">
                             {game.leaderboard.map(player => (
-                                <div key={player.rank} className="flex items-center justify-between p-3 rounded-md bg-[#3A3A4F]/50">
+                                <div 
+                                    key={player.rank} 
+                                    className={cn(
+                                        "flex items-center justify-between p-3 rounded-md bg-[#3A3A4F]/50",
+                                        player.rank === 1 && "relative overflow-hidden bg-gradient-to-r from-yellow-500/10 to-yellow-400/10 animate-shine"
+                                    )}
+                                >
                                     <div className="flex items-center gap-3">
-                                        <Trophy className={`h-5 w-5 ${rankColors[player.rank as keyof typeof rankColors]}`}/>
+                                        <Trophy className={cn("h-5 w-5", rankColors[player.rank as keyof typeof rankColors])}/>
                                         <span className="font-medium text-white">{player.name}</span>
                                     </div>
                                     <Badge variant="secondary" style={{ backgroundColor: `${game.buttonColor}40`, color: game.buttonColor }}>{player.score} PTS</Badge>

@@ -115,12 +115,14 @@
   }
 
   .animate-shine {
-    animation: shine 4s linear infinite;
+    background: linear-gradient(110deg, transparent 25%, rgba(255, 215, 0, 0.3), transparent 75%);
+    background-size: 200% 100%;
+    animation: shine 3s linear infinite;
   }
 
   @keyframes shine {
     to {
-      background-position: 200% center;
+      background-position: -200% 0;
     }
   }
   
