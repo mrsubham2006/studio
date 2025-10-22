@@ -48,7 +48,7 @@ export default function BottomNavBar() {
         >
             <div className={cn(
                 "flex items-center justify-center h-8 w-12 rounded-full transition-all duration-300",
-                isActive && "bg-primary/10"
+                isActive ? "bg-primary/10 glow-active" : "glow-on-hover"
             )}>
                 <IconComponent className={cn("h-6 w-6 transition-transform duration-300", isActive && "scale-110")} />
             </div>
