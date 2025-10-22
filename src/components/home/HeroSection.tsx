@@ -28,7 +28,7 @@ export default function HeroSection() {
             
           </h1>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent drop-shadow-lg">EduNex — Where knowledge meets opportunity, and dreams find direction.</p>
+            <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-secondary dark:from-chart-3 dark:to-chart-5 bg-clip-text text-transparent drop-shadow-lg">EduNex — Where knowledge meets opportunity, and dreams find direction.</p>
             {!user && (
               <Button size="lg" variant="outline" asChild>
                 <Link href="/login">Login Now</Link>
