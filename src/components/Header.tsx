@@ -121,10 +121,20 @@ export default function Header() {
               </SheetContent>
             </Sheet>
           </div>
-          <Link href="/" className="flex items-center gap-2">
-            <Book className="h-6 w-6 text-primary" />
-            <span className="font-bold font-headline text-xl hidden sm:inline-block">EduNex</span>
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link href="/notification" className="relative">
+              <Button variant="ghost" size="icon">
+                <Book className="h-6 w-6 text-primary" />
+                {unreadCount > 0 && (
+                  <span className="absolute top-1 right-1 block h-2.5 w-2.5 rounded-full bg-destructive ring-2 ring-background" />
+                )}
+                <span className="sr-only">Notifications</span>
+              </Button>
+            </Link>
+            <Link href="/" className='hidden sm:block'>
+              <span className="font-bold font-headline text-xl">EduNex</span>
+            </Link>
+          </div>
         </div>
 
         {/* Center Section (Search) */}
