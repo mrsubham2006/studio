@@ -40,6 +40,62 @@
             "description": "Official NCERT textbook for Class 12 Mathematics, Part 1. Covers Relations and Functions, Matrices, and Calculus.",
             "imageId": "ncert-maths-12-cover",
             "downloadUrl": "https://ncert.nic.in/textbook/pdf/lemh1dd.zip"
+        },
+        {
+            "id": "ncert-biology-12",
+            "title": "NCERT Biology Class 12",
+            "author": "NCERT",
+            "description": "Official NCERT textbook for Class 12 Biology. Covers Reproduction, Genetics and Evolution, Biology and Human Welfare, Biotechnology, and Ecology.",
+            "imageId": "ncert-biology-12-cover",
+            "downloadUrl": "https://ncert.nic.in/textbook/pdf/lebo1dd.zip"
+        },
+        {
+            "id": "ncert-maths-11",
+            "title": "NCERT Maths Class 11",
+            "author": "NCERT",
+            "description": "Official NCERT textbook for Class 11 Mathematics. Covers Sets, Relations and Functions, Trigonometric Functions, and more.",
+            "imageId": "ncert-maths-11-cover",
+            "downloadUrl": "https://ncert.nic.in/textbook/pdf/kemh1dd.zip"
+        },
+        {
+            "id": "ncert-physics-11-p1",
+            "title": "NCERT Physics Class 11 Part 1",
+            "author": "NCERT",
+            "description": "Official NCERT textbook for Class 11 Physics, Part 1. Covers Physical World, Units and Measurements, and Laws of Motion.",
+            "imageId": "ncert-physics-11-p1-cover",
+            "downloadUrl": "https://ncert.nic.in/textbook/pdf/keph1dd.zip"
+        },
+        {
+            "id": "ncert-chemistry-11-p1",
+            "title": "NCERT Chemistry Class 11 Part 1",
+            "author": "NCERT",
+            "description": "Official NCERT textbook for Class 11 Chemistry, Part 1. Covers basic concepts, structure of atom, and classification of elements.",
+            "imageId": "ncert-chemistry-11-p1-cover",
+            "downloadUrl": "https://ncert.nic.in/textbook/pdf/kech1dd.zip"
+        },
+        {
+            "id": "ncert-biology-11",
+            "title": "NCERT Biology Class 11",
+            "author": "NCERT",
+            "description": "Official NCERT textbook for Class 11 Biology. Covers Diversity in Living World, Structural Organisation in Animals and Plants, and Cell Structure.",
+            "imageId": "ncert-biology-11-cover",
+            "downloadUrl": "https://ncert.nic.in/textbook/pdf/kebo1dd.zip"
+        },
+        {
+            "id": "book-gk",
+            "title": "General Knowledge 2025",
+            "author": "Arihant Experts",
+            "description": "A comprehensive book for competitive exams, covering a wide range of topics including history, geography, science, and current affairs.",
+            "imageId": "book-gk-cover",
+            "downloadUrl": "#"
+        },
+        {
+            "id": "book-python",
+            "title": "Learn Python in One Day",
+            "author": "Krishna Rungta",
+            "description": "A beginner-friendly guide to learning Python programming from scratch. Covers all the basic concepts with examples.",
+            "imageId": "book-python-cover",
+            "downloadUrl": "#"
         }
     ]
 }
