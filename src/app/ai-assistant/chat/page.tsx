@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useTransition } from 'react';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Sparkles, ArrowLeft, SendHoriz, User, Bot } from 'lucide-react';
+import { Sparkles, ArrowLeft, SendHorizontal, User, Bot } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { getChatbotResponse } from '../actions';
@@ -146,7 +146,7 @@ export default function AiAssistantChatPage() {
                                 onClick={handleSendMessage}
                                 disabled={isPending || input.trim() === ''}
                             >
-                                <SendHoriz className="h-4 w-4" />
+                                <SendHorizontal className="h-4 w-4" />
                             </Button>
                         </div>
                     </div>
