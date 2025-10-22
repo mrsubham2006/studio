@@ -29,8 +29,8 @@ export async function POST(req: NextRequest) {
 
     const data = await response.json();
     
-    if (data.candidates && data.candidates.length > 0) {
-        return NextResponse.json({ reply: data.candidates[0]?.content?.parts?.[0]?.text || "No reply" });
+    if (data.candidates && data.candidates.length > 0 && data.candidates[0].content) {
+        return NextResponse.json({ reply: data.candidates[0].content.parts[0].text || "No reply" });
     } else {
         // This case handles when the API returns a response with no candidates, which can happen due to safety filters.
         return NextResponse.json({ reply: "I am unable to provide a response to that prompt. Please try a different one." });
