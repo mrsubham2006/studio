@@ -30,7 +30,7 @@ export default function HeroSection() {
             
           </h1>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-secondary dark:from-chart-3 dark:to-chart-5 bg-clip-text text-transparent drop-shadow-lg">EduNex — Where knowledge meets opportunity, and dreams find direction.</p>
+            <p className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary via-secondary to-primary dark:from-chart-3 dark:via-chart-5 dark:to-chart-3 bg-clip-text text-transparent drop-shadow-lg animate-text-shine bg-[length:200%_auto]">EduNex — Where knowledge meets opportunity, and dreams find direction.</p>
           </div>
           <p className="text-lg text-foreground/90 md:text-xl pt-4">
             Adaptive lessons, offline access, and real-time feedback — designed for every learner.
