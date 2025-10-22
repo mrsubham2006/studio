@@ -15,7 +15,7 @@
     {
       "id": "course-chemistry",
       "description": "Thumbnail for a Chemistry course.",
-      "imageUrl": "https://images.unsplash.com/photo-1602052577122-f73b9710adba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaGVtaXN0cnklMjBsYWJ8ZW58MHx8fHwxNzYwOTkxNjQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://i.ytimg.com/vi/-h0drKJnGrE/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLCslxI70A8xQARgSmwcc4z9rcLG8Q",
       "imageHint": "chemistry lab"
     },
     {
@@ -63,7 +63,7 @@
     {
       "id": "edustore-book-generic",
       "description": "A generic book for the EduStore.",
-      "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzYxMDIxNjk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzYxMDIxNjk5fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "book cover"
     },
     {
@@ -93,13 +93,13 @@
     {
       "id": "course-science",
       "description": "Thumbnail for a Science course.",
-      "imageUrl": "https://images.unsplash.com/photo-1711408524517-caec3d9700ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzY2llbmNlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYxMDQwMzYzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1711408524517-caec3d9700ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzY2llbmNlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYxMDQwMzYzfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "science abstract"
     },
     {
       "id": "course-geography",
       "description": "Thumbnail for a Geography course.",
-      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b3JsZCUyMG1hcHxlbnwwfHx8fDE3NjEwMzU5MjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b3JsZCUyMG1hcHxlbnwwfHx8fDE3NjEwMzU5MjR8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "world map"
     },
     {
@@ -117,7 +117,7 @@
     {
       "id": "course-odia",
       "description": "Thumbnail for an Odia language course.",
-      "imageUrl": "https://images.unsplash.com/photo-1749947165301-0594efb27963?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvZGlhJTIwc2NyaXB0fGVufDB8fHx8MTc2MTA2MjY4MHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1749947165301-0594efb27963?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvZGlhJTIwc2NyaXB0fGVufDB8fHx8MTc2MTA2MjY4MHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "odia script"
     },
     {
@@ -147,7 +147,7 @@
     {
       "id": "cse-os",
       "description": "Thumbnail for an Operating Systems course.",
-      "imageUrl": "https://images.unsplash.com/photo-1614741118884-62ac161b2349?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvcGVyYXRpbmclMjBzeXN0ZW0lMjBjb25jZXB0fGVufDB8fHx8MTc2MTA3NDU0NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1614741118884-62ac161b2349?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvcGVyYXRpbmclMjBzeXN0ZW0lMjBjb25jZXB0fGVufDB8fHx8MTc2MTA3NDU0NXww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "operating system"
     },
     {
@@ -159,7 +159,7 @@
     {
       "id": "mech-thermo",
       "description": "Thumbnail for a Thermodynamics course.",
-      "imageUrl": "https://images.unsplash.com/photo-1632788343519-5d53c8f395f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0aGVybW9keW5hbWljcyUyMGVuZ2luZXxlbnwwfHx8fDE3NjE3NDU5MzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1632788343519-5d53c8f395f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0aGVybW9keW5hbWljcyUyMGVuZ2luZXxlbnwwfHx8fDE3NjE3NDU5MzR8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "thermodynamics engine"
     },
     {
@@ -201,7 +201,7 @@
     {
       "id": "activity-hackathon",
       "description": "Banner for a hackathon.",
-      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoYWNrYXRob24lMjBjb2Rpbmd8ZW58MHx8fHwxNzIxMjI3MDIwfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoYWNrYXRob24lMjBjb2Rpbmd8ZW58MHx8fHwxNzIxMjI3MDIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "hackathon coding"
     },
     {

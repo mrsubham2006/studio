@@ -27,6 +27,12 @@ const courseVideoData = {
         description: 'Chapter 1: Electric Charges and Fields',
         videoUrl: 'https://youtu.be/2Qie6DbS63o?si=bifiLy7IaGV-9Lb4',
         icon: Film,
+    },
+    'course-chem-12': {
+        title: 'Organic Chemistry Made Easy',
+        description: 'Lecture 1: Introduction to Organic Chemistry',
+        videoUrl: 'https://youtu.be/-h0drKJnGrE?si=Y6fFnqLQYs0DxYEE',
+        icon: Film,
     }
 };
 
@@ -114,3 +120,5 @@ export default function VideoPlayerPage() {
     </div>
   );
 }
+
+    
