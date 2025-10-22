@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useRouter } from 'next/navigation';
@@ -55,10 +56,10 @@ const mockActivities = [
     },
 ];
 
-export default function ActivityDetailsPage({ params }: { params: { id: string } }) {
+export default function ActivityDetailsPage({ params: { id } }: { params: { id: string } }) {
     const router = useRouter();
     const { toast } = useToast();
-    const activityId = params.id;
+    const activityId = id;
 
     const activity = mockActivities.find(a => a.id === activityId);
     const activityImage = activity ? PlaceHolderImages.find(img => img.id === activity.imageId) : null;
