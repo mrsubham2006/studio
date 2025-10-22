@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -53,22 +52,28 @@ export default function FeaturedCoursesSection({ selectedClass }: { selectedClas
               <Card key={course.id} className="flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 fade-in-up" style={{ animationDelay: `${index * 100}ms`}}>
                 <CardHeader className="p-0">
                   {courseImage && (
-                    <Image
-                      src={courseImage.imageUrl}
-                      alt={course.name}
-                      data-ai-hint={courseImage.imageHint}
-                      width={400}
-                      height={250}
-                      className="object-cover w-full h-48"
-                    />
+                     <Link href={`/courses/${course.id}`}>
+                        <Image
+                        src={courseImage.imageUrl}
+                        alt={course.name}
+                        data-ai-hint={courseImage.imageHint}
+                        width={400}
+                        height={250}
+                        className="object-cover w-full h-48"
+                        />
+                     </Link>
                   )}
                 </CardHeader>
-                <CardContent className="flex-1 p-6">
-                  <CardTitle className="font-headline text-lg leading-tight mb-2">{course.title || course.name}</CardTitle>
+                <CardContent className="flex-1 p-6 space-y-2">
                   <div className="flex items-center text-sm text-muted-foreground">
                     <BookOpen className="w-4 h-4 mr-2" />
                     <span>{course.category}</span>
                   </div>
+                  <CardTitle className="font-headline text-lg leading-tight h-12 overflow-hidden">
+                     <Link href={`/courses/${course.id}`}>{course.name}</Link>
+                  </CardTitle>
+                  <p className="text-sm text-muted-foreground h-10 overflow-hidden">{course.description}</p>
+                   <p className="text-2xl font-bold text-primary pt-2">₹{course.price}</p>
                 </CardContent>
                 <CardFooter className="p-6 pt-0">
                   <Button asChild className="w-full">
