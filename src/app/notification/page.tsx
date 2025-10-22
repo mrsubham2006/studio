@@ -7,51 +7,10 @@ import { Bell, CheckCircle } from 'lucide-react';
 import { format } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
-
-const mockNotifications = [
-  {
-    id: '1',
-    title: 'Mid-term Exams Scheduled',
-    content: 'The mid-term examinations for B.Tech 3rd Semester will commence from September 15th, 2024. Please check the SAMS portal for the detailed schedule.',
-    date: '2024-08-01T10:00:00Z',
-    read: false,
-  },
-  {
-    id: '2',
-    title: 'Holiday: Independence Day',
-    content: 'The institute will remain closed on August 15th, 2024, on account of Independence Day.',
-    date: '2024-08-10T14:30:00Z',
-    read: false,
-  },
-  {
-    id: '3',
-    title: 'Workshop on AI/ML',
-    content: 'A hands-on workshop on Artificial Intelligence and Machine Learning is scheduled for August 25th. Limited seats available. Register now!',
-    date: '2024-08-12T09:00:00Z',
-    read: true,
-  },
-  {
-    id: '4',
-    title: 'Fee Payment Reminder',
-    content: 'The last date for semester fee payment without a late fine is August 20th, 2024. Please pay your fees on time to avoid penalties.',
-    date: '2024-08-14T11:00:00Z',
-    read: true,
-  },
-];
-
-type Notification = typeof mockNotifications[0];
+import { useNotification } from '@/context/NotificationProvider';
 
 export default function NotificationPage() {
-    const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
-
-    const markAsRead = (id: string) => {
-        setNotifications(
-            notifications.map(n => n.id === id ? { ...n, read: true } : n)
-        );
-    };
-
-    const unreadCount = notifications.filter(n => !n.read).length;
+    const { notifications, markAsRead, unreadCount } = useNotification();
 
   return (
     <>
@@ -71,7 +30,7 @@ export default function NotificationPage() {
           <div className="space-y-4">
             {notifications.map(notification => (
               <Card key={notification.id} className={`shadow-md transition-all ${notification.read ? 'bg-card/50 opacity-70' : 'bg-card'}`}>
-                <CardHeader className="flex flex-row items-start justify-between gap-4 p-4">
+                <CardHeader className="flex flex-row items-start justify-between gap-4 p-3">
                   <div>
                     <CardTitle className="font-headline text-base">{notification.title}</CardTitle>
                     <CardDescription className="text-xs mt-1">
@@ -80,10 +39,10 @@ export default function NotificationPage() {
                   </div>
                   {!notification.read && <Badge>New</Badge>}
                 </CardHeader>
-                <CardContent className="p-4 pt-0">
+                <CardContent className="p-3 pt-0">
                   <p className="text-sm text-muted-foreground">{notification.content}</p>
                   {!notification.read && (
-                    <div className="mt-4 text-right">
+                    <div className="mt-2 text-right">
                         <Button variant="ghost" size="sm" onClick={() => markAsRead(notification.id)}>
                             <CheckCircle className="mr-2 h-4 w-4"/>
                             Mark as Read

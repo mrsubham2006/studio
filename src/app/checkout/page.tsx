@@ -21,6 +21,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { useNotification } from '@/context/NotificationProvider';
 
 const addressSchema = z.object({
   name: z.string().min(2, 'Full name is required'),
@@ -42,6 +43,7 @@ const STEPS = [
 
 export default function CheckoutPage() {
     const { items, total, clearCart } = useCart();
+    const { addNotification } = useNotification();
     const { toast } = useToast();
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -90,7 +92,12 @@ export default function CheckoutPage() {
 
 
     const handlePayment = () => {
+        const orderId = `EDUNEX-${Math.floor(Math.random() * 9000) + 1000}`;
         // Simulate payment success
+        addNotification({
+          title: 'Payment Successful!',
+          content: `Your order ${orderId} for ₹${total.toFixed(2)} has been placed successfully.`
+        });
 
         // Add cart items to purchased courses in localStorage
         try {
@@ -118,7 +125,7 @@ export default function CheckoutPage() {
 
         // Add a new order to mock data for demonstration
         const newOrder = {
-             id: `EDUNEX-${Math.floor(Math.random() * 9000) + 1000}`,
+             id: orderId,
              date: new Date().toISOString(),
              status: 'Processing',
              estimatedDelivery: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],

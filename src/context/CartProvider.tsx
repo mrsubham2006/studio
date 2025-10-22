@@ -2,6 +2,7 @@
 'use client';
 
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { useNotification } from './NotificationProvider';
 
 type Product = {
     id: string;
@@ -28,6 +29,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
     const [items, setItems] = useState<CartItem[]>([]);
+    const { addNotification } = useNotification();
 
     useEffect(() => {
         // Load cart from localStorage on initial render
@@ -51,6 +53,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }, [items]);
 
     const addItem = (product: Product, quantity: number = 1) => {
+        addNotification({
+          title: "Item Added to Cart",
+          content: `${product.name} has been added to your cart.`
+        });
         setItems(prevItems => {
             const existingItem = prevItems.find(item => item.id === product.id);
             if (existingItem) {
