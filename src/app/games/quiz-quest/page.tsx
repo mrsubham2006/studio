@@ -149,7 +149,7 @@ export default function QuizQuestPage() {
                 </div>
               ) : (
                 <div className="space-y-6">
-                  <p className="text-center text-xl min-h-[60px] flex items-center justify-center">
+                  <p className="text-center text-xl min-h-[60px] flex items-center justify-center text-white">
                     {quizQuestions[currentQuestionIndex].question}
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -194,4 +194,3 @@ export default function QuizQuestPage() {
     </div>
   );
 }
-
