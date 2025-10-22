@@ -46,7 +46,7 @@ export default function OurFeaturesSection() {
       <div className="container max-w-7xl">
         <div className="text-center mb-12">
           
-          <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">
+          <p className="mt-4 max-w-2xl mx-auto text-foreground font-bold md:text-xl">
             Explore the powerful features that make learning with EduNex effective and fun.
           </p>
         </div>
