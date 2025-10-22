@@ -1,0 +1,45 @@
+
+{
+    "books": [
+        {
+            "id": "ncert-physics-12-p1",
+            "title": "NCERT Physics Class 12 Part 1",
+            "author": "NCERT",
+            "description": "Official NCERT textbook for Class 12 Physics, Part 1. Covers topics like Electrostatics, Current Electricity, and Magnetism.",
+            "imageId": "ncert-physics-12-p1-cover",
+            "downloadUrl": "https://ncert.nic.in/textbook/pdf/leph1dd.zip"
+        },
+        {
+            "id": "ncert-physics-12-p2",
+            "title": "NCERT Physics Class 12 Part 2",
+            "author": "NCERT",
+            "description": "Official NCERT textbook for Class 12 Physics, Part 2. Covers topics like Optics, Dual Nature of Radiation, and Semiconductor Electronics.",
+            "imageId": "ncert-physics-12-p2-cover",
+            "downloadUrl": "https://ncert.nic.in/textbook/pdf/leph2dd.zip"
+        },
+        {
+            "id": "ncert-chemistry-12-p1",
+            "title": "NCERT Chemistry Class 12 Part 1",
+            "author": "NCERT",
+            "description": "Official NCERT textbook for Class 12 Chemistry, Part 1. Covers Solid State, Solutions, Electrochemistry, and p-Block Elements.",
+            "imageId": "ncert-chemistry-12-p1-cover",
+            "downloadUrl": "https://ncert.nic.in/textbook/pdf/lech1dd.zip"
+        },
+        {
+            "id": "ncert-chemistry-12-p2",
+            "title": "NCERT Chemistry Class 12 Part 2",
+            "author": "NCERT",
+            "description": "Official NCERT textbook for Class 12 Chemistry, Part 2. Covers Organic Chemistry topics, Biomolecules, and Polymers.",
+            "imageId": "ncert-chemistry-12-p2-cover",
+            "downloadUrl": "https://ncert.nic.in/textbook/pdf/lech2dd.zip"
+        },
+        {
+            "id": "ncert-maths-12-p1",
+            "title": "NCERT Maths Class 12 Part 1",
+            "author": "NCERT",
+            "description": "Official NCERT textbook for Class 12 Mathematics, Part 1. Covers Relations and Functions, Matrices, and Calculus.",
+            "imageId": "ncert-maths-12-cover",
+            "downloadUrl": "https://ncert.nic.in/textbook/pdf/lemh1dd.zip"
+        }
+    ]
+}

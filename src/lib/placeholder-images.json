@@ -39,7 +39,7 @@
     {
       "id": "course-diploma",
       "description": "Thumbnail for a Diploma course.",
-      "imageUrl": "https://images.unsplash.com/photo-1503387837-b154d5074bd2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNobmljYWwlMjBkcmF3aW5nfGVufDB8fHx8MTc2MDk4MjcxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1503387837-b154d5074bd2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNobmljYWwlMjBkcmF3aW5nfGVufDB8fHx8MTc2MDk4MjcxNnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "technical drawing"
     },
     {
@@ -75,7 +75,7 @@
     {
       "id": "edustore-iit-book",
       "description": "An IIT preparation book.",
-      "imageUrl": "https://images.unsplash.com/photo-1724080924533-535a3a316acb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZXh0Ym9vayUyMGV4YW18ZW58MHx8fHwxNzYxMDMwODA1fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1724080924533-535a3a316acb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZXh0Ym9vayUyMGV4YW18ZW58MHx8fHwxNzYxMDMwODA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "textbook exam"
     },
     {
@@ -99,7 +99,7 @@
     {
       "id": "course-geography",
       "description": "Thumbnail for a Geography course.",
-      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b3JsZCUyMG1hcHxlbnwwfHx8fDE3NjEwMzU5MjR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx3b3JsZCUyMG1hcHxlbnwwfHx8fDE3NjEwMzU5MjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "world map"
     },
     {
@@ -141,7 +141,7 @@
     {
       "id": "cse-dbms",
       "description": "Thumbnail for a Database Management course.",
-      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXRhYmFzZSUyMHNlcnZlcnxlbnwwfHx8fDE3NjEwNzQ1NDV8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXRhYmFzZSUyMHNlcnZlcnxlbnwwfHx8fDE3NjEwNzQ1NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "database server"
     },
     {
@@ -159,7 +159,7 @@
     {
       "id": "mech-thermo",
       "description": "Thumbnail for a Thermodynamics course.",
-      "imageUrl": "https://images.unsplash.com/photo-1632788343519-5d53c8f395f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0aGVybW9keW5hbWljcyUyMGVuZ2luZXxlbnwwfHx8fDE3NjE3NDU5MzR8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1632788343519-5d53c8f395f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0aGVybW9keW5hbWljcyUyMGVuZ2luZXxlbnwwfHx8fDE3NjE3NDU5MzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "thermodynamics engine"
     },
     {
@@ -171,7 +171,7 @@
     {
       "id": "mech-design",
       "description": "Thumbnail for a Machine Design course.",
-      "imageUrl": "https://images.unsplash.com/photo-1560969184-10fe8719e047?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYWNoaW5lJTIwZ2VhcnN8ZW58MHx8fHwxNzYxNzQ1OTM0fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1560969184-10fe8719e047?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYWNoaW5lJTIwZ2VhcnN8ZW58MHx8fHwxNzYxNzQ1OTM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "machine gears"
     },
     {
@@ -189,7 +189,7 @@
     {
       "id": "civil-geotech",
       "description": "Thumbnail for a Geotechnical Engineering course.",
-      "imageUrl": "https://images.unsplash.com/photo-1628198906379-11c5e6f3d45e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2lsJTIwdGVzdGluZ3xlbnwwfHx8fDE3NjE3NDg2NTl8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1628198906379-11c5e6f3d45e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2lsJTIwdGVzdGluZ3xlbnwwfHx8fDE3NjE3NDg2NTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "soil testing"
     },
     {
@@ -221,6 +221,36 @@
       "description": "Thumbnail for English Grammar for Class 8.",
       "imageUrl": "https://i.ytimg.com/vi/bgHHZ4Arl4A/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDJ_rpu9RmoWPJIK5i7P9lSXvVd0w",
       "imageHint": "english grammar"
+    },
+    {
+      "id": "ncert-physics-12-p1-cover",
+      "description": "Cover for NCERT Physics Class 12 Part 1.",
+      "imageUrl": "https://i.postimg.cc/D0C50P5b/leph1ps.jpg",
+      "imageHint": "physics textbook"
+    },
+    {
+      "id": "ncert-physics-12-p2-cover",
+      "description": "Cover for NCERT Physics Class 12 Part 2.",
+      "imageUrl": "https://i.postimg.cc/0QfqJgqg/leph2ps.jpg",
+      "imageHint": "science textbook"
+    },
+    {
+      "id": "ncert-chemistry-12-p1-cover",
+      "description": "Cover for NCERT Chemistry Class 12 Part 1.",
+      "imageUrl": "https://i.postimg.cc/sX1vF5yP/lech1ps.jpg",
+      "imageHint": "chemistry textbook"
+    },
+    {
+      "id": "ncert-chemistry-12-p2-cover",
+      "description": "Cover for NCERT Chemistry Class 12 Part 2.",
+      "imageUrl": "https://i.postimg.cc/L82S04mR/lech2ps.jpg",
+      "imageHint": "science lab"
+    },
+    {
+      "id": "ncert-maths-12-cover",
+      "description": "Cover for NCERT Maths Class 12 Part 1.",
+      "imageUrl": "https://i.postimg.cc/zX9Xw3yY/lemh1ps.jpg",
+      "imageHint": "maths formula"
     }
   ]
 }
