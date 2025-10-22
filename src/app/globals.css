@@ -126,6 +126,12 @@
     animation: shine 3s linear infinite;
   }
 
+  .animate-shine-bronze {
+    background: linear-gradient(110deg, transparent 25%, rgba(205, 127, 50, 0.3), transparent 75%);
+    background-size: 200% 100%;
+    animation: shine 3s linear infinite;
+  }
+
   @keyframes shine {
     to {
       background-position: -200% 0;
