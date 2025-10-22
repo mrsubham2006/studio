@@ -23,21 +23,23 @@ const defaultFeaturedCourseIds = ['course-phy-12', 'course-chem-12', 'cse-dsa', 
 
 export default function FeaturedCoursesSection({ selectedClass }: { selectedClass: string | null }) {
     
-    const featuredCourses = useMemo(() => {
-        const allProducts: Product[] = productData.products;
+    const allProducts: Product[] = productData.products;
 
+    const featuredCourses = useMemo(() => {
         if (selectedClass) {
-            const filtered = allProducts.filter(p => p.category === selectedClass);
-            // If filtering results in courses, show up to 4, otherwise show default featured.
-            if (filtered.length > 0) {
-                return filtered.slice(0, 4);
+            const filteredByCategory = allProducts.filter(p => 
+                p.category.toLowerCase().includes(selectedClass.toLowerCase())
+            );
+
+            if (filteredByCategory.length > 0) {
+                return filteredByCategory.slice(0, 4);
             }
         }
         
-        // Default featured courses if no class is selected or if the selected class has no courses.
+        // Default to showing a curated list of popular courses if no class is selected or no matches are found
         return allProducts.filter(p => defaultFeaturedCourseIds.includes(p.id));
 
-    }, [selectedClass]);
+    }, [selectedClass, allProducts]);
 
   return (
     <section className="py-16 md:py-24">
@@ -47,7 +49,7 @@ export default function FeaturedCoursesSection({ selectedClass }: { selectedClas
             Featured Courses
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">
-            Explore our most popular courses, designed for excellence.
+            {selectedClass ? `Top courses for ${selectedClass}` : 'Explore our most popular courses, designed for excellence.'}
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
