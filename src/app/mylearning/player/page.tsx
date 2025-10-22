@@ -46,6 +46,12 @@ const courseVideoData = {
         description: 'Chapter 1: Matter in Our Surroundings',
         videoUrl: 'https://youtu.be/7Uy_yonHhAg?si=D7bATzaLsv6xNB8V',
         icon: BookOpen,
+    },
+    'course-eng-8': {
+        title: 'English Grammar for Class 8',
+        description: 'Chapter 1: The Sentence',
+        videoUrl: 'https://youtu.be/bgHHZ4Arl4A?si=kZGbEScpOpN6uda2',
+        icon: BookOpen,
     }
 };
 

@@ -63,7 +63,7 @@
     {
       "id": "edustore-book-generic",
       "description": "A generic book for the EduStore.",
-      "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzYxMDIxNjk5fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxib29rJTIwY292ZXJ8ZW58MHx8fHwxNzYxMDIxNjk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "book cover"
     },
     {
@@ -201,7 +201,7 @@
     {
       "id": "activity-hackathon",
       "description": "Banner for a hackathon.",
-      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoYWNrYXRob24lMjBjb2Rpbmd8ZW58MHx8fHwxNzIxMjI3MDIwfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoYWNrYXRob24lMjBjb2Rpbmd8ZW58MHx8fHwxNzIxMjI3MDIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "hackathon coding"
     },
     {
@@ -215,6 +215,12 @@
       "description": "A template for a course completion certificate.",
       "imageUrl": "https://i.postimg.cc/d1g3C6k7/Whats-App-Image-2025-10-22-at-04-18-09-54157111.jpg",
       "imageHint": "certificate template"
+    },
+    {
+      "id": "course-eng-8-thumb",
+      "description": "Thumbnail for English Grammar for Class 8.",
+      "imageUrl": "https://i.ytimg.com/vi/bgHHZ4Arl4A/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDJ_rpu9RmoWPJIK5i7P9lSXvVd0w",
+      "imageHint": "english grammar"
     }
   ]
 }

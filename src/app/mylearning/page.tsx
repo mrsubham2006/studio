@@ -50,7 +50,7 @@ export default function MyLearningPage() {
         }
     }, []);
 
-    const videoCourses = ['cse-dsa', 'course-math-10', 'course-phy-12', 'course-chem-12', 'course-neet-bio', 'course-sci-9'];
+    const videoCourses = ['cse-dsa', 'course-math-10', 'course-phy-12', 'course-chem-12', 'course-neet-bio', 'course-sci-9', 'course-eng-8'];
 
     if (isLoading) {
         return (
