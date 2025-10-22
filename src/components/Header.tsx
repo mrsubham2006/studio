@@ -23,6 +23,7 @@ import { useRouter } from 'next/navigation';
 import { Input } from './ui/input';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './theme-toggle';
+import { useNotification } from '@/context/NotificationProvider';
 
 const mobileNavLinks = [
   { href: '/', label: 'Home', icon: Book },
@@ -42,6 +43,7 @@ export default function Header() {
   const auth = useAuth();
   const router = useRouter();
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const { unreadCount } = useNotification();
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -80,8 +82,13 @@ export default function Header() {
                           className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-base font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary"
                           onClick={() => setSheetOpen(false)}
                         >
-                          <link.icon className="h-5 w-5" />
-                          {link.label}
+                          <div className="relative">
+                            <link.icon className="h-5 w-5" />
+                             {link.href === '/notification' && unreadCount > 0 && (
+                                <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-destructive ring-2 ring-background" />
+                             )}
+                          </div>
+                          <span>{link.label}</span>
                         </Link>
                       ))}
                     </nav>
@@ -136,14 +143,25 @@ export default function Header() {
 
         {/* Right Section */}
         <div className="flex items-center gap-2">
-          {user && (
-            <Button variant="ghost" asChild className="transition-transform active:scale-95">
-                <Link href="/mylearning">
-                    <BookCopy className="h-5 w-5" />
-                    <span>My Learning</span>
-                </Link>
-            </Button>
-          )}
+           <div className="hidden md:flex items-center gap-2">
+             <Link href="/notification" className="relative">
+                <Button variant="ghost" size="icon">
+                    <Bell className="h-5 w-5" />
+                    {unreadCount > 0 && (
+                        <span className="absolute top-2 right-2 block h-2 w-2 rounded-full bg-destructive ring-1 ring-background" />
+                    )}
+                    <span className="sr-only">Notifications</span>
+                </Button>
+            </Link>
+            {user && (
+                <Button variant="ghost" asChild className="transition-transform active:scale-95">
+                    <Link href="/mylearning">
+                        <BookCopy className="h-5 w-5" />
+                        <span className="hidden lg:inline">My Learning</span>
+                    </Link>
+                </Button>
+            )}
+           </div>
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
