@@ -69,7 +69,7 @@ export default function Header() {
                 <SheetHeader className='p-6 pb-2'>
                   <SheetTitle>
                     <Link href="/" className="flex items-center gap-2" onClick={() => setSheetOpen(false)}>
-                      <Book className="h-6 w-6 text-primary" />
+                      <Gamepad2 className="h-6 w-6 text-primary" />
                       <span className="font-bold font-headline text-xl">EduNex</span>
                     </Link>
                   </SheetTitle>
@@ -122,7 +122,7 @@ export default function Header() {
             </Sheet>
           </div>
           <Link href="/" className="flex items-center gap-2">
-            <Book className="h-6 w-6 text-primary" />
+            <Gamepad2 className="h-6 w-6 text-primary" />
             <span className="font-bold font-headline text-xl hidden sm:inline-block">EduNex</span>
           </Link>
         </div>
