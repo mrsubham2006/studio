@@ -21,6 +21,12 @@ const courseVideoData = {
         description: 'Live Session: Important Questions for Board Exams',
         videoUrl: 'https://www.youtube.com/live/zNMIK2vLHGM?si=T8ldKdmSZl-hSoTe',
         icon: BookOpen,
+    },
+    'course-phy-12': {
+        title: 'Mastering Physics for Class 12',
+        description: 'Chapter 1: Electric Charges and Fields',
+        videoUrl: 'https://youtu.be/2Qie6DbS63o?si=bifiLy7IaGV-9Lb4',
+        icon: Film,
     }
 };
 

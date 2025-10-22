@@ -48,7 +48,7 @@ export default function MyLearningPage() {
         }
     }, []);
 
-    const videoCourses = ['cse-dsa', 'course-math-10'];
+    const videoCourses = ['cse-dsa', 'course-math-10', 'course-phy-12'];
 
     if (isLoading) {
         return (
