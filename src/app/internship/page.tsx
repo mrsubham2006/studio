@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import { useNotification } from '@/context/NotificationProvider';
 
 const mockInternships = [
     {
@@ -119,6 +120,7 @@ const mockInternships = [
 
 const ApplyDialog = ({ title, company }: { title: string, company: string }) => {
     const { toast } = useToast();
+    const { addNotification } = useNotification();
     const [isApplied, setIsApplied] = useState(false);
 
     const handleApply = () => {
@@ -127,6 +129,13 @@ const ApplyDialog = ({ title, company }: { title: string, company: string }) => 
             title: "Application Sent!",
             description: `Your application for ${title} at ${company} has been submitted.`,
         });
+
+        // Add a persistent notification
+        addNotification({
+            title: 'Application Submitted',
+            content: `You have successfully applied for the ${title} role at ${company}.`,
+        });
+
         setIsApplied(true);
     }
 
@@ -314,3 +323,5 @@ export default function InternshipPage() {
     </>
   );
 }
+
+    
