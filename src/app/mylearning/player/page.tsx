@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Header from '@/components/Header';
@@ -32,6 +33,12 @@ const courseVideoData = {
         title: 'Organic Chemistry Made Easy',
         description: 'Lecture 1: Introduction to Organic Chemistry',
         videoUrl: 'https://youtu.be/-h0drKJnGrE?si=Y6fFnqLQYs0DxYEE',
+        icon: Film,
+    },
+    'course-neet-bio': {
+        title: 'NEET Biology Crash Course',
+        description: 'Lecture 1: The Living World',
+        videoUrl: 'https://youtu.be/vlfLv0fAWNI?si=lwcSbAz0he0T_JTM',
         icon: Film,
     }
 };

@@ -27,7 +27,7 @@
     {
       "id": "course-biology",
       "description": "Thumbnail for a Biology course.",
-      "imageUrl": "https://images.unsplash.com/photo-1748711728491-d08d4a1b23ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YmlvbG9neSUyMG5hdHVyZXxlbnwwfHx8fDE3NjEwMjE0NTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://i.ytimg.com/vi/vlfLv0fAWNI/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCu9Eo2-fzSc9mogpyz9pSfn_gRYQ",
       "imageHint": "biology nature"
     },
     {
@@ -39,13 +39,13 @@
     {
       "id": "course-diploma",
       "description": "Thumbnail for a Diploma course.",
-      "imageUrl": "https://images.unsplash.com/photo-1503387837-b154d5074bd2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNobmljYWwlMjBkcmF3aW5nfGVufDB8fHx8MTc2MDk4MjcxNnww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1503387837-b154d5074bd2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNobmljYWwlMjBkcmF3aW5nfGVufDB8fHx8MTc2MDk4MjcxNnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "technical drawing"
     },
     {
       "id": "testimonial-1",
       "description": "Avatar for the first testimonial.",
-      "imageUrl": "https://images.unsplash.com/photo-1561065533-316e3142d586?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdHVkZW50JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYwOTM0NjgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1561065533-316e3142d586?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdHVkZW50JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYwOTM0NjgzfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "student portrait"
     },
     {
@@ -117,7 +117,7 @@
     {
       "id": "course-odia",
       "description": "Thumbnail for an Odia language course.",
-      "imageUrl": "https://images.unsplash.com/photo-1749947165301-0594efb27963?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvZGlhJTIwc2NyaXB0fGVufDB8fHx8MTc2MTA2MjY4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1749947165301-0594efb27963?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvZGlhJTIwc2NyaXB0fGVufDB8fHx8MTc2MTA2MjY4MHww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "odia script"
     },
     {
@@ -141,7 +141,7 @@
     {
       "id": "cse-dbms",
       "description": "Thumbnail for a Database Management course.",
-      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXRhYmFzZSUyMHNlcnZlcnxlbnwwfHx8fDE3NjEwNzQ1NDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXRhYmFzZSUyMHNlcnZlcnxlbnwwfHx8fDE3NjEwNzQ1NDV8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "database server"
     },
     {
@@ -201,7 +201,7 @@
     {
       "id": "activity-hackathon",
       "description": "Banner for a hackathon.",
-      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoYWNrYXRob24lMjBjb2Rpbmd8ZW58MHx8fHwxNzIxMjI3MDIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoYWNrYXRob24lMjBjb2Rpbmd8ZW58MHx8fHwxNzIxMjI3MDIwfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "hackathon coding"
     },
     {

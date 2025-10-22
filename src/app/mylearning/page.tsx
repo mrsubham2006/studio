@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -48,7 +49,7 @@ export default function MyLearningPage() {
         }
     }, []);
 
-    const videoCourses = ['cse-dsa', 'course-math-10', 'course-phy-12', 'course-chem-12'];
+    const videoCourses = ['cse-dsa', 'course-math-10', 'course-phy-12', 'course-chem-12', 'course-neet-bio'];
 
     if (isLoading) {
         return (
