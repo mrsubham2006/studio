@@ -39,7 +39,7 @@
     {
       "id": "course-diploma",
       "description": "Thumbnail for a Diploma course.",
-      "imageUrl": "https://images.unsplash.com/photo-1503387837-b154d5074bd2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNobmljYWwlMjBkcmF3aW5nfGVufDB8fHx8MTc2MDk4MjcxNnww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1503387837-b154d5074bd2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNobmljYWwlMjBkcmF3aW5nfGVufDB8fHx8MTc2MDk4MjcxNnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "technical drawing"
     },
     {
@@ -171,7 +171,7 @@
     {
       "id": "civil-structures",
       "description": "Thumbnail for a Structural Analysis course.",
-      "imageUrl": "https://images.unsplash.com/photo-1581092916259-1f4a9b5f4c4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxicmlkZ2UlMjBjb25zdHJ1Y3Rpb258ZW58MHx8fHwxNzYxNzQ4NjU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1581092916259-1f4a9b5f4c4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxicmlkZ2UlMjBjb25zdHJ1Y3Rpb258ZW58MHx8fHwxNzYxNzQ4NjU5fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "bridge construction"
     },
     {
@@ -203,6 +203,12 @@
       "description": "Banner for a robotics competition.",
       "imageUrl": "https://images.unsplash.com/photo-1690903348173-95e4a8d01b1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyb2JvdGljcyUyMGNvbXBldGl0aW9ufGVufDB8fHx8MTcyMTIyNzAyMHww&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "robotics competition"
+    },
+    {
+      "id": "certificate-template",
+      "description": "A template for a course completion certificate.",
+      "imageUrl": "https://i.postimg.cc/d1g3C6k7/Whats-App-Image-2025-10-22-at-04-18-09-54157111.jpg",
+      "imageHint": "certificate template"
     }
   ]
 }
