@@ -3,7 +3,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell, LifeBuoy, Mail, Phone, Package, X, BookCopy } from 'lucide-react';
+import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell, LifeBuoy, Mail, Phone, Package, X, BookCopy, Gamepad2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
@@ -153,6 +153,14 @@ export default function Header() {
                     <span className="sr-only">Notifications</span>
                 </Button>
             </Link>
+            {user && (
+                <Button variant="ghost" asChild className="transition-transform active:scale-95">
+                    <Link href="#">
+                        <Gamepad2 className="h-5 w-5" />
+                        <span className="hidden lg:inline">Games</span>
+                    </Link>
+                </Button>
+            )}
             {user && (
                 <Button variant="ghost" asChild className="transition-transform active:scale-95">
                     <Link href="/mylearning">
