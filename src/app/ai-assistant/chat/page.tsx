@@ -1,4 +1,3 @@
-
 'use client';
 
 import Header from '@/components/Header';
@@ -24,16 +23,16 @@ export default function AiAssistantChatPage() {
                 <div className="text-center fade-in-up">
                     <Sparkles className="mx-auto h-12 w-12 text-primary mb-2" />
                     <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl">AI Assistant</h1>
-                    <p className="mt-2 text-muted-foreground md:text-lg">Powered by Google Gemini.</p>
+                    <p className="mt-2 text-muted-foreground md:text-lg">Powered by Grok.</p>
                 </div>
             </div>
 
             <Card className="flex-1 flex flex-col shadow-lg fade-in-up" style={{ animationDelay: '0.2s' }}>
                 <CardContent className="p-0 flex-1 flex flex-col">
                    <iframe
-                        src="https://gemini.google.com/app?_gl=1*1nsie9b*_gcl_aw*R0NMLjE3NTg3Mjk1OTkuQ2owS0NRandyYzdHQmhDZkFSSXNBSEdjVzVWb29NaVBXTklteXRKRlRQVG93Yk55V2pZOEtvcWtnNU1NdWhvc3diSmF0WDRTb2dRR0NOQWFBcWQ0RUFMd193Y0I.*_gcl_dc*R0NMLjE3NTg3Mjk1OTkuQ2owS0NRandyYzdHQmhDZkFSSXNBSEdjVzVWb29NaVBXTklteXRKRlRQVG93Yk55V2pZOEtvcWtnNU1NdWhvc3diSmF0WDRTb2dRR0NOQWFBcWQ0RUFMd193Y0I.*_gcl_au*MTM5MDE0MTMzOC4xNzU4NzI5NTk5LjEwMjg1NTIzNTEuMTc1ODczMDE0Mi4xNzU4NzMwMTQx*_ga*MTY0MzU0OTQxMC4xNzU4NzI5NjAw*_ga_WC57KJ50ZZ*czE3NTg3Mjk1OTkkbzEkZzEkdDE3NTg3MzAyMDMkajYwJGwwJGgw"
+                        src="https://grok.x.ai/"
                         className="w-full h-full border-0 rounded-lg"
-                        title="AI Assistant - Google Gemini"
+                        title="AI Assistant - Grok"
                     ></iframe>
                 </CardContent>
             </Card>
