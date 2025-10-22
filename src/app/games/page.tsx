@@ -6,7 +6,7 @@ import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { ArrowRight, BrainCircuit, Puzzle, Target, Brain, Code, Divide, Trophy } from 'lucide-react';
+import { ArrowRight, BrainCircuit, Puzzle, Target, Brain, Code, Divide, Trophy, Star, History } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -18,6 +18,8 @@ const games = [
     icon: Target,
     buttonColor: '#00BFA6',
     href: '/games/quiz-quest',
+    highScore: 450,
+    lastScore: 390,
     leaderboard: [
         { rank: 1, name: 'Riya Sharma', score: 450 },
         { rank: 2, name: 'Amit Kumar', score: 420 },
@@ -30,6 +32,8 @@ const games = [
     icon: Puzzle,
     buttonColor: '#00BFA6',
     href: '/games/word-match',
+    highScore: 500,
+    lastScore: 450,
     leaderboard: [
         { rank: 1, name: 'Vikram Singh', score: 500 },
         { rank: 2, name: 'Priya Verma', score: 480 },
@@ -42,6 +46,8 @@ const games = [
     icon: BrainCircuit,
     buttonColor: '#00BFA6',
     href: '#',
+    highScore: 620,
+    lastScore: 550,
     leaderboard: [
         { rank: 1, name: 'Neha Gupta', score: 620 },
         { rank: 2, name: 'Rajesh Kumar', score: 580 },
@@ -54,6 +60,8 @@ const games = [
     icon: Code,
     buttonColor: '#00BFA6',
     href: '#',
+    highScore: 800,
+    lastScore: 720,
     leaderboard: [
         { rank: 1, name: 'Suresh Kumar', score: 800 },
         { rank: 2, name: 'Deepika Rao', score: 750 },
@@ -66,6 +74,8 @@ const games = [
     icon: Divide,
     buttonColor: '#00BFA6',
     href: '#',
+    highScore: 1250,
+    lastScore: 1050,
     leaderboard: [
         { rank: 1, name: 'Aarav Patel', score: 1250 },
         { rank: 2, name: 'Isha Reddy', score: 1100 },
@@ -108,22 +118,34 @@ export default function GamesPage() {
                   style={{ animationDelay: `${index * 100}ms`, backgroundColor: '#2A2A3E', borderColor: '#3A3A4F' }}
                 >
                   <AccordionTrigger className="w-full p-0 hover:no-underline">
-                    <CardHeader className="flex flex-row items-center justify-between p-6 w-full">
-                      <div className="flex items-center gap-4 text-left">
-                        <div className="p-3 rounded-lg" style={{ backgroundColor: `${game.buttonColor}20` }}>
-                          <game.icon className="h-6 w-6" style={{ color: game.buttonColor }} />
+                    <CardHeader className="flex flex-col items-start p-6 w-full gap-4">
+                        <div className="flex items-center justify-between w-full">
+                           <div className="flex items-center gap-4 text-left">
+                                <div className="p-3 rounded-lg" style={{ backgroundColor: `${game.buttonColor}20` }}>
+                                <game.icon className="h-6 w-6" style={{ color: game.buttonColor }} />
+                                </div>
+                                <div>
+                                <CardTitle className="font-headline text-lg text-white">{game.title}</CardTitle>
+                                <p className="text-sm text-gray-400">{game.description}</p>
+                                </div>
+                            </div>
+                            <Button asChild style={{ backgroundColor: game.buttonColor, color: 'white' }} className="shrink-0">
+                                <Link href={game.href}>
+                                    Play
+                                    <ArrowRight className="h-4 w-4 ml-2" />
+                                </Link>
+                            </Button>
                         </div>
-                        <div>
-                          <CardTitle className="font-headline text-lg text-white">{game.title}</CardTitle>
-                          <p className="text-sm text-gray-400">{game.description}</p>
+                        <div className="flex items-center gap-6 text-sm text-gray-300 pt-2">
+                            <div className="flex items-center gap-2">
+                                <Star className="h-4 w-4 text-yellow-400"/>
+                                <span>High Score: <span className="font-bold text-white">{game.highScore}</span></span>
+                            </div>
+                             <div className="flex items-center gap-2">
+                                <History className="h-4 w-4 text-cyan-400"/>
+                                <span>Last Score: <span className="font-bold text-white">{game.lastScore}</span></span>
+                            </div>
                         </div>
-                      </div>
-                      <Button asChild style={{ backgroundColor: game.buttonColor, color: 'white' }} className="shrink-0">
-                        <Link href={game.href}>
-                            Play
-                            <ArrowRight className="h-4 w-4 ml-2" />
-                        </Link>
-                      </Button>
                     </CardHeader>
                   </AccordionTrigger>
                   <AccordionContent>
