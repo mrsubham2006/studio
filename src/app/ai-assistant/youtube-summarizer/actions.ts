@@ -11,7 +11,7 @@ const YoutubeSummaryInputSchema = z.object({
 });
 
 const AudioSummaryInputSchema = z.object({
-    audioDataUri: z.string().startsWith('data:audio/', 'Invalid audio data URI.'),
+    audioDataUri: z.string().startsWith('data:video/', 'Invalid video data URI.'),
     summaryLength: z.enum(['Short (approx. 50 words)', 'Medium (approx. 100 words)', 'Long (approx. 200 words)']),
 });
 
@@ -43,6 +43,6 @@ export async function getAudioSummary(audioDataUri: string, summaryLength: 'Shor
             throw new Error(`Invalid input: ${error.errors.map(e => e.message).join(', ')}`);
         }
         console.error("Error getting audio summary:", error);
-        throw new Error("Failed to process the audio file. Please ensure it's a valid format and try again.");
+        throw new Error("Failed to process the video file. Please ensure it's a valid format and try again.");
     }
 }

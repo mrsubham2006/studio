@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowLeft, Youtube, Wand2, Sparkles, Copy, Check, FileAudio, Upload } from 'lucide-react';
+import { ArrowLeft, Youtube, Wand2, Sparkles, Copy, Check, Video, Upload } from 'lucide-react';
 import Link from 'next/link';
 import { getYoutubeSummary, getAudioSummary } from './actions';
 import { useToast } from '@/hooks/use-toast';
@@ -25,8 +25,8 @@ export default function YoutubeSummarizerPage() {
   const [isCopied, setIsCopied] = useState(false);
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState('youtube');
-  const [audioFile, setAudioFile] = useState<File | null>(null);
-  const audioInputRef = useRef<HTMLInputElement>(null);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const videoInputRef = useRef<HTMLInputElement>(null);
 
   const handleGenerateSummary = () => {
     startTransition(async () => {
@@ -40,26 +40,26 @@ export default function YoutubeSummarizerPage() {
           }
           result = await getYoutubeSummary(videoUrl, summaryLength);
         } else {
-           if (!audioFile) {
-            toast({ variant: 'destructive', title: 'Please upload an audio file.' });
+           if (!videoFile) {
+            toast({ variant: 'destructive', title: 'Please upload a video file.' });
             return;
           }
           const reader = new FileReader();
-          reader.readAsDataURL(audioFile);
+          reader.readAsDataURL(videoFile);
           reader.onload = async (e) => {
             const dataUri = e.target?.result as string;
             try {
-               const audioResult = await getAudioSummary(dataUri, summaryLength);
-               setSummary(audioResult);
+               const videoResult = await getAudioSummary(dataUri, summaryLength);
+               setSummary(videoResult);
                toast({
                 title: 'Summary Generated!',
-                description: 'Your audio file has been summarized.',
+                description: 'Your video file has been summarized.',
               });
             } catch (error: any) {
               toast({
                 variant: 'destructive',
                 title: 'An error occurred.',
-                description: error.message || 'Failed to summarize audio. Please try again.',
+                description: error.message || 'Failed to summarize video. Please try again.',
               });
             }
           };
@@ -91,13 +91,13 @@ export default function YoutubeSummarizerPage() {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      if (file.type.startsWith('audio/')) {
-        setAudioFile(file);
+      if (file.type.startsWith('video/')) {
+        setVideoFile(file);
       } else {
         toast({
           variant: "destructive",
           title: "Invalid File Type",
-          description: "Please upload an audio file (e.g., MP3, WAV).",
+          description: "Please upload a video file (e.g., MP4).",
         });
       }
     }
@@ -117,7 +117,7 @@ export default function YoutubeSummarizerPage() {
 
   const videoId = getYouTubeVideoId(videoUrl);
 
-  const isGenerateDisabled = (activeTab === 'youtube' && !videoUrl) || (activeTab === 'upload' && !audioFile) || isProcessing;
+  const isGenerateDisabled = (activeTab === 'youtube' && !videoUrl) || (activeTab === 'upload' && !videoFile) || isProcessing;
 
   return (
     <>
@@ -142,7 +142,7 @@ export default function YoutubeSummarizerPage() {
                 AI Video Summarizer
               </h1>
               <p className="mt-2 text-muted-foreground md:text-lg">
-                Paste a YouTube link or upload an audio file and let AI summarize it for you.
+                Paste a YouTube link or upload a video file and let AI summarize it for you.
               </p>
             </div>
           </div>
@@ -152,7 +152,7 @@ export default function YoutubeSummarizerPage() {
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="youtube"><Youtube className="mr-2 h-4 w-4"/>YouTube URL</TabsTrigger>
-                  <TabsTrigger value="upload"><FileAudio className="mr-2 h-4 w-4"/>Upload Audio</TabsTrigger>
+                  <TabsTrigger value="upload"><Video className="mr-2 h-4 w-4"/>Upload Video</TabsTrigger>
                 </TabsList>
                 <TabsContent value="youtube" className="mt-6">
                   <div className="flex flex-col gap-4 mb-8">
@@ -179,30 +179,30 @@ export default function YoutubeSummarizerPage() {
                 <TabsContent value="upload" className="mt-6">
                     <div className="flex flex-col items-center justify-center w-full">
                         <label 
-                            htmlFor="audio-upload" 
+                            htmlFor="video-upload" 
                             className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer transition-colors bg-muted/50 hover:bg-muted"
                         >
-                            {audioFile ? (
+                            {videoFile ? (
                                 <div className="flex flex-col items-center justify-center text-center p-4">
-                                    <FileAudio className="w-12 h-12 mb-4 text-primary" />
-                                    <p className="font-semibold text-lg break-all">{audioFile.name}</p>
-                                    <p className="text-sm text-muted-foreground">({(audioFile.size / 1024 / 1024).toFixed(2)} MB)</p>
+                                    <Video className="w-12 h-12 mb-4 text-primary" />
+                                    <p className="font-semibold text-lg break-all">{videoFile.name}</p>
+                                    <p className="text-sm text-muted-foreground">({(videoFile.size / 1024 / 1024).toFixed(2)} MB)</p>
                                 </div>
                             ) : (
                                 <div className="flex flex-col items-center justify-center">
                                     <Upload className="w-10 h-10 mb-4 text-muted-foreground" />
                                     <p className="mb-2 text-sm text-muted-foreground"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                                    <p className="text-xs text-muted-foreground">MP3, WAV, M4A, etc.</p>
+                                    <p className="text-xs text-muted-foreground">MP4 video file</p>
                                 </div>
                             )}
                         </label>
                          <input 
-                            id="audio-upload" 
+                            id="video-upload" 
                             type="file" 
                             className="hidden" 
-                            ref={audioInputRef} 
+                            ref={videoInputRef} 
                             onChange={handleFileChange}
-                            accept="audio/*"
+                            accept="video/mp4"
                         />
                     </div>
                 </TabsContent>
@@ -252,7 +252,7 @@ export default function YoutubeSummarizerPage() {
                   ) : (
                     <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground">
                       <Sparkles className="h-8 w-8 mb-2" />
-                      <p>Your video or audio summary will appear here.</p>
+                      <p>Your video summary will appear here.</p>
                     </div>
                   )}
                 </div>
