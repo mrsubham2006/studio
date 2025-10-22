@@ -12,7 +12,7 @@ export default function HeroSection() {
   const { user } = useUser();
 
   return (
-    <section className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center text-center bg-gradient-to-br from-primary/20 via-background to-background">
+    <section className="relative w-full h-[60vh] md:h-[70vh] flex items-center justify-center text-center bg-background">
       {heroImage && (
         <>
           <Image
