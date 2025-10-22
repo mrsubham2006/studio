@@ -45,9 +45,7 @@ export default function OurFeaturesSection() {
     <section className="py-16 md:py-24 bg-muted/40">
       <div className="container max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold font-headline tracking-tighter sm:text-4xl md:text-5xl">
-            Everything You Need to Succeed
-          </h2>
+          
           <p className="mt-4 max-w-2xl mx-auto text-muted-foreground md:text-xl">
             Explore the powerful features that make learning with EduNex effective and fun.
           </p>
