@@ -115,6 +115,46 @@ const mockInternships = [
             'Analyze campaign performance and create reports'
         ],
         perks: ['Certificate', 'Letter of recommendation', 'Performance bonus']
+    },
+    {
+        id: 6,
+        title: 'Data Science Intern',
+        company: 'AnalyticsAI',
+        logo: 'https://placehold.co/100x100/00B8D4/FFFFFF/png?text=AI',
+        location: 'Work From Home',
+        stipend: '25,000',
+        duration: '6 Months',
+        applyBy: '15 Sep 2024',
+        type: 'Internship',
+        aboutCompany: 'AnalyticsAI is at the forefront of artificial intelligence, providing predictive analytics solutions to enterprise clients.',
+        description: 'Work with our data science team on real-world datasets. You will be involved in data cleaning, exploratory data analysis, and building machine learning models.',
+        skills: ['Python', 'Pandas', 'Scikit-learn', 'SQL'],
+        responsibilities: [
+            'Pre-process and clean large datasets',
+            'Build and train machine learning models',
+            'Visualize data and present findings to the team'
+        ],
+        perks: ['Certificate', 'Letter of recommendation', 'Job offer potential']
+    },
+    {
+        id: 7,
+        title: 'Mechanical Engineering Intern',
+        company: 'Nalcon',
+        logo: 'https://placehold.co/100x100/757575/FFFFFF/png?text=N',
+        location: 'Angul',
+        stipend: '15,000',
+        duration: '6 Months',
+        applyBy: '20 Sep 2024',
+        type: 'Internship',
+        aboutCompany: 'Nalcon is a major player in the aluminum production industry with a large-scale plant in Angul.',
+        description: 'Gain practical experience in a heavy industrial setting. This internship involves working with the maintenance and operations team for plant machinery.',
+        skills: ['AutoCAD', 'Mechanical Design', 'Industrial Safety'],
+        responsibilities: [
+            'Assist in the maintenance of plant machinery',
+            'Work on small design improvement projects',
+            'Follow and promote safety protocols'
+        ],
+        perks: ['Certificate', 'Subsidized accommodation', 'On-site training']
     }
 ];
 
@@ -323,5 +363,3 @@ export default function InternshipPage() {
     </>
   );
 }
-
-    
