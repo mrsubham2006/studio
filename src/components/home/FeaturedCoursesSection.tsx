@@ -8,6 +8,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { BookOpen } from 'lucide-react';
 import productData from '@/lib/products.json';
 import { useMemo } from 'react';
+import { cn } from '@/lib/utils';
 
 type Product = {
     id: string;
@@ -49,7 +50,13 @@ export default function FeaturedCoursesSection({ selectedClass }: { selectedClas
           {featuredCourses.map((course, index) => {
             const courseImage = PlaceHolderImages.find(img => img.id === course.imageId);
             return (
-              <Card key={course.id} className="flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 fade-in-up" style={{ animationDelay: `${index * 100}ms`}}>
+              <Card 
+                key={course.id} 
+                className={cn(
+                  "shine-on-hover flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up",
+                )}
+                style={{ animationDelay: `${index * 100}ms`}}
+              >
                 <CardHeader className="p-0">
                   {courseImage && (
                      <Link href={`/courses/${course.id}`}>
@@ -70,7 +77,7 @@ export default function FeaturedCoursesSection({ selectedClass }: { selectedClas
                     <span>{course.category}</span>
                   </div>
                   <CardTitle className="font-headline text-lg leading-tight h-12 overflow-hidden">
-                     <Link href={`/courses/${course.id}`}>{course.name}</Link>
+                     <Link href={`/courses/${course.id}`} className="hover:text-primary transition-colors">{course.name}</Link>
                   </CardTitle>
                   <p className="text-sm text-muted-foreground h-10 overflow-hidden">{course.description}</p>
                    <p className="text-2xl font-bold text-primary pt-2">₹{course.price}</p>
