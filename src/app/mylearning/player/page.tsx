@@ -4,17 +4,89 @@
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Film } from 'lucide-react';
+import { ArrowLeft, Film, BookOpen } from 'lucide-react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
+
+const courseVideoData = {
+    'cse-dsa': {
+        title: 'Data Structures & Algorithms',
+        description: 'Lecture 1: Introduction to Data Structures',
+        videoUrl: 'https://youtu.be/Hb9QvSODBPY?si=8ZMfeZ8EohAVaZZC',
+        icon: Film,
+    },
+    'course-math-10': {
+        title: 'Foundation Mathematics Class 10',
+        description: 'Live Session: Important Questions for Board Exams',
+        videoUrl: 'https://www.youtube.com/live/zNMIK2vLHGM?si=T8ldKdmSZl-hSoTe',
+        icon: BookOpen,
+    }
+};
+
+type CourseKeys = keyof typeof courseVideoData;
+
+function VideoPlayer() {
+    const searchParams = useSearchParams();
+    const courseId = searchParams.get('courseId') as CourseKeys | null;
+
+    const data = courseId && courseVideoData[courseId] ? courseVideoData[courseId] : null;
+
+    const getYouTubeEmbedUrl = (url: string) => {
+        let videoId;
+        if (url.includes('youtu.be')) {
+             videoId = url.split('?si=')[0].split('/').pop();
+        } else if (url.includes('youtube.com/live')) {
+            videoId = url.split('/live/')[1].split('?')[0];
+        } else {
+             videoId = url.split('?v=')[1]?.split('&')[0];
+        }
+       
+        return `https://www.youtube.com/embed/${videoId}`;
+    };
+
+    if (!data) {
+        return (
+             <Card>
+                <CardHeader>
+                    <CardTitle>Video not found</CardTitle>
+                    <CardDescription>The requested course video could not be loaded.</CardDescription>
+                </CardHeader>
+            </Card>
+        )
+    }
+
+    const Icon = data.icon;
+
+    return (
+        <Card className="overflow-hidden">
+            <div className="aspect-video bg-black">
+                <iframe
+                    className="w-full h-full"
+                    src={getYouTubeEmbedUrl(data.videoUrl)}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                ></iframe>
+            </div>
+            <CardHeader>
+                <CardTitle className="text-2xl font-headline flex items-center gap-3">
+                    <Icon className="h-6 w-6 text-primary" />
+                    {data.title}
+                </CardTitle>
+                <CardDescription>{data.description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <p className="text-muted-foreground">
+                    Welcome to the lecture. In this video, we will cover the fundamental concepts of the topic.
+                </p>
+            </CardContent>
+        </Card>
+    );
+}
+
 
 export default function VideoPlayerPage() {
-
-  const getYouTubeEmbedUrl = (url: string) => {
-    const videoId = url.split('?si=')[0].split('/').pop();
-    return `https://www.youtube.com/embed/${videoId}`;
-  }
-  const videoUrl = "https://youtu.be/Hb9QvSODBPY?si=8ZMfeZ8EohAVaZZC";
-
   return (
     <div className="flex-1 bg-muted/40 min-h-screen">
       <Header />
@@ -28,30 +100,9 @@ export default function VideoPlayerPage() {
                     </Link>
                 </Button>
             </div>
-
-            <Card className="overflow-hidden">
-                <div className="aspect-video bg-black">
-                     <iframe
-                        className="w-full h-full"
-                        src={getYouTubeEmbedUrl(videoUrl)}
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                    ></iframe>
-                </div>
-                <CardHeader>
-                    <CardTitle className="text-2xl font-headline flex items-center gap-3">
-                        <Film className="h-6 w-6 text-primary" />
-                        Data Structures & Algorithms
-                    </CardTitle>
-                    <CardDescription>Lecture 1: Introduction to Data Structures</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <p className="text-muted-foreground">
-                        Welcome to the first lecture. In this video, we will cover the fundamental concepts of data structures, why they are important, and the different types of data structures you will learn about in this course.
-                    </p>
-                </CardContent>
-            </Card>
+            <Suspense fallback={<div>Loading video...</div>}>
+                <VideoPlayer />
+            </Suspense>
         </div>
       </main>
     </div>

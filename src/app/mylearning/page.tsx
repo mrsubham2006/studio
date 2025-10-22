@@ -19,6 +19,7 @@ const mockProgress: { [key: string]: number } = {
     'course-neet-bio': 100,
     'course-chem-12': 25,
     'mech-thermo': 55,
+    'course-math-10': 60,
 };
 
 type Course = {
@@ -46,6 +47,8 @@ export default function MyLearningPage() {
             setIsLoading(false);
         }
     }, []);
+
+    const videoCourses = ['cse-dsa', 'course-math-10'];
 
     if (isLoading) {
         return (
@@ -86,8 +89,8 @@ export default function MyLearningPage() {
                                 const courseImage = PlaceHolderImages.find(img => img.id === course.imageId);
                                 const progress = mockProgress[course.id] || Math.floor(Math.random() * 81); // Random progress if not in mock
                                 
-                                // Special handling for the video course
-                                const courseLink = course.id === 'cse-dsa' ? '/mylearning/player' : `/courses/${course.id}`;
+                                // Special handling for video courses
+                                const courseLink = videoCourses.includes(course.id) ? `/mylearning/player?courseId=${course.id}` : `/courses/${course.id}`;
                                 
                                 return (
                                 <Link href={courseLink} key={course.id} className="block hover:no-underline">
