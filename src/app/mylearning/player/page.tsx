@@ -5,7 +5,7 @@
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Film, BookOpen } from 'lucide-react';
+import { ArrowLeft, Film, BookOpen, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
@@ -111,6 +111,16 @@ function VideoPlayer() {
                 <p className="text-muted-foreground">
                     Welcome to the lecture. In this video, we will cover the fundamental concepts of the topic.
                 </p>
+                <div className="mt-6 flex gap-4">
+                    <Button variant="outline">
+                        <BookOpen className="mr-2 h-4 w-4" />
+                        View Notes
+                    </Button>
+                    <Button>
+                        <CheckCircle className="mr-2 h-4 w-4" />
+                        Mark as Complete
+                    </Button>
+                </div>
             </CardContent>
         </Card>
     );
@@ -141,3 +151,4 @@ export default function VideoPlayerPage() {
 }
 
     
+
