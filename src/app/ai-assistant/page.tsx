@@ -36,10 +36,10 @@ const aiTools = [
     disabled: false,
   },
   {
-    name: 'Grok AI',
-    description: 'Interact with the Grok AI model from x.ai.',
+    name: 'HuggingChat',
+    description: 'Chat with open-source AI models from Hugging Face.',
     icon: BrainCircuit,
-    href: '/ai-assistant/grok',
+    href: '/ai-assistant/huggingchat',
     disabled: false,
   },
 ];

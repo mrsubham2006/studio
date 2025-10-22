@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, BrainCircuit, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
-export default function GrokAiPage() {
+export default function HuggingChatPage() {
   return (
     <>
       <Header />
@@ -27,10 +27,10 @@ export default function GrokAiPage() {
                 </div>
               </div>
               <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl">
-                Grok AI
+                HuggingChat
               </h1>
               <p className="mt-2 text-muted-foreground md:text-lg">
-                Interact with the Grok AI model below.
+                Chat with leading open-source AI models.
               </p>
             </div>
           </div>
@@ -38,9 +38,9 @@ export default function GrokAiPage() {
           <Card className="shadow-2xl backdrop-blur-lg bg-card/80 flex-1">
             <CardContent className="p-2 h-full">
               <iframe
-                src="https://grok.x.ai/"
+                src="https://huggingface.co/chat/embed/openchat/openchat-3.5-1210"
                 className="w-full h-full border-0 rounded-lg"
-                title="Grok AI"
+                title="HuggingChat"
               ></iframe>
             </CardContent>
           </Card>
