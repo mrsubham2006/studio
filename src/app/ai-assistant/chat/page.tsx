@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import { Sparkles, ArrowLeft, SendHorizontal, User, Bot } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
-import { getChatbotResponse } from '../actions';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -16,6 +15,22 @@ type Message = {
   text: string;
   sender: 'user' | 'bot';
 };
+
+async function getChatbotResponse(prompt: string) {
+  const res = await fetch("/api/assistant", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt }),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Failed to get response from server.");
+  }
+
+  const data = await res.json();
+  return data.reply;
+}
 
 export default function AiAssistantChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -41,11 +56,12 @@ export default function AiAssistantChatPage() {
 
     const userMessage: Message = { text: input, sender: 'user' };
     setMessages(prev => [...prev, userMessage]);
+    const currentInput = input;
     setInput('');
 
     startTransition(async () => {
       try {
-        const botResponse = await getChatbotResponse(input);
+        const botResponse = await getChatbotResponse(currentInput);
         const botMessage: Message = { text: botResponse, sender: 'bot' };
         setMessages(prev => [...prev, botMessage]);
       } catch (error: any) {
@@ -55,7 +71,7 @@ export default function AiAssistantChatPage() {
           description: error.message || 'Failed to get response. Please try again.',
         });
         // Optionally remove the user's message if the bot fails
-        setMessages(prev => prev.slice(0, prev.length -1));
+        setMessages(prev => prev.filter(msg => msg !== userMessage));
       }
     });
   };
