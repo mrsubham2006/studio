@@ -1,10 +1,11 @@
+
 'use client';
 
 import { useState, useRef, useEffect, useTransition } from 'react';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Sparkles, ArrowLeft, SendHorizontal, User, Bot, AlertTriangle, Paperclip } from 'lucide-react';
+import { Sparkles, ArrowLeft, SendHorizontal, User, Bot, AlertTriangle, Paperclip, Mic } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -90,6 +91,11 @@ export default function AiAssistantChatPage() {
       console.log('Selected file:', file.name);
       // For now, we'll just log it. In a real app, you'd upload it.
     }
+  };
+
+  const handleMicClick = () => {
+    // Voice input logic will go here
+    console.log('Mic clicked');
   };
 
 
@@ -182,7 +188,7 @@ export default function AiAssistantChatPage() {
                                 className="pr-24 h-11"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
-                                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage(input)}
+                                onKeyDown={(e) => e.key === 'Enter' && input.trim() !== '' && handleSendMessage(input)}
                                 disabled={isPending}
                             />
                              <Button 
@@ -201,15 +207,27 @@ export default function AiAssistantChatPage() {
                                 className="hidden" 
                                 onChange={handleFileChange}
                             />
-                            <Button 
-                                type="submit" 
-                                size="icon" 
-                                className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 w-8" 
-                                onClick={() => handleSendMessage(input)}
-                                disabled={isPending || input.trim() === ''}
-                            >
-                                <SendHorizontal className="h-4 w-4" />
-                            </Button>
+                             {input.trim() === '' ? (
+                                <Button 
+                                    type="button" 
+                                    size="icon" 
+                                    className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 w-8" 
+                                    onClick={handleMicClick}
+                                    disabled={isPending}
+                                >
+                                    <Mic className="h-4 w-4" />
+                                </Button>
+                            ) : (
+                                <Button 
+                                    type="submit" 
+                                    size="icon" 
+                                    className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 w-8" 
+                                    onClick={() => handleSendMessage(input)}
+                                    disabled={isPending || input.trim() === ''}
+                                >
+                                    <SendHorizontal className="h-4 w-4" />
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </CardContent>
