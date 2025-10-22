@@ -20,7 +20,7 @@ export default function HeroSection() {
             alt={heroImage.description}
             data-ai-hint={heroImage.imageHint}
             fill
-            className="object-cover opacity-20 dark:opacity-10"
+            className="object-cover opacity-30 dark:opacity-10"
           />
           <div className="absolute inset-0 bg-black/0 dark:bg-black/50" />
         </>
