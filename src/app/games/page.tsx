@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, BrainCircuit, Puzzle, Target, Brain, Code, Divide } from 'lucide-react';
+import Link from 'next/link';
 
 const games = [
   {
@@ -12,30 +13,35 @@ const games = [
     description: 'Answer 5 random questions from your course topics and earn points.',
     icon: Target,
     buttonColor: '#00BFA6',
+    href: '/games/quiz-quest',
   },
   {
     title: 'Word Match',
     description: 'Drag and drop words to match them with their correct meanings.',
     icon: Puzzle,
     buttonColor: '#00BFA6',
+    href: '#',
   },
   {
     title: 'Memory Challenge',
     description: 'A flip-card memory game with course keywords and concepts.',
     icon: BrainCircuit,
     buttonColor: '#00BFA6',
+    href: '#',
   },
   {
     title: 'Code Rush',
     description: 'Complete short code snippets by choosing the correct piece.',
     icon: Code,
     buttonColor: '#00BFA6',
+    href: '#',
   },
   {
     title: 'Math Sprint',
     description: 'Timed arithmetic questions that get faster as you answer correctly.',
     icon: Divide,
     buttonColor: '#00BFA6',
+    href: '#',
   },
 ];
 
@@ -72,9 +78,11 @@ export default function GamesPage() {
                       <p className="text-sm text-gray-400">{game.description}</p>
                     </div>
                   </div>
-                  <Button style={{ backgroundColor: game.buttonColor, color: 'white' }} className="shrink-0">
-                    Play
-                    <ArrowRight className="h-4 w-4 ml-2" />
+                  <Button asChild style={{ backgroundColor: game.buttonColor, color: 'white' }} className="shrink-0">
+                    <Link href={game.href}>
+                        Play
+                        <ArrowRight className="h-4 w-4 ml-2" />
+                    </Link>
                   </Button>
                 </CardHeader>
               </Card>
