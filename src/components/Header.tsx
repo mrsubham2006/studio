@@ -28,7 +28,7 @@ import { useNotification } from '@/context/NotificationProvider';
 const mobileNavLinks = [
   { href: '/', label: 'Home', icon: Book },
   { href: '/about', label: 'About', icon: Book },
-  { href: '/games', label: 'Gamified Learning Zone', icon: Gamepad2 },
+  { href: '/games', label: 'EduPlay', icon: Gamepad2 },
   { href: '/library', label: 'Library', icon: Library },
   { href: '/internship', label: 'Internship', icon: Briefcase },
   { href: '/scholarship', label: 'Scholarship', icon: GraduationCap },
