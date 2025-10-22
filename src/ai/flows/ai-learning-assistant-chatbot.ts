@@ -46,7 +46,7 @@ const aiLearningAssistantChatbotFlow = ai.defineFlow(
     outputSchema: AiLearningAssistantChatbotOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
+    const {output} = await prompt(input, {model: 'gemini-1.5-flash-latest'});
     return output!;
   }
 );
