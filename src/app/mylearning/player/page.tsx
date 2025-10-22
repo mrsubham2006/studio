@@ -15,49 +15,49 @@ const courseVideoData = {
         title: 'Data Structures & Algorithms',
         description: 'Lecture 1: Introduction to Data Structures',
         videoUrl: 'https://youtu.be/Hb9QvSODBPY?si=8ZMfeZ8EohAVaZZC',
-        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        notesUrl: 'https://drive.google.com/file/d/1z75J0qPI0WDgVrJ-701durmYMWWrBrvc/preview',
         icon: Film,
     },
     'course-math-10': {
         title: 'Foundation Mathematics Class 10',
         description: 'Live Session: Important Questions for Board Exams',
         videoUrl: 'https://www.youtube.com/live/zNMIK2vLHGM?si=T8ldKdmSZl-hSoTe',
-        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        notesUrl: 'https://drive.google.com/file/d/1z75J0qPI0WDgVrJ-701durmYMWWrBrvc/preview',
         icon: BookOpen,
     },
     'course-phy-12': {
         title: 'Mastering Physics for Class 12',
         description: 'Chapter 1: Electric Charges and Fields',
         videoUrl: 'https://youtu.be/2Qie6DbS63o?si=bifiLy7IaGV-9Lb4',
-        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        notesUrl: 'https://drive.google.com/file/d/1z75J0qPI0WDgVrJ-701durmYMWWrBrvc/preview',
         icon: Film,
     },
     'course-chem-12': {
         title: 'Organic Chemistry Made Easy',
         description: 'Lecture 1: Introduction to Organic Chemistry',
         videoUrl: 'https://youtu.be/-h0drKJnGrE?si=Y6fFnqLQYs0DxYEE',
-        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        notesUrl: 'https://drive.google.com/file/d/1z75J0qPI0WDgVrJ-701durmYMWWrBrvc/preview',
         icon: Film,
     },
     'course-neet-bio': {
         title: 'NEET Biology Crash Course',
         description: 'Lecture 1: The Living World',
         videoUrl: 'https://youtu.be/vlfLv0fAWNI?si=lwcSbAz0he0T_JTM',
-        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        notesUrl: 'https://drive.google.com/file/d/1z75J0qPI0WDgVrJ-701durmYMWWrBrvc/preview',
         icon: Film,
     },
     'course-sci-9': {
         title: 'Science for Class 9',
         description: 'Chapter 1: Matter in Our Surroundings',
         videoUrl: 'https://youtu.be/7Uy_yonHhAg?si=D7bATzaLsv6xNB8V',
-        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        notesUrl: 'https://drive.google.com/file/d/1z75J0qPI0WDgVrJ-701durmYMWWrBrvc/preview',
         icon: BookOpen,
     },
     'course-eng-8': {
         title: 'English Grammar for Class 8',
         description: 'Chapter 1: The Sentence',
         videoUrl: 'https://youtu.be/bgHHZ4Arl4A?si=kZGbEScpOpN6uda2',
-        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
+        notesUrl: 'https://drive.google.com/file/d/1z75J0qPI0WDgVrJ-701durmYMWWrBrvc/preview',
         icon: BookOpen,
     }
 };
@@ -168,5 +168,6 @@ export default function VideoPlayerPage() {
 }
 
     
+
 
 
