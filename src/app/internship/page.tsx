@@ -6,10 +6,11 @@ import Header from '@/components/Header';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Briefcase, MapPin, IndianRupee, Calendar, Search, ExternalLink, Building, PlayCircle, Star, Sparkles } from 'lucide-react';
+import { Briefcase, MapPin, IndianRupee, Calendar, Search, ExternalLink, Building, PlayCircle, Star, Sparkles, CheckCircle } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import { useToast } from '@/hooks/use-toast';
 
 const mockInternships = [
     {
@@ -116,6 +117,48 @@ const mockInternships = [
     }
 ];
 
+const ApplyDialog = ({ title, company }: { title: string, company: string }) => {
+    const { toast } = useToast();
+    const [isApplied, setIsApplied] = useState(false);
+
+    const handleApply = () => {
+        // Simulate API call
+        toast({
+            title: "Application Sent!",
+            description: `Your application for ${title} at ${company} has been submitted.`,
+        });
+        setIsApplied(true);
+    }
+
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                 <Button disabled={isApplied}>
+                    {isApplied ? <CheckCircle className="mr-2 h-4 w-4" /> : <ExternalLink className="mr-2 h-4 w-4" />}
+                    {isApplied ? 'Applied' : 'Apply Now'}
+                </Button>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Apply to {company}</DialogTitle>
+                    <DialogDescription>You are applying for the role of <span className="font-semibold text-foreground">{title}</span>.</DialogDescription>
+                </DialogHeader>
+                <div className="py-4">
+                    <p className="text-sm text-muted-foreground">This is a mock application. Clicking confirm will simulate sending your profile to the recruiter.</p>
+                </div>
+                <DialogFooter>
+                    <DialogClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                    </DialogClose>
+                     <DialogClose asChild>
+                        <Button onClick={handleApply}>Confirm & Apply</Button>
+                    </DialogClose>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
+    )
+}
+
 export default function InternshipPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [locationFilter, setLocationFilter] = useState('');
@@ -169,7 +212,7 @@ export default function InternshipPage() {
                     <Card key={internship.id} className="shadow-md hover:shadow-xl transition-shadow duration-300">
                          <Dialog>
                             <CardHeader className="flex flex-row items-start gap-4">
-                                <img src={internship.logo} alt={`${internship.company} logo`} className="h-14 w-14 rounded-md border" />
+                                <img src={internship.logo} alt={`${''}${internship.company} logo${''}`} className="h-14 w-14 rounded-md border" />
                                 <div className="flex-1">
                                     <DialogTrigger asChild>
                                         <h3 className="font-headline text-xl hover:text-primary cursor-pointer">{internship.title}</h3>
@@ -203,9 +246,7 @@ export default function InternshipPage() {
                                  <DialogTrigger asChild>
                                     <Button variant="ghost">View Details</Button>
                                 </DialogTrigger>
-                                <Button>
-                                    Apply Now <ExternalLink className="ml-2 h-4 w-4"/>
-                                </Button>
+                                <ApplyDialog title={internship.title} company={internship.company} />
                             </CardFooter>
                             <DialogContent className="max-w-3xl">
                                 <DialogHeader>
@@ -252,6 +293,9 @@ export default function InternshipPage() {
                                         </div>
                                     </div>
                                 </div>
+                                <DialogFooter>
+                                    <ApplyDialog title={internship.title} company={internship.company} />
+                                </DialogFooter>
                             </DialogContent>
                         </Dialog>
                     </Card>
@@ -270,4 +314,3 @@ export default function InternshipPage() {
     </>
   );
 }
-
