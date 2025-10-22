@@ -27,6 +27,24 @@ export async function summarizeYoutubeVideo(input: SummarizeYoutubeVideoInput): 
   return youtubeSummarizerFlow(input);
 }
 
+const summarizeTranscriptPrompt = ai.definePrompt({
+    name: 'youtubeSummarizePrompt',
+    input: { schema: z.object({
+        summaryLength: z.enum(['Short (approx. 50 words)', 'Medium (approx. 100 words)', 'Long (approx. 200 words)']),
+        transcript: z.string(),
+    })},
+    output: { schema: z.object({ summary: z.string() }) },
+    prompt: `Summarize the following video transcript to a '{{summaryLength}}' length.
+
+    Transcript:
+    """
+    {{transcript}}
+    """
+
+    Return only the summarized text.`,
+});
+
+
 const youtubeSummarizerFlow = ai.defineFlow(
   {
     name: 'youtubeSummarizerFlow',
@@ -43,19 +61,7 @@ const youtubeSummarizerFlow = ai.defineFlow(
 
     const fullTranscript = transcriptData.map(item => item.text).join(' ');
 
-    const prompt = ai.definePrompt({
-      name: 'youtubeSummarizePrompt',
-      prompt: `Summarize the following video transcript to a '{{summaryLength}}' length.
-
-      Transcript:
-      """
-      {{transcript}}
-      """
-
-      Return only the summarized text.`,
-    });
-
-    const { output } = await prompt({
+    const { output } = await summarizeTranscriptPrompt({
       summaryLength: input.summaryLength,
       transcript: fullTranscript,
     });
