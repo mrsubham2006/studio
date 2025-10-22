@@ -20,7 +20,7 @@ const games = [
     description: 'Drag and drop words to match them with their correct meanings.',
     icon: Puzzle,
     buttonColor: '#00BFA6',
-    href: '#',
+    href: '/games/word-match',
   },
   {
     title: 'Memory Challenge',
