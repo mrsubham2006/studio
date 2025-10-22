@@ -13,7 +13,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Prompt is missing." }, { status: 400 });
     }
 
-    // Corrected the API endpoint from v1beta to v1
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {

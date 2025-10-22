@@ -4,7 +4,7 @@ import { summarizeText } from '@/ai/flows/text-summarizer-flow';
 import { z } from 'zod';
 
 const SummaryInputSchema = z.object({
-  textToSummarize: z.string().min(20, 'Text must be at least 20 characters long.').max(10000, 'Text is too long (max 10,000 characters).'),
+  textToSummarize: z.string().min(20, 'Text must be at least 20 characters long.').max(50000, 'Text is too long (max 50,000 characters).'),
   summaryLength: z.enum(['Short (approx. 50 words)', 'Medium (approx. 100 words)', 'Long (approx. 200 words)']),
 });
 
