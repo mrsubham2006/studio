@@ -3,7 +3,7 @@
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Bot, FileText, Youtube, MessageSquare } from 'lucide-react';
+import { ArrowRight, Bot, FileText, Youtube, MessageSquare, BrainCircuit } from 'lucide-react';
 import Link from 'next/link';
 
 const aiTools = [
@@ -12,6 +12,13 @@ const aiTools = [
     description: 'Your personal tutor for any question, any time.',
     icon: MessageSquare,
     href: '/ai-assistant/chat',
+  },
+  {
+    name: 'Grok AI',
+    description: 'Explore topics with the powerful Grok AI.',
+    icon: BrainCircuit,
+    href: '/ai-assistant/grok',
+    disabled: false,
   },
   {
     name: 'Text Summarizer',
