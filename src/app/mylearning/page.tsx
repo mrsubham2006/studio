@@ -6,11 +6,12 @@ import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { BookCopy, CheckCircle, ShoppingCart } from 'lucide-react';
+import { BookCopy, CheckCircle, ShoppingCart, Trash2 } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 // Mock progress for demo purposes
 const mockProgress: { [key: string]: number } = {
@@ -36,6 +37,7 @@ type Course = {
 export default function MyLearningPage() {
     const [purchasedCourses, setPurchasedCourses] = useState<Course[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const { toast } = useToast();
 
     useEffect(() => {
         try {
@@ -49,6 +51,29 @@ export default function MyLearningPage() {
             setIsLoading(false);
         }
     }, []);
+    
+    const handleDeleteCourse = (e: React.MouseEvent, courseId: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const updatedCourses = purchasedCourses.filter(course => course.id !== courseId);
+        setPurchasedCourses(updatedCourses);
+
+        try {
+            localStorage.setItem('purchasedCourses', JSON.stringify(updatedCourses));
+            toast({
+                title: 'Course Removed',
+                description: 'The course has been removed from your learning list.',
+            });
+        } catch (error) {
+            console.error("Failed to update localStorage", error);
+            toast({
+                variant: 'destructive',
+                title: 'Error',
+                description: 'Could not remove the course. Please try again.',
+            });
+        }
+    };
 
     const videoCourses = ['cse-dsa', 'course-math-10', 'course-phy-12', 'course-chem-12', 'course-neet-bio', 'course-sci-9', 'course-eng-8'];
 
@@ -108,7 +133,17 @@ export default function MyLearningPage() {
                                             />
                                         )}
                                         <CardHeader>
-                                            <CardTitle className="font-headline text-lg">{course.name}</CardTitle>
+                                            <div className="flex justify-between items-start">
+                                                <CardTitle className="font-headline text-lg">{course.name}</CardTitle>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className="h-7 w-7 shrink-0"
+                                                    onClick={(e) => handleDeleteCourse(e, course.id)}
+                                                >
+                                                    <Trash2 className="h-4 w-4 text-destructive" />
+                                                </Button>
+                                            </div>
                                             <CardDescription>
                                                 {progress === 100 ? (
                                                     <span className="flex items-center text-green-600 font-semibold">
