@@ -10,21 +10,29 @@ import { Button } from '@/components/ui/button';
 import { useNotification } from '@/context/NotificationProvider';
 
 export default function NotificationPage() {
-    const { notifications, markAsRead, unreadCount } = useNotification();
+    const { notifications, markAsRead, unreadCount, markAllAsRead } = useNotification();
 
   return (
     <>
       <Header />
       <main className="flex-1 py-12 bg-muted/40">
         <div className="container max-w-4xl">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold font-headline flex items-center gap-3">
-              <Bell className="h-8 w-8 text-primary" />
-              Notifications
-            </h1>
-            <p className="text-muted-foreground mt-1">
-                You have {unreadCount} unread notifications.
-            </p>
+          <div className="flex items-center justify-between mb-8">
+            <div>
+                <h1 className="text-3xl font-bold font-headline flex items-center gap-3">
+                <Bell className="h-8 w-8 text-primary" />
+                Notifications
+                </h1>
+                <p className="text-muted-foreground mt-1">
+                    You have {unreadCount} unread notifications.
+                </p>
+            </div>
+            {unreadCount > 0 && (
+                <Button variant="ghost" onClick={markAllAsRead}>
+                    <CheckCircle className="mr-2 h-4 w-4"/>
+                    Mark all as read
+                </Button>
+            )}
           </div>
           
           <div className="space-y-4">
