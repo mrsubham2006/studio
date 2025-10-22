@@ -1,85 +1,18 @@
 'use client';
 
-import { useState, useTransition } from 'react';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowLeft, Youtube, Copy, Check, Sparkles, Wand2 } from 'lucide-react';
+import { ArrowLeft, Youtube, Sparkles } from 'lucide-react';
 import Link from 'next/link';
-import { getYoutubeSummary } from './actions';
-import { useToast } from '@/hooks/use-toast';
-import { cn } from '@/lib/utils';
-import { Label } from '@/components/ui/label';
-
-type SummaryLength = 'Short (approx. 50 words)' | 'Medium (approx. 100 words)' | 'Long (approx. 200 words)';
 
 export default function YoutubeSummarizerPage() {
-  const [videoUrl, setVideoUrl] = useState('');
-  const [summary, setSummary] = useState('');
-  const [summaryLength, setSummaryLength] = useState<SummaryLength>('Medium (approx. 100 words)');
-  const [isPending, startTransition] = useTransition();
-  const [isCopied, setIsCopied] = useState(false);
-  const { toast } = useToast();
-
-  const handleGenerateSummary = () => {
-    if (!videoUrl.trim()) {
-      toast({
-        variant: 'destructive',
-        title: 'YouTube URL Required',
-        description: 'Please paste a valid YouTube video URL to summarize.',
-      });
-      return;
-    }
-
-    startTransition(async () => {
-      try {
-        setSummary('');
-        toast({
-            title: 'Processing Video...',
-            description: 'Fetching transcript and generating your summary. This may take a moment.',
-        });
-        const result = await getYoutubeSummary(videoUrl, summaryLength);
-        setSummary(result);
-        toast({
-          title: 'Summary Generated!',
-          description: 'Your video has been summarized successfully.',
-        });
-      } catch (error: any) {
-        toast({
-          variant: 'destructive',
-          title: 'An error occurred.',
-          description: error.message || 'Failed to generate summary. Please try again.',
-        });
-      }
-    });
-  };
-  
-  const handleCopy = () => {
-    navigator.clipboard.writeText(summary);
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
-  };
-  
-  const handlePaste = async () => {
-    try {
-        const text = await navigator.clipboard.readText();
-        setVideoUrl(text);
-    } catch (err) {
-        toast({
-            variant: 'destructive',
-            title: 'Paste Failed',
-            description: 'Could not read from clipboard. Please paste manually.',
-        })
-    }
-  };
 
   return (
     <>
       <Header />
       <main className="flex-1 py-8 bg-muted/20">
-        <div className="container max-w-5xl">
+        <div className="container max-w-5xl h-[calc(100vh-150px)] flex flex-col">
           <div className="mb-8">
             <Button variant="ghost" asChild className="mb-4">
               <Link href="/ai-assistant" className="flex items-center gap-2 text-muted-foreground">
@@ -98,76 +31,18 @@ export default function YoutubeSummarizerPage() {
                 AI YouTube Summarizer
               </h1>
               <p className="mt-2 text-muted-foreground md:text-lg">
-                Get instant summaries of any YouTube video — lectures, tutorials, or news.
+                Summarize YouTube videos instantly using the tool below.
               </p>
-              <p className="text-xs text-muted-foreground/80 mt-1">Save time. Learn faster with AI.</p>
             </div>
           </div>
 
-          <Card className="shadow-2xl backdrop-blur-lg bg-card/80">
-            <CardContent className="p-6 space-y-6">
-                <div className="space-y-4">
-                    <h3 className="font-semibold text-lg">YouTube Video URL</h3>
-                    <div className="flex gap-2">
-                        <Input
-                            placeholder="Paste your YouTube video URL here..."
-                            className="h-12 flex-1"
-                            value={videoUrl}
-                            onChange={(e) => setVideoUrl(e.target.value)}
-                        />
-                         <Button variant="outline" onClick={handlePaste}>Paste</Button>
-                    </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div className="flex items-center gap-2 w-full sm:w-auto">
-                        <Label htmlFor="summary-length" className="text-sm font-medium">Summary Length:</Label>
-                        <Select value={summaryLength} onValueChange={(value: SummaryLength) => setSummaryLength(value)}>
-                            <SelectTrigger id="summary-length" className="flex-1 sm:w-[280px]">
-                                <SelectValue placeholder="Select summary length" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="Short (approx. 50 words)">Short (~50 words)</SelectItem>
-                                <SelectItem value="Medium (approx. 100 words)">Medium (~100 words)</SelectItem>
-                                <SelectItem value="Long (approx. 200 words)">Long (~200 words)</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <Button size="lg" onClick={handleGenerateSummary} disabled={isPending} className="w-full sm:w-auto glow-on-hover">
-                        <Wand2 className="mr-2 h-5 w-5" />
-                        {isPending ? 'Generating...' : 'Generate Summary'}
-                    </Button>
-                </div>
-                
-                <div className="space-y-4">
-                    <h3 className="font-semibold text-lg">Summary</h3>
-                    <div className={cn("relative rounded-md border bg-muted/50 p-4 h-80 overflow-y-auto", summary && "text-foreground")}>
-                        {isPending ? (
-                            <div className="flex flex-col items-center justify-center h-full text-muted-foreground">
-                                <Wand2 className="h-8 w-8 mb-2 animate-pulse" />
-                                <p className="font-medium">Generating your summary...</p>
-                                <p className="text-sm">Please wait a moment.</p>
-                            </div>
-                        ) : summary ? (
-                            <>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="absolute top-2 right-2 h-7 w-7"
-                                    onClick={handleCopy}
-                                >
-                                    {isCopied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
-                                </Button>
-                                <p className="text-sm whitespace-pre-wrap">{summary}</p>
-                            </>
-                        ) : (
-                             <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground">
-                                <Sparkles className="h-8 w-8 mb-2" />
-                                <p>Your summarized video content will appear here.</p>
-                            </div>
-                        )}
-                    </div>
-                </div>
+          <Card className="shadow-2xl backdrop-blur-lg bg-card/80 flex-1">
+            <CardContent className="p-2 h-full">
+                <iframe
+                    src="https://notegpt.io/youtube-video-summarizer"
+                    className="w-full h-full border-0 rounded-lg"
+                    title="YouTube Video Summarizer"
+                ></iframe>
             </CardContent>
           </Card>
         </div>
