@@ -22,8 +22,20 @@ type ClassSelectorSectionProps = {
 
 export default function ClassSelectorSection({ onClassChange }: ClassSelectorSectionProps) {
   return (
-    <section className="py-16 md:py-24 bg-card shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.2)] relative -mt-12 rounded-t-lg z-0">
-      <div className="container max-w-3xl mx-auto text-center">
+    <section className="py-16 md:py-24 bg-card shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.2)] relative -mt-12 rounded-t-lg z-0 overflow-hidden">
+        <div className="bubbles">
+            <div className="bubble"></div>
+            <div className="bubble"></div>
+            <div className="bubble"></div>
+            <div className="bubble"></div>
+            <div className="bubble"></div>
+            <div className="bubble"></div>
+            <div className="bubble"></div>
+            <div className="bubble"></div>
+            <div className="bubble"></div>
+            <div className="bubble"></div>
+        </div>
+      <div className="container max-w-3xl mx-auto text-center relative z-10">
         <GraduationCap className="mx-auto h-12 w-12 text-primary mb-4"/>
         <h2 className="text-3xl font-bold font-headline tracking-tighter sm:text-4xl md:text-5xl">
           Find Your Path to Success
@@ -33,7 +45,7 @@ export default function ClassSelectorSection({ onClassChange }: ClassSelectorSec
         </p>
         <div className="mt-8 max-w-md mx-auto">
           <Select onValueChange={onClassChange}>
-            <SelectTrigger className="h-12 text-lg shadow-md">
+            <SelectTrigger className="h-12 text-lg shadow-md bg-background/80 backdrop-blur-sm">
               <SelectValue placeholder="Select your class" />
             </SelectTrigger>
             <SelectContent>
