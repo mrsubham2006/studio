@@ -40,6 +40,12 @@ const courseVideoData = {
         description: 'Lecture 1: The Living World',
         videoUrl: 'https://youtu.be/vlfLv0fAWNI?si=lwcSbAz0he0T_JTM',
         icon: Film,
+    },
+    'course-sci-9': {
+        title: 'Science for Class 9',
+        description: 'Chapter 1: Matter in Our Surroundings',
+        videoUrl: 'https://youtu.be/7Uy_yonHhAg?si=D7bATzaLsv6xNB8V',
+        icon: BookOpen,
     }
 };
 

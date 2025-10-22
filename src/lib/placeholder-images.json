@@ -45,7 +45,7 @@
     {
       "id": "testimonial-1",
       "description": "Avatar for the first testimonial.",
-      "imageUrl": "https://images.unsplash.com/photo-1561065533-316e3142d586?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdHVkZW50JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYwOTM0NjgzfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1561065533-316e3142d586?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdHVkZW50JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYwOTM0NjgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "student portrait"
     },
     {
@@ -93,7 +93,7 @@
     {
       "id": "course-science",
       "description": "Thumbnail for a Science course.",
-      "imageUrl": "https://images.unsplash.com/photo-1711408524517-caec3d9700ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzY2llbmNlJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzYxMDQwMzYzfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://i.ytimg.com/vi/7Uy_yonHhAg/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBcYjWXhLLF0ipey4V1dHSdYX66zA",
       "imageHint": "science abstract"
     },
     {

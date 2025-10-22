@@ -21,6 +21,7 @@ const mockProgress: { [key: string]: number } = {
     'course-chem-12': 25,
     'mech-thermo': 55,
     'course-math-10': 60,
+    'course-sci-9': 35,
 };
 
 type Course = {
@@ -49,7 +50,7 @@ export default function MyLearningPage() {
         }
     }, []);
 
-    const videoCourses = ['cse-dsa', 'course-math-10', 'course-phy-12', 'course-chem-12', 'course-neet-bio'];
+    const videoCourses = ['cse-dsa', 'course-math-10', 'course-phy-12', 'course-chem-12', 'course-neet-bio', 'course-sci-9'];
 
     if (isLoading) {
         return (
