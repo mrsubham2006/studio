@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -65,51 +66,48 @@ export default function FeaturedCoursesSection({ selectedClass }: { selectedClas
             {selectedClass ? `Top courses for ${selectedClass}` : 'Explore our most popular courses, designed for excellence.'}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuredCourses.map((course, index) => {
             const courseImage = PlaceHolderImages.find(img => img.id === course.imageId);
             return (
               <Card 
                 key={course.id} 
                 className={cn(
-                  "shine-on-hover flex flex-col sm:flex-row overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 fade-in-up",
+                  "shine-on-hover flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 fade-in-up",
                 )}
                 style={{ animationDelay: `${index * 100}ms`}}
               >
                 {courseImage && (
-                     <Link href={`/courses/${course.id}`} className="sm:w-2/5">
+                     <Link href={`/courses/${course.id}`} className="block">
                         <Image
                         src={courseImage.imageUrl}
                         alt={course.name}
                         data-ai-hint={courseImage.imageHint}
                         width={400}
-                        height={400}
-                        className="object-cover w-full h-full"
+                        height={225}
+                        className="object-cover w-full h-48"
                         />
                      </Link>
                   )}
-                <div className="flex flex-col sm:w-3/5">
-                    <CardContent className="flex-1 p-6 space-y-2">
+                <div className="flex flex-col flex-1">
+                    <CardContent className="flex-1 p-4 space-y-2">
                         <div className="flex items-center text-sm text-muted-foreground">
                             <BookOpen className="w-4 h-4 mr-2" />
                             <span>{course.category}</span>
                         </div>
-                        <CardTitle className="font-headline text-lg leading-tight">
+                        <CardTitle className="font-headline text-lg leading-tight h-12">
                             <Link href={`/courses/${course.id}`} className="hover:text-primary transition-colors">{course.name}</Link>
                         </CardTitle>
-                        <p className="text-sm text-muted-foreground h-10 overflow-hidden">{course.description}</p>
                         <p className="text-2xl font-bold text-primary pt-2">₹{course.price}</p>
                     </CardContent>
-                    <CardFooter className="p-6 pt-0 flex gap-2">
+                    <CardFooter className="p-4 pt-0 flex gap-2">
                         <Button variant="outline" asChild className="w-full">
                             <Link href={`/courses/${course.id}`}>
                                 Explore
-                                <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>
                          <Button onClick={() => handleBuyNow(course)} className="w-full">
                             Buy Now
-                            <ShoppingCart className="ml-2 h-4 w-4" />
                          </Button>
                     </CardFooter>
                 </div>

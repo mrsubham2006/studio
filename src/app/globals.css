@@ -89,13 +89,13 @@
   .fade-in-up {
     animation: fade-in-up 0.5s ease-out forwards;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
 
   @keyframes fade-in-up {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
