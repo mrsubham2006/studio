@@ -60,13 +60,15 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1">
-        <HeroSection />
-        <ClassSelectorSection onClassChange={setSelectedClass} />
-        <FeaturedCoursesSection selectedClass={selectedClass} />
-        <AiAssistantPreview />
-        <TestimonialsSection />
-      </main>
+      <HeroSection />
+      <div className="relative z-10 mt-[60vh] md:mt-[70vh] bg-background">
+        <main className="flex-1">
+          <ClassSelectorSection onClassChange={setSelectedClass} />
+          <FeaturedCoursesSection selectedClass={selectedClass} />
+          <AiAssistantPreview />
+          <TestimonialsSection />
+        </main>
+      </div>
     </>
   );
 }
