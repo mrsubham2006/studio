@@ -1,3 +1,4 @@
+
 'use client';
 
 import Header from '@/components/Header';
@@ -29,7 +30,7 @@ const aiTools = [
     disabled: false,
   },
   {
-    name: 'YouTube Video Summarizer',
+    name: 'Video Summarizer',
     description: 'Get a summary of any YouTube educational video.',
     icon: Youtube,
     href: '/ai-assistant/youtube-summarizer',

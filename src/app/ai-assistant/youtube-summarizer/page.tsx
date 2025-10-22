@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useTransition } from 'react';
@@ -82,7 +83,7 @@ export default function YoutubeSummarizerPage() {
                 </div>
               </div>
               <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl">
-                AI YouTube Summarizer
+                AI Video Summarizer
               </h1>
               <p className="mt-2 text-muted-foreground md:text-lg">
                 Paste a YouTube link and let AI summarize the video for you.
