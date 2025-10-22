@@ -3,9 +3,8 @@
 
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, BrainCircuit, Puzzle, Target, Brain, Code, Divide } from 'lucide-react';
-import Link from 'next/link';
 
 const games = [
   {
