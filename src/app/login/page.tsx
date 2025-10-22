@@ -64,7 +64,7 @@ export default function LoginPage() {
         id: user.uid,
         name: user.displayName,
         email: user.email,
-        photoURL: user.photoURL,
+        photoURL: "https://i.postimg.cc/nhpydZtf/IMG20251011155001.jpg",
         registrationDate: new Date().toISOString(),
       };
       

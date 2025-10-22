@@ -167,7 +167,7 @@ export default function Header() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src={user.photoURL || `https://picsum.photos/seed/${'\'\''}${user.uid}/100/100`} alt="User Avatar" />
+                    <AvatarImage src={"https://i.postimg.cc/nhpydZtf/IMG20251011155001.jpg"} alt="User Avatar" />
                     <AvatarFallback>{user.email?.charAt(0).toUpperCase()}</AvatarFallback>
                   </Avatar>
                 </Button>

@@ -61,7 +61,7 @@ export default function SAMSRegisterPage() {
   const auth = useAuth();
   const firestore = useFirestore();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string | null>("https://i.postimg.cc/nhpydZtf/IMG20251011155001.jpg");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedCourse, setSelectedCourse] = useState<string>('');
   const [branchOptions, setBranchOptions] = useState<string[] | null>([]);
@@ -109,7 +109,7 @@ export default function SAMSRegisterPage() {
         branch: data.branch,
         rollNumber: data.rollNumber,
         email: data.email,
-        photoURL: photoPreview || `https://avatar.vercel.sh/${'\'\''}${userId}.png`, // Placeholder
+        photoURL: photoPreview || `https://i.postimg.cc/nhpydZtf/IMG20251011155001.jpg`, // Placeholder
     };
     
     await setDoc(studentDocRef, studentData, { merge: true });

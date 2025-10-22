@@ -43,7 +43,7 @@ export default function SignupPage() {
   const auth = useAuth();
   const firestore = useFirestore();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string | null>("https://i.postimg.cc/nhpydZtf/IMG20251011155001.jpg");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
@@ -79,7 +79,7 @@ export default function SignupPage() {
         id: user.uid,
         name: user.displayName,
         email: user.email,
-        photoURL: user.photoURL,
+        photoURL: "https://i.postimg.cc/nhpydZtf/IMG20251011155001.jpg",
         registrationDate: new Date().toISOString(),
       };
       
@@ -108,7 +108,7 @@ export default function SignupPage() {
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       const user = userCredential.user;
       
-      const photoURL = photoPreview || `https://picsum.photos/seed/${user.uid}/100/100`;
+      const photoURL = photoPreview || `https://i.postimg.cc/nhpydZtf/IMG20251011155001.jpg`;
 
       const userDocRef = doc(firestore, "users", user.uid);
       const userData = {
