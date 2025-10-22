@@ -22,7 +22,7 @@ export default function HeroSection() {
             fill
             className="object-cover opacity-20 dark:opacity-10"
           />
-          <div className="absolute inset-0 bg-black/30 dark:bg-black/50" />
+          <div className="absolute inset-0 bg-black/0 dark:bg-black/50" />
         </>
       )}
       <div className="container relative z-10 px-4 md:px-6">
