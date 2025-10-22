@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Book } from "lucide-react"
+import { Gamepad2 } from "lucide-react"
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -122,7 +122,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md mx-auto shadow-2xl">
         <CardHeader className="space-y-1 text-center">
           <Link href="/" className="flex items-center justify-center gap-2 mb-4">
-              <Book className="h-7 w-7 text-primary" />
+              <Gamepad2 className="h-7 w-7 text-primary" />
               <span className="font-bold font-headline text-2xl">EduNex</span>
           </Link>
           <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Book } from 'lucide-react';
+import { Gamepad2 } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container max-w-7xl py-8 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Book className="h-7 w-7 text-primary" />
+              <Gamepad2 className="h-7 w-7 text-primary" />
               <span className="font-bold font-headline text-2xl">EduNex</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-md text-center">
