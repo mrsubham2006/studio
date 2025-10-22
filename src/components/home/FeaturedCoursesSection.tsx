@@ -28,9 +28,13 @@ export default function FeaturedCoursesSection({ selectedClass }: { selectedClas
 
         if (selectedClass) {
             const filtered = allProducts.filter(p => p.category === selectedClass);
-            return filtered.length > 0 ? filtered.slice(0, 4) : allProducts.filter(p => defaultFeaturedCourseIds.includes(p.id));
+            // If filtering results in courses, show up to 4, otherwise show default featured.
+            if (filtered.length > 0) {
+                return filtered.slice(0, 4);
+            }
         }
         
+        // Default featured courses if no class is selected or if the selected class has no courses.
         return allProducts.filter(p => defaultFeaturedCourseIds.includes(p.id));
 
     }, [selectedClass]);
