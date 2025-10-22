@@ -1,3 +1,4 @@
+
 'use client';
 
 import Header from '@/components/Header';
@@ -23,16 +24,16 @@ export default function AiAssistantChatPage() {
                 <div className="text-center fade-in-up">
                     <Sparkles className="mx-auto h-12 w-12 text-primary mb-2" />
                     <h1 className="text-4xl font-bold font-headline tracking-tighter sm:text-5xl">AI Assistant</h1>
-                    <p className="mt-2 text-muted-foreground md:text-lg">Powered by Grok.</p>
+                    <p className="mt-2 text-muted-foreground md:text-lg">Powered by DeepSeek.</p>
                 </div>
             </div>
 
             <Card className="flex-1 flex flex-col shadow-lg fade-in-up" style={{ animationDelay: '0.2s' }}>
                 <CardContent className="p-0 flex-1 flex flex-col">
                    <iframe
-                        src="https://grok.x.ai/"
+                        src="https://chat.deepseek.com/"
                         className="w-full h-full border-0 rounded-lg"
-                        title="AI Assistant - Grok"
+                        title="AI Assistant - DeepSeek"
                     ></iframe>
                 </CardContent>
             </Card>
