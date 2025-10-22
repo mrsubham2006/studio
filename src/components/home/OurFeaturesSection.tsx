@@ -1,3 +1,4 @@
+
 import { GraduationCap, ShieldCheck, Video, Bot, Award, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 
@@ -42,7 +43,7 @@ const features = [
 
 export default function OurFeaturesSection() {
   return (
-    <section className="py-16 md:py-24 bg-muted/40">
+    <section className="py-16 md:py-24">
       <div className="container max-w-7xl">
         <div className="text-center mb-12">
           
