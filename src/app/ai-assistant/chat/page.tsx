@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useTransition } from 'react';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Sparkles, ArrowLeft, SendHorizontal, User, Bot, AlertTriangle } from 'lucide-react';
+import { Sparkles, ArrowLeft, SendHorizontal, User, Bot, AlertTriangle, Paperclip } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -38,6 +38,7 @@ export default function AiAssistantChatPage() {
   const [apiError, setApiError] = useState<string | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const [userMessageForRetry, setUserMessageForRetry] = useState<Message | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (scrollAreaRef.current) {
@@ -77,6 +78,20 @@ export default function AiAssistantChatPage() {
       }
     });
   };
+
+  const handleAttachment = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      // Handle the file upload logic here
+      console.log('Selected file:', file.name);
+      // For now, we'll just log it. In a real app, you'd upload it.
+    }
+  };
+
 
   return (
     <>
@@ -164,11 +179,27 @@ export default function AiAssistantChatPage() {
                         <div className="relative">
                             <Input
                                 placeholder="Ask anything about your studies..."
-                                className="pr-12 h-11"
+                                className="pr-24 h-11"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && handleSendMessage(input)}
                                 disabled={isPending}
+                            />
+                             <Button 
+                                type="button" 
+                                size="icon" 
+                                variant="ghost"
+                                className="absolute right-12 top-1/2 -translate-y-1/2 h-8 w-8" 
+                                onClick={handleAttachment}
+                                disabled={isPending}
+                            >
+                                <Paperclip className="h-4 w-4" />
+                            </Button>
+                            <input 
+                                type="file" 
+                                ref={fileInputRef} 
+                                className="hidden" 
+                                onChange={handleFileChange}
                             />
                             <Button 
                                 type="submit" 
