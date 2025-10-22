@@ -4,10 +4,9 @@ import { useState, useRef, useEffect, useTransition } from 'react';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Sparkles, ArrowLeft, SendHorizontal, User, Bot } from 'lucide-react';
+import { Sparkles, ArrowLeft, SendHorizontal, User, Bot, AlertTriangle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
-import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
@@ -24,8 +23,8 @@ async function getChatbotResponse(prompt: string) {
   });
 
   if (!res.ok) {
-    const errorData = await res.json();
-    throw new Error(errorData.error || "Failed to get response from server.");
+    // This will be caught by the catch block in handleSendMessage
+    throw new Error("Failed to get response from server.");
   }
 
   const data = await res.json();
@@ -36,7 +35,7 @@ export default function AiAssistantChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isPending, startTransition] = useTransition();
-  const { toast } = useToast();
+  const [apiError, setApiError] = useState<string | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -54,6 +53,7 @@ export default function AiAssistantChatPage() {
   const handleSendMessage = () => {
     if (input.trim() === '') return;
 
+    setApiError(null); // Clear previous errors
     const userMessage: Message = { text: input, sender: 'user' };
     setMessages(prev => [...prev, userMessage]);
     const currentInput = input;
@@ -64,13 +64,9 @@ export default function AiAssistantChatPage() {
         const botResponse = await getChatbotResponse(currentInput);
         const botMessage: Message = { text: botResponse, sender: 'bot' };
         setMessages(prev => [...prev, botMessage]);
-      } catch (error: any) {
-        toast({
-          variant: 'destructive',
-          title: 'An error occurred.',
-          description: error.message || 'Failed to get response. Please try again.',
-        });
-        // Optionally remove the user's message if the bot fails
+      } catch (error) {
+        setApiError("⚠️ AI Assistant is temporarily unavailable. Please try again later.");
+        // Revert user message on error
         setMessages(prev => prev.filter(msg => msg !== userMessage));
       }
     });
@@ -145,6 +141,12 @@ export default function AiAssistantChatPage() {
                          )}
                       </div>
                    </ScrollArea>
+                    {apiError && (
+                      <div className="p-4 border-t text-destructive bg-destructive/10 text-sm flex items-center gap-2">
+                          <AlertTriangle className="h-4 w-4" />
+                          {apiError}
+                      </div>
+                    )}
                     <div className="p-4 border-t bg-background/80">
                         <div className="relative">
                             <Input

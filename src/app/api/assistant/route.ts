@@ -4,6 +4,14 @@ export async function POST(req: NextRequest) {
   try {
     const { prompt } = await req.json();
 
+    if (!process.env.GEMINI_API_KEY) {
+      return NextResponse.json({ error: "API key is missing." }, { status: 500 });
+    }
+
+    if (!prompt) {
+        return NextResponse.json({ error: "Prompt is missing." }, { status: 400 });
+    }
+
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
@@ -29,10 +37,10 @@ export async function POST(req: NextRequest) {
 
     const data = await response.json();
     
+    // Handle cases where the API returns a response with no candidates (e.g., due to safety filters)
     if (data.candidates && data.candidates.length > 0 && data.candidates[0].content) {
-        return NextResponse.json({ reply: data.candidates[0].content.parts[0].text || "No reply" });
+        return NextResponse.json({ reply: data.candidates[0].content.parts[0].text || "I am unable to provide a response to that prompt. Please try a different one." });
     } else {
-        // This case handles when the API returns a response with no candidates, which can happen due to safety filters.
         return NextResponse.json({ reply: "I am unable to provide a response to that prompt. Please try a different one." });
     }
     
