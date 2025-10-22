@@ -5,7 +5,7 @@
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Film, BookOpen, CheckCircle, X } from 'lucide-react';
+import { ArrowLeft, Film, BookOpen, CheckCircle, X, Download } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useState } from 'react';
@@ -94,6 +94,11 @@ function VideoPlayer() {
             </Card>
         )
     }
+    
+    const getGoogleDriveDownloadUrl = (url: string) => {
+        const fileId = url.split('/d/')[1].split('/')[0];
+        return `https://drive.google.com/uc?export=download&id=${fileId}`;
+    }
 
     const Icon = data.icon;
 
@@ -119,11 +124,17 @@ function VideoPlayer() {
                 <p className="text-muted-foreground">
                     Welcome to the lecture. In this video, we will cover the fundamental concepts of the topic.
                 </p>
-                <div className="mt-6 flex gap-4">
+                <div className="mt-6 flex flex-wrap gap-4">
                     <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
                        {showNotes ? <X className="mr-2 h-4 w-4" /> : <BookOpen className="mr-2 h-4 w-4" />}
                         {showNotes ? 'Close Notes' : 'View Notes'}
                     </Button>
+                     <a href={getGoogleDriveDownloadUrl(data.notesUrl)} download target="_blank" rel="noopener noreferrer">
+                        <Button variant="outline">
+                            <Download className="mr-2 h-4 w-4" />
+                            Download Notes
+                        </Button>
+                    </a>
                     <Button>
                         <CheckCircle className="mr-2 h-4 w-4" />
                         Mark as Complete
@@ -166,8 +177,3 @@ export default function VideoPlayerPage() {
     </div>
   );
 }
-
-    
-
-
-
