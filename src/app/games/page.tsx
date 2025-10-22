@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Header from '@/components/Header';
@@ -134,7 +135,8 @@ export default function GamesPage() {
                                     key={player.rank} 
                                     className={cn(
                                         "flex items-center justify-between p-3 rounded-md bg-[#3A3A4F]/50",
-                                        player.rank === 1 && "relative overflow-hidden bg-gradient-to-r from-yellow-500/10 to-yellow-400/10 animate-shine"
+                                        player.rank === 1 && "relative overflow-hidden bg-gradient-to-r from-yellow-500/10 to-yellow-400/10 animate-shine",
+                                        player.rank === 2 && "relative overflow-hidden bg-gradient-to-r from-gray-400/10 to-gray-300/10 animate-shine-silver"
                                     )}
                                 >
                                     <div className="flex items-center gap-3">
