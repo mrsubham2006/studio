@@ -124,7 +124,7 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <Link href="/notification" className="relative">
               <Button variant="ghost" size="icon">
-                <Book className="h-6 w-6 text-primary" />
+                <Bell className="h-6 w-6 text-primary" />
                 {unreadCount > 0 && (
                   <span className="absolute top-1 right-1 block h-2.5 w-2.5 rounded-full bg-destructive ring-2 ring-background" />
                 )}
