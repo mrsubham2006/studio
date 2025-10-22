@@ -66,8 +66,6 @@ export default function AiAssistantChatPage() {
         setMessages(prev => [...prev, botMessage]);
       } catch (error) {
         setApiError("⚠️ AI Assistant is temporarily unavailable. Please try again later.");
-        // Revert user message on error
-        setMessages(prev => prev.filter(msg => msg !== userMessage));
       }
     });
   };
