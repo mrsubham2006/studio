@@ -155,7 +155,7 @@ export default function Header() {
             </Link>
             {user && (
                 <Button variant="ghost" asChild className="transition-transform active:scale-95">
-                    <Link href="#">
+                    <Link href="/games">
                         <Gamepad2 className="h-5 w-5" />
                         <span className="hidden lg:inline">Games</span>
                     </Link>
