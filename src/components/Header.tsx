@@ -3,7 +3,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell, LifeBuoy, Mail, Phone, Package, X, BookCopy, Gamepad2 } from 'lucide-react';
+import { Book, Menu, Search, User, LogOut, Briefcase, GraduationCap, Award, Calendar, Bell, LifeBuoy, Mail, Phone, Package, X, BookCopy, Gamepad2, Library } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
@@ -28,6 +28,8 @@ import { useNotification } from '@/context/NotificationProvider';
 const mobileNavLinks = [
   { href: '/', label: 'Home', icon: Book },
   { href: '/about', label: 'About', icon: Book },
+  { href: '/games', label: 'Gamified Learning Zone', icon: Gamepad2 },
+  { href: '/library', label: 'Library', icon: Library },
   { href: '/internship', label: 'Internship', icon: Briefcase },
   { href: '/scholarship', label: 'Scholarship', icon: GraduationCap },
   { href: '/certificate', label: 'Certificate', icon: Award },
