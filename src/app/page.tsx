@@ -47,7 +47,7 @@ export default function Home() {
             </div>
           ),
           description: randomMessage,
-          duration: 5000,
+          duration: 1200,
         });
       }, 1000);
     }
