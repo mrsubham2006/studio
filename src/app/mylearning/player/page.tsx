@@ -5,52 +5,59 @@
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, Film, BookOpen, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Film, BookOpen, CheckCircle, X } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 
 const courseVideoData = {
     'cse-dsa': {
         title: 'Data Structures & Algorithms',
         description: 'Lecture 1: Introduction to Data Structures',
         videoUrl: 'https://youtu.be/Hb9QvSODBPY?si=8ZMfeZ8EohAVaZZC',
+        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
         icon: Film,
     },
     'course-math-10': {
         title: 'Foundation Mathematics Class 10',
         description: 'Live Session: Important Questions for Board Exams',
         videoUrl: 'https://www.youtube.com/live/zNMIK2vLHGM?si=T8ldKdmSZl-hSoTe',
+        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
         icon: BookOpen,
     },
     'course-phy-12': {
         title: 'Mastering Physics for Class 12',
         description: 'Chapter 1: Electric Charges and Fields',
         videoUrl: 'https://youtu.be/2Qie6DbS63o?si=bifiLy7IaGV-9Lb4',
+        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
         icon: Film,
     },
     'course-chem-12': {
         title: 'Organic Chemistry Made Easy',
         description: 'Lecture 1: Introduction to Organic Chemistry',
         videoUrl: 'https://youtu.be/-h0drKJnGrE?si=Y6fFnqLQYs0DxYEE',
+        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
         icon: Film,
     },
     'course-neet-bio': {
         title: 'NEET Biology Crash Course',
         description: 'Lecture 1: The Living World',
         videoUrl: 'https://youtu.be/vlfLv0fAWNI?si=lwcSbAz0he0T_JTM',
+        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
         icon: Film,
     },
     'course-sci-9': {
         title: 'Science for Class 9',
         description: 'Chapter 1: Matter in Our Surroundings',
         videoUrl: 'https://youtu.be/7Uy_yonHhAg?si=D7bATzaLsv6xNB8V',
+        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
         icon: BookOpen,
     },
     'course-eng-8': {
         title: 'English Grammar for Class 8',
         description: 'Chapter 1: The Sentence',
         videoUrl: 'https://youtu.be/bgHHZ4Arl4A?si=kZGbEScpOpN6uda2',
+        notesUrl: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
         icon: BookOpen,
     }
 };
@@ -60,6 +67,7 @@ type CourseKeys = keyof typeof courseVideoData;
 function VideoPlayer() {
     const searchParams = useSearchParams();
     const courseId = searchParams.get('courseId') as CourseKeys | null;
+    const [showNotes, setShowNotes] = useState(false);
 
     const data = courseId && courseVideoData[courseId] ? courseVideoData[courseId] : null;
 
@@ -112,15 +120,24 @@ function VideoPlayer() {
                     Welcome to the lecture. In this video, we will cover the fundamental concepts of the topic.
                 </p>
                 <div className="mt-6 flex gap-4">
-                    <Button variant="outline">
-                        <BookOpen className="mr-2 h-4 w-4" />
-                        View Notes
+                    <Button variant="outline" onClick={() => setShowNotes(!showNotes)}>
+                       {showNotes ? <X className="mr-2 h-4 w-4" /> : <BookOpen className="mr-2 h-4 w-4" />}
+                        {showNotes ? 'Close Notes' : 'View Notes'}
                     </Button>
                     <Button>
                         <CheckCircle className="mr-2 h-4 w-4" />
                         Mark as Complete
                     </Button>
                 </div>
+                {showNotes && (
+                    <div className="mt-6 border rounded-lg overflow-hidden">
+                         <iframe
+                            src={data.notesUrl}
+                            className="w-full h-[600px]"
+                            title="Course Notes PDF"
+                        ></iframe>
+                    </div>
+                )}
             </CardContent>
         </Card>
     );
@@ -151,4 +168,5 @@ export default function VideoPlayerPage() {
 }
 
     
+
 
