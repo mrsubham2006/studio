@@ -3,14 +3,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, LayoutGrid, Bot, BarChart2, ShoppingCart } from 'lucide-react';
+import { Home, LayoutGrid, Bot, BarChart2, ShoppingCart, BookCopy } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 
 const navLinks = [
   { href: '/ai-assistant', label: 'AI Zone', icon: Bot },
-  { href: '/', label: 'Home', icon: Home },
   { href: '/courses', label: 'Courses', icon: LayoutGrid },
+  { href: '/', label: 'Home', icon: Home },
+  { href: '/mylearning', label: 'My Learning', icon: BookCopy },
   { href: '/dashboard', label: 'SAMS', icon: BarChart2 },
   { href: '/edustore', label: 'EduStore', icon: ShoppingCart },
 ];
@@ -35,7 +36,11 @@ export default function BottomNavBar() {
   }
 
   const navItems = navLinks.map((link) => {
-      const isActive = pathname === link.href;
+      // Special handling for SAMS dashboard to match /sams/* routes
+      const isActive = link.href === '/dashboard' 
+        ? pathname.startsWith('/sams') 
+        : pathname === link.href;
+
       const IconComponent = link.icon;
       return (
         <Link
@@ -58,18 +63,18 @@ export default function BottomNavBar() {
   });
 
   // Reorder to place Home in the middle
-  const middleIndex = Math.floor(navItems.length / 2);
   const homeItem = navItems.find(item => item.key === '/');
   const otherItems = navItems.filter(item => item.key !== '/');
   
   if (homeItem) {
+    const middleIndex = Math.floor(otherItems.length / 2);
     otherItems.splice(middleIndex, 0, homeItem);
   }
 
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:hidden">
-      <div className="mx-auto grid h-16 grid-cols-5 items-center">
+      <div className="mx-auto grid h-16 grid-cols-6 items-center">
         {otherItems}
       </div>
     </nav>
