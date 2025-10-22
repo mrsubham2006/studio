@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
     const { prompt } = await req.json();
 
     if (!process.env.GEMINI_API_KEY) {
-      console.error("Gemini API key is missing from .env.local");
+      console.error("Gemini API key is missing from environment variables.");
       return NextResponse.json({ error: "API key is missing." }, { status: 500 });
     }
 
@@ -40,7 +40,8 @@ export async function POST(req: NextRequest) {
     const data = await response.json();
     
     if (data.candidates && data.candidates.length > 0 && data.candidates[0].content) {
-        return NextResponse.json({ reply: data.candidates[0].content.parts[0].text || "I am unable to provide a response to that prompt. Please try a different one." });
+        const reply = data.candidates[0].content.parts[0].text;
+        return NextResponse.json({ reply: reply || "I am unable to provide a response to that prompt. Please try a different one." });
     } else {
         // This case handles situations where the API returns a 200 OK but with no valid candidates (e.g., due to safety filters)
         console.warn("Google API returned no valid candidates. Response:", data);
