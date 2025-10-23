@@ -1,13 +1,14 @@
 
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, FileText, Film } from 'lucide-react';
+import { ArrowLeft, FileText } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function ExamPapersPage() {
+  const pdfEmbedUrl = "https://drive.google.com/file/d/1mclrwBQYrJstaNcro5dpiyCxLn4cXphy/preview";
+
   return (
     <div className="min-h-screen bg-muted/40">
       {/* Header */}
@@ -32,19 +33,17 @@ export default function ExamPapersPage() {
       <main className="container max-w-5xl mx-auto p-4 py-8">
         <Card>
           <CardHeader>
-            <CardTitle>Sample Technical Questions Video</CardTitle>
+            <CardTitle>B.Tech 1st Semester Examination Paper</CardTitle>
           </CardHeader>
           <CardContent>
-            <Link href="https://www.youtube.com/watch?v=M2N3tm9pA78" target="_blank" rel="noopener noreferrer">
-                <div className="relative aspect-video overflow-hidden rounded-lg cursor-pointer group border">
-                    <Image
-                    src="https://i.ytimg.com/vi/M2N3tm9pA78/hq720.jpg"
-                    alt="Sample video for technical questions"
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                </div>
-            </Link>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border">
+              <iframe
+                src={pdfEmbedUrl}
+                className="w-full h-full"
+                title="Exam Paper PDF"
+                allow="autoplay"
+              ></iframe>
+            </div>
           </CardContent>
         </Card>
       </main>
