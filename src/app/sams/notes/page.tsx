@@ -35,15 +35,13 @@ export default function NotesPage() {
                 <CardTitle>Sample JavaScript Notes</CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="relative w-full overflow-hidden rounded-lg border">
-                <Image
-                    src="https://i9.ytimg.com/vi/aveu0krAGvU/hq720_custom_1.jpg?sqp=CJzY38cG-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDCs4SNEyb9al3B5nV6LISsEmhffA"
-                    alt="Sample JavaScript notes for exam preparation"
-                    width={1280}
-                    height={720}
-                    className="w-full h-auto"
-                    priority
-                />
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+                  <iframe
+                    src="https://drive.google.com/file/d/1zXV68WUs2s3C9804GmLkKfSHPMZk537z/preview"
+                    className="w-full h-full"
+                    title="JavaScript Notes PDF"
+                    allow="autoplay"
+                  ></iframe>
                 </div>
             </CardContent>
             </Card>
