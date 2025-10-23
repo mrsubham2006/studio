@@ -5,7 +5,7 @@
  * components and your server-side AI logic.
  */
 
-import {createApi} from '@genkit-ai/next';
+import { defineNextApi } from '@genkit-ai/next';
 import '@/ai/flows/ai-learning-assistant-chatbot';
 import '@/ai/flows/ai-powered-content-recommendation';
 import '@/ai/flows/text-summarizer-flow';
@@ -15,4 +15,4 @@ import '@/ai/flows/audio-summarizer-flow';
 
 // This creates the API route handler.
 // For example, a flow named `myFlow` will be available at `/api/genkit/myFlow`.
-export const {GET, POST} = createApi();
+export const { GET, POST } = defineNextApi();
