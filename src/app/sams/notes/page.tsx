@@ -52,14 +52,13 @@ export default function NotesPage() {
                 <CardTitle>Sample CSS Notes</CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="relative w-full overflow-hidden rounded-lg border">
-                <Image
-                    src="https://i.postimg.cc/vmDhcwfQ/hq720-custom-1.avif"
-                    alt="Sample CSS notes for exam preparation"
-                    width={1280}
-                    height={720}
-                    className="w-full h-auto"
-                />
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+                  <iframe
+                    src="https://drive.google.com/file/d/1zSkGbb50v1hlOuzXmi-mw4UWxXAseHDv/preview"
+                    className="w-full h-full"
+                    title="CSS Notes PDF"
+                    allow="autoplay"
+                  ></iframe>
                 </div>
             </CardContent>
             </Card>
