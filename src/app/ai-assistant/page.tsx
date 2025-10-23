@@ -1,11 +1,18 @@
 
 'use client';
 
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Bot, FileText, Youtube, MessageSquare, BrainCircuit, Mic } from 'lucide-react';
+import { ArrowRight, Bot, FileText, Youtube, MessageSquare, BrainCircuit, Mic, History } from 'lucide-react';
 import Link from 'next/link';
+
+type Message = {
+    text: string;
+    sender: 'user' | 'bot';
+    timestamp: number;
+};
 
 const aiTools = [
   {
@@ -46,6 +53,22 @@ const aiTools = [
 ];
 
 export default function AiZonePage() {
+    const [recentChats, setRecentChats] = useState<Message[]>([]);
+
+    useEffect(() => {
+        try {
+            const savedMessages = localStorage.getItem('edunex-chat-history');
+            if (savedMessages) {
+                const allMessages: Message[] = JSON.parse(savedMessages);
+                // Get the last 3 user messages as conversation starters
+                const userMessages = allMessages.filter(m => m.sender === 'user');
+                setRecentChats(userMessages.slice(-3).reverse());
+            }
+        } catch (error) {
+            console.error("Failed to load chat history from localStorage", error);
+        }
+    }, []);
+
   return (
     <>
       <Header />
@@ -85,6 +108,30 @@ export default function AiZonePage() {
               </Link>
             ))}
           </div>
+
+            {recentChats.length > 0 && (
+                 <div className="mt-12">
+                    <div className="text-center mb-8">
+                        <h3 className="text-2xl font-bold font-headline tracking-tighter flex items-center justify-center gap-2">
+                           <History className="h-6 w-6 text-primary" />
+                           Recent Chats
+                        </h3>
+                         <p className="text-muted-foreground">Pick up where you left off.</p>
+                    </div>
+                     <div className="space-y-3">
+                        {recentChats.map((chat, index) => (
+                             <Link key={index} href="/ai-assistant/chat">
+                                <Card className="shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 fade-in-up" style={{ animationDelay: `${index * 100}ms`}}>
+                                    <CardContent className="p-4 flex items-center justify-between">
+                                        <p className="text-sm text-muted-foreground truncate italic">"{chat.text}"</p>
+                                        <ArrowRight className="h-5 w-5 text-muted-foreground shrink-0 ml-4" />
+                                    </CardContent>
+                                </Card>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
       </main>
     </>

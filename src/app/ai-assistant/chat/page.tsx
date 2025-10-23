@@ -14,6 +14,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 type Message = {
   text: string;
   sender: 'user' | 'bot';
+  timestamp: number;
 };
 
 async function getChatbotResponse(prompt: string) {
@@ -42,6 +43,29 @@ export default function AiAssistantChatPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    // Load chat history from localStorage
+    try {
+        const savedMessages = localStorage.getItem('edunex-chat-history');
+        if (savedMessages) {
+            const allMessages: Message[] = JSON.parse(savedMessages);
+            // Filter messages from the last 30 days
+            const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+            const recentMessages = allMessages.filter(m => m.timestamp > thirtyDaysAgo);
+            setMessages(recentMessages);
+        }
+    } catch (error) {
+        console.error("Failed to load chat history:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save messages to localStorage whenever they change
+    try {
+        localStorage.setItem('edunex-chat-history', JSON.stringify(messages));
+    } catch (error) {
+        console.error("Failed to save chat history:", error);
+    }
+
     if (scrollAreaRef.current) {
         // A bit of a hack to scroll to the bottom after the DOM updates
         setTimeout(() => {
@@ -57,7 +81,7 @@ export default function AiAssistantChatPage() {
     if (messageText.trim() === '') return;
 
     setApiError(null); // Clear previous errors
-    const userMessage: Message = { text: messageText, sender: 'user' };
+    const userMessage: Message = { text: messageText, sender: 'user', timestamp: Date.now() };
     
     // Add user message to chat, unless it's a retry of the same message
     if (userMessageForRetry?.text !== messageText) {
@@ -70,7 +94,7 @@ export default function AiAssistantChatPage() {
     startTransition(async () => {
       try {
         const botResponse = await getChatbotResponse(messageText);
-        const botMessage: Message = { text: botResponse, sender: 'bot' };
+        const botMessage: Message = { text: botResponse, sender: 'bot', timestamp: Date.now() };
         setMessages(prev => [...prev, botMessage]);
         setUserMessageForRetry(null); // Clear on success
       } catch (error: any) {
